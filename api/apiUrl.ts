@@ -1,8 +1,9 @@
 const API_URL = `https://sms-vv4i.onrender.com/api/v1`
-const LOGGEDIN = (uid: string) => `${API_URL}/${uid}`
+const LOGGEDIN = (uid: string) => `${API_URL}/schools/${uid}`
 export const LOGIN = `${API_URL}/login`
 export const SIGNUP = `${API_URL}/signup`
-export const STUDENTS = `${LOGGEDIN}/students`
+export const STUDENTS = (id: string)=> `${LOGGEDIN (id)}/students`
+export const TEACHERS = (schoolId) =>`${LOGGEDIN(schoolId)}/staffs`; //Add and get teachers
 // export const VERIFY_OTP = (schoolId) => `${API_URL}/schools/${schoolId}/otp`
 // export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/user-activate/${uid}`
 // export const LOGIN_URL =(schoolId)=> `${API_URL}/schools/${schoolId}/token`;
@@ -14,7 +15,6 @@ export const STUDENTS = `${LOGGEDIN}/students`
 // export const TEACHERBIRTHDAYS = (schoolId) =>`${LOGGED_IN(schoolId)}/birthdays?role=Teacher`; //Add and get students
 // export const STUDENT = (schoolId, studentId) => `${STUDENTS(schoolId)}/${studentId}`; // get single student
 // export const STUDENTPAYMENT = (schoolId, studentId) => `${STUDENT(schoolId, studentId)}/payments`
-// export const TEACHERS = (schoolId) =>`${LOGGED_IN(schoolId)}/staffs`; //Add and get teachers
 // export const TEACHER = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}`; //get singe teacher
 // // export const TEACHERACCOUNT = `${TEACHER(teacher_id)}`; //get singe teacher
 // export const TEACHERCOURSES = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}/courses`; //get singe teacher
