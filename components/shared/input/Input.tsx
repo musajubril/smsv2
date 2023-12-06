@@ -13,15 +13,17 @@ const inputStyles = cva("rounded-md font-medium h-full w-full border focus:outli
   });
   interface InputProps extends VariantProps<typeof inputStyles> {
     text: string;
+    name: string;
     error:boolean|null;
     success:boolean|null;
     disabled:boolean;
+    change: React.ChangeEventHandler<HTMLInputElement> | undefined;
   }
-  export default function Button({ size, text,disabled,error,success, ...props }: InputProps) {
+  export default function Input({ size, text,name,disabled,error,success,change, ...props }: InputProps) {
  
     return (
-      <input className={`${inputStyles({ size })} ${error ? "border-red-500" : null} ${success ? "border-green-500" : null}`}
-       {...props}  disabled={disabled} placeholder={text}/>    
+      <input className={`${inputStyles({ size })} ${error ? "border-red-500" : null} ${success ? "border-green-500" : null} `}
+       {...props}  disabled={disabled} placeholder={text} onChange={change} name={name}/>    
       
     );
   }
