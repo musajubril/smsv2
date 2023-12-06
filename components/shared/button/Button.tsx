@@ -3,8 +3,8 @@ import { cva, VariantProps } from "class-variance-authority";
 const buttonStyles = cva("rounded-lg font-semibold flex gap-2 h-full w-full  justify-center items-center", {
     variants: {
       intent: {
-        primary: "bg-[#0065C2]  text-white hover:bg-[#2999FF]  border-[#0065C2] disabled:bg-[#D4D4D4]",
-        secondary: "bg-white border border-[#0065C2] text-[#0065C2] hover:bg-[#F5FAFF] disabled:border-[#8FC9FF] disabled:text-[#8FC9FF]  disabled:hover:bg-white",
+        primary: "bg-[#0065C2]  text-white-100 hover:bg-[#2999FF]  border-[#0065C2] disabled:bg-[#D4D4D4]",
+        secondary: "bg-white-100 border border-[#0065C2] text-[#0065C2] hover:bg-[#F5FAFF] disabled:border-[#8FC9FF] disabled:text-[#8FC9FF]  disabled:hover:bg-white-100",
       },
       size: {
         small: "py-2 px-6 text-sm",
