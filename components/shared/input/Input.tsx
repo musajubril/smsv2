@@ -1,6 +1,6 @@
 import { cva, VariantProps } from "class-variance-authority";
 
-const inputStyles = cva("rounded-md font-medium h-full w-full border focus:outline-teal-200 hover:border-teal-200 disabled:bg-gray-100 ", {
+const inputStyles = cva("rounded-md font-medium h-full w-full border border-gray-500 focus:outline-teal-200 hover:border-teal-200 disabled:bg-gray-100 ", {
     variants: {
       size: {
         small: "py-1 px-6 text-sm",
@@ -17,7 +17,7 @@ const inputStyles = cva("rounded-md font-medium h-full w-full border focus:outli
     error:boolean|null;
     success:boolean|null;
     disabled:boolean;
-    change: React.ChangeEventHandler<HTMLInputElement> | undefined;
+    change: React.ChangeEventHandler<HTMLInputElement> | undefined | null;
   }
   export default function Input({ size, text,name,disabled,error,success,change, ...props }: InputProps) {
  

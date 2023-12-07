@@ -70,23 +70,23 @@ export default function Multiselect({options, placeholder} : SelectProps) {
         onClick={handleToggleDropdown}
         value={searchTerm}
         placeholder={searchTerm ? searchTerm : placeholder}
-        className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-blue-300 "
+        className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
         onChange={(e) => setSearchTerm(e.target.value)}
         
       />
 
       {isOpen && (
         <div className=" pt-2 w-full rounded-md shadow-lg">
-          <div className="  bg-white border border-gray-300  rounded-md">
+          <div className="  bg-white border border-gray-500  rounded-md">
             {filteredOptions.map((option, index) => (
               <div
                 key={index}
                 onClick={() => handleSelectOption(option)}
-                className=" flex justify-between items-center mx-1 mt-1 px-1 py-2 rounded-md cursor-pointer hover:bg-gray-200"
+                className=" flex justify-between items-center mx-1 mt-1 px-1 py-2 rounded-md cursor-pointer hover:bg-gray-600"
               >
                 <div>{option}</div>
               {selectedOption.includes(option) && (
-                  <div className=' text-blue-600'>
+                  <div className=' text-blue-200'>
                     <IoMdCheckmark />
                   </div>
                 )}
@@ -98,7 +98,7 @@ export default function Multiselect({options, placeholder} : SelectProps) {
         {selectedOption.length > 0 && (
         <div className=" py-3 flex w-full">
           {selectedOption.map((option, index) => (
-            <button key={index} className="font-medium mx-1 border rounded-lg px-2 py-1 flex justify-between items-center gap-2 text-gray-500">
+            <button key={index} className="font-medium mx-1 border rounded-lg px-2 py-1 flex justify-between items-center gap-2 text-gray-300">
               {option} 
               <div onClick={() => {handleDelete(option)}}>
               <RxCross2 />
