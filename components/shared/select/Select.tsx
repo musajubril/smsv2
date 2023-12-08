@@ -63,19 +63,19 @@ export default function Select({options,placeholder} : SelectProps) {
         onClick={handleToggleDropdown}
         value={searchTerm}
         placeholder={selectedOption ? selectedOption : placeholder}
-        className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-blue-300 "
+        className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
         onChange={(e) => setSearchTerm(e.target.value)}
         
       />
 
       {isOpen && (
         <div className=" pt-2 w-full rounded-md shadow-lg">
-          <div className="  bg-white border border-gray-300  rounded-md">
+          <div className="  bg-white border border-gray-500  rounded-md">
             {filteredOptions.map((option, index) => (
               <div
                 key={index}
                 onClick={() => handleSelectOption(option)}
-                className=" flex justify-between items-center mx-1 mt-1 px-1 py-2 rounded-md cursor-pointer hover:bg-gray-200"
+                className=" flex justify-between items-center mx-1 mt-1 px-1 py-2 rounded-md cursor-pointer hover:bg-gray-600"
               >
                 <div>{option}</div>
               </div>
