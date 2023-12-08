@@ -11,22 +11,22 @@ export default function Addstudent2() {
     <div className=" flex flex-col p-6">
       <div className=" flex justify-between items-center pb-5">
         <div className=" flex items-center gap-3 cursor-pointer">
-          <div className="border py-1 px-2">
+          <div className="border py-1 px-2 border-[#E4E7EC] bg-white-100 rounded-lg">
             <FaArrowLeftLong />
           </div>
           <div>Go Back</div>
           <div className=" text-gray-400">Dashboard /</div>
           <div className=" text-gray-400">Students /</div>
-          <div className=" text-gray-400">Add New Student</div>
+          <div className=" ">Add New Student</div>
         </div>
-        <div className=" flex p-2 border items-center gap-1 ">
+        <div className=" flex p-2 border items-center gap-1 border-[#E4E7EC] bg-white-100 rounded-md">
           <AiOutlineImport />
           <div>Import CSV</div>
         </div>
       </div>
 
       <div className=" grid grid-cols-3 gap-4 ">
-        <div className=" col-span-2 border border-gray-500 rounded-lg  p-4">
+        <div className=" col-span-2 border border-[#E4E7EC] bg-white-100 rounded-lg  p-4">
           <div className=" pb-4">
             <div className=" text-xl  font-semibold">Parent Information</div>
             <div className=" text-gray-400 text-sm">
@@ -99,7 +99,7 @@ export default function Addstudent2() {
           </form>
         </div>
 
-        <div className=" col-span-1 border border-gray-500 rounded-lg p-3 flex flex-col gap-4">
+        <div className=" col-span-1 border border-[#E4E7EC] bg-white-100 rounded-lg p-3 flex flex-col gap-4">
           <div className=" flex gap-2 items-center">
             <div className=" h-10 w-10 bg-blue-100 rounded-full flex justify-center items-center text-lg text-white-100 font-semibold">
             <FaCheck />
