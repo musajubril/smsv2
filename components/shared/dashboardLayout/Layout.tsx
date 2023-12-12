@@ -1,14 +1,14 @@
 // Layout.js
 import React from "react";
 import { CiSearch } from "react-icons/ci";
-import Sidebar from "@/components/sidebar";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import Hamburger from "@/components/hamburger";
 
-const Layout = ({ children, customAvatar }) => {
+const Layout = ({ children }) => {
   return (
     <div className="flex h-screen overflow-hidden">
       <div className="w-1/4">
-        <Sidebar />
+        <Hamburger />
       </div>
 
       <div className="w-3/4 overflow-y-scroll p-4">
