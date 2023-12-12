@@ -4,9 +4,10 @@ export const LOGIN = `${API_URL}/login`
 export const SIGNUP = `${API_URL}/signup`
 export const STUDENTS = (id: string)=> `${LOGGEDIN (id)}/students`
 export const TEACHERS = (schoolId) =>`${LOGGEDIN(schoolId)}/staffs`; //Add and get teachers
+export const GETSCHOOL = (slug) => `${API_URL}/schools/${slug}`
+export const LOGIN_URL =(schoolId)=> `${API_URL}/schools/${schoolId}/token`;
 // export const VERIFY_OTP = (schoolId) => `${API_URL}/schools/${schoolId}/otp`
 // export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/user-activate/${uid}`
-// export const LOGIN_URL =(schoolId)=> `${API_URL}/schools/${schoolId}/token`;
 // export const REGISTER_URL = `${API_URL}/register`;
 // export const STUDENTS = (schoolId) =>`${LOGGED_IN(schoolId)}/students`; //Add and get students
 // export const STUDENTSCOUNT = (schoolId) =>`${LOGGED_IN(schoolId)}/metadata`; //Add and get students
@@ -32,7 +33,6 @@ export const TEACHERS = (schoolId) =>`${LOGGEDIN(schoolId)}/staffs`; //Add and g
 // export const GRADE = (schoolId, id) => `${STUDENT(schoolId, id)}/grade`
 // export const RESULTS = (schoolId, id) => `${STUDENT(schoolId, id)}/result`
 // export const VIEW_RESULT = (slug, id) => `${API_URL}/schools/${slug}/students/${id}/result-slug`
-// export const GETSCHOOL = (slug) => `${API_URL}/schools/${slug}`
 // export const SENDRESULTS = (schoolId, classId) => `${API_URL}/schools/${schoolId}/classes/${classId}/send-result`
 // export const ADDBILL = (schoolId, classId) => `${API_URL}/schools/${schoolId}/classes/${classId}/bills`
 // export const GETBILL = (schoolId) => `${API_URL}/schools/${schoolId}/bills`

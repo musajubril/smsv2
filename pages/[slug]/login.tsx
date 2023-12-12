@@ -1,25 +1,63 @@
 import Button from "@/components/shared/button/Button";
 import Input from "@/components/shared/input/Input";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getRequest, getSchool, login } from "@/api/apiCall";
+import { GETSCHOOL, LOGIN, LOGIN_URL } from "@/api/apiUrl";
+import router, { useRouter } from "next/router";
+import { useParams } from "next/navigation";
+import { queryKeys } from "@/api/queryKey";
 
-export default function login() {
-  const [state, setState] = React.useState({
+export default function Login() {
+  const router = useRouter();
+  const params: { slug: string } = useParams();
+  console.log(params, router.query);
+  const school = params?.slug;
+  const { data } = useQuery({
+    queryKey: [queryKeys.getSchool, school],
+    queryFn: async () => await getSchool({ url: GETSCHOOL(school) }),
+    retry: 2,
+    enabled: !!school,
+  });
+
+  const [schoolData, setSchoolData] = useState(data?.data);
+  useEffect(() => {
+    setSchoolData(data?.data);
+  }, [data?.data]);
+  console.log(schoolData);
+
+  const [state, setState] = useState({
     email: "",
-    password: ""
-  })
-  const handleChange=(e)=>{
+    password: "",
+  });
+  const handleChange = (e) => {
     setState({
       ...state,
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+    // console.log(state);
+  };
 
+  const mutation = useMutation({
+    mutationFn: async (newLogin: any) => {
+      login({ url: LOGIN_URL(schoolData?.uid), data: newLogin });
+    },
+    onSuccess(data) {
+      console.log(data);
+      router.push('/', '/')
+    },
+  });
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(state)
-  }
+    console.log(state);
+    mutation.mutate({
+      username: state.email,
+      password: state.password,
+      // school_id: schoolData?.uid,
+    });
+  };
   return (
     <div>
       <div className=" px-5 py-7 lg:grid grid-cols-2 gap-6">

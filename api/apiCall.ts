@@ -21,8 +21,14 @@ export const getRequest = async ({ url } : {url: string}) => {
   return response.data
 }
 
+export const getSchool = async ({ url } : {url: string}) => {
+  const response = await axios.get(url)
+  return response.data
+}
+
 export const login = async ({ url, data }: { url: string, data: any }) => {
   const response = await axios.post(url, data)
-  localStorage.setItem('easysch_token', response.data.access_token)
+  // console.log(response.data, response)
+  localStorage.setItem('easysch_token', response.data.access)
   return response.data
 }
