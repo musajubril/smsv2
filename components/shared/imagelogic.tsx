@@ -13,7 +13,7 @@ export default function Imagelogic() {
 
     return (
         <div>
-            <div className='h-24 w-24 flex justify-center items-center rounded-full'>
+            <div className='h-16 w-16 flex justify-center items-center rounded-full'>
                 <input
                     className='hidden'
                     type='file'
@@ -28,12 +28,12 @@ export default function Imagelogic() {
                             alt={fileName}
                             className='object-cover w-full h-full rounded-full'
                         />
-                        <div className='absolute -bottom-1 right-2 bg-[#0080F5] p-1 text-white-100 rounded-full' onClick={() => document.getElementById('input-img')?.click()}><MdOutlineLinkedCamera /></div>
+                        <div className='absolute -bottom-1 right-1 bg-[#0080F5] p-1 text-white-100 rounded-full' onClick={() => document.getElementById('input-img')?.click()}><MdOutlineLinkedCamera /></div>
                     </div>
                 ) : (
                     <div className='relative'>
                         <img src="/image.png" alt="" className='w-full h-full' />
-                        <div className='absolute -bottom-1 right-2 bg-[#0080F5] p-1 text-white-100 rounded-full' onClick={() => document.getElementById('input-img')?.click()}><MdOutlineLinkedCamera /></div>
+                        <div className='absolute -bottom-1 right-1 bg-[#0080F5] p-1 text-white-100 rounded-full text-xs' onClick={() => document.getElementById('input-img')?.click()}><MdOutlineLinkedCamera /></div>
                     </div>
                 )}
             </div>
