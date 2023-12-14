@@ -19,8 +19,8 @@ export default function Steps() {
 
   const [page, setPage] = useState(1);
   return (
-    <div className='p-5 '>
-          <div className='bg-white-100 h-screen md:w-[28%] w-full p-5 rounded-lg border border-[#EDEDED] '>
+    <div className=' '>
+          <div className='bg-white-100 h-screen  w-full p-5 rounded-lg border border-[#EDEDED] '>
             <div className='flex flex-col gap-6 pb-10 '>
               {[1, 2, 3].map((num) => (
                 <div className='flex gap-3 items-center' key={num}>

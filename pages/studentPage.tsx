@@ -1,3 +1,4 @@
+import Imagelogic from "@/components/imagelogic";
 import React from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { PiPencilLine } from "react-icons/pi";
@@ -30,8 +31,9 @@ export default function studentPage() {
             {/* <div className=" h-20 w-20 bg-blue-500 rounded-full flex justify-center items-center cursor-pointer">
               <IoPersonAdd />
             </div> */}
-             <div>
-            <img src="/Avatar.png" alt="" className="cursor-pointer pb-3" />
+             <div className=" cursor-pointer">
+            {/* <img src="/Avatar.png" alt="" className="cursor-pointer pb-3" /> */}
+          <Imagelogic />
           </div>
             <div className=" text-center">
               <h1 className=" text-base  font-semibold">Jubril Musa</h1>
