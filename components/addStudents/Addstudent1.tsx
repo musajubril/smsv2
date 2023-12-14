@@ -5,6 +5,7 @@ import { IoPersonAdd } from "react-icons/io5";
 import Input from "../shared/input/Input";
 import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
+import Imagelogic from "../shared/imagelogic";
 
 export default function Addstudent1() {
   const Gender = ["Male", "Female"];
@@ -36,7 +37,7 @@ export default function Addstudent1() {
             </div>
           </div>
           <div>
-            <img src="/Avatar.png" alt="" className="cursor-pointer pb-3" />
+          <Imagelogic />
           </div>
           <form className="flex flex-col gap-3 pt-3">
             <div className=" flex flex-col gap-1">

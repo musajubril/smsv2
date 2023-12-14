@@ -30,7 +30,7 @@ export default function studentPage() {
             {/* <div className=" h-20 w-20 bg-blue-500 rounded-full flex justify-center items-center cursor-pointer">
               <IoPersonAdd />
             </div> */}
-             <div>
+             <div className=" cursor-pointer">
             <img src="/Avatar.png" alt="" className="cursor-pointer pb-3" />
           </div>
             <div className=" text-center">
