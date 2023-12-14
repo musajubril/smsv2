@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { AiOutlineImport } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa6";
 import Input from "../shared/input/Input";
 import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
+import Modal from "../shared/reusablemodal/Modal";
+import ImportCSV from "./ImportCSV";
 
 export default function Addstudent2() {
+  const [open, setOpen] = useState(Boolean);
+  const action = () => {
+    setOpen(false);
+  };
   return (
     <div className=" flex flex-col p-6">
+      <div>
+        <Modal action={action} open={open}>
+          <ImportCSV />
+        </Modal>
+      </div>
       <div className=" flex justify-between items-center pb-5">
         <div className=" flex items-center gap-3 cursor-pointer">
           <div className="border py-1 px-2 border-[#E4E7EC] bg-white-100 rounded-lg">
@@ -19,7 +30,12 @@ export default function Addstudent2() {
           <div className=" text-gray-400">Students /</div>
           <div className=" ">Add New Student</div>
         </div>
-        <div className=" flex p-2 border items-center gap-1 border-[#E4E7EC] bg-white-100 rounded-md">
+        <div
+          className=" flex p-2 border items-center gap-1 border-[#E4E7EC] bg-white-100 rounded-md cursor-pointer"
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
           <AiOutlineImport />
           <div>Import CSV</div>
         </div>
