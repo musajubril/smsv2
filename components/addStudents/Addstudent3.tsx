@@ -7,6 +7,7 @@ import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
+import Layout from "../shared/dashboardLayout/Layout";
 
 export default function Addstudent3() {
   const mock = ["JSS1", "JSS2", "JSS3", "SSS1", "SSS2", "SSS3"];
@@ -23,6 +24,7 @@ export default function Addstudent3() {
   }
   return (
     <div>
+      <Layout>
       <div className="">
         <Modal action={action1} open={open1}>
           <ImportCSV />
@@ -150,6 +152,7 @@ export default function Addstudent3() {
           </div>
         </div>
       </div>
+      </Layout>
     </div>
   );
 }

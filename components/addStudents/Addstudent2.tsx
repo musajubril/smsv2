@@ -7,6 +7,7 @@ import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
+import Layout from "../shared/dashboardLayout/Layout";
 
 export default function Addstudent2() {
   const [open, setOpen] = useState(Boolean);
@@ -14,6 +15,7 @@ export default function Addstudent2() {
     setOpen(false);
   };
   return (
+    <Layout>
     <div className=" flex flex-col p-6">
       <div>
         <Modal action={action} open={open}>
@@ -152,5 +154,6 @@ export default function Addstudent2() {
         </div>
       </div>
     </div>
+    </Layout>
   );
 }

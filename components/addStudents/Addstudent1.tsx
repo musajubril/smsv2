@@ -8,6 +8,7 @@ import Button from "../shared/button/Button";
 import Imagelogic from "../shared/imagelogic";
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
+import Layout from "../shared/dashboardLayout/Layout";
 
 export default function Addstudent1() {
   const Gender = ["Male", "Female"];
@@ -19,6 +20,7 @@ export default function Addstudent1() {
   };
 
   return (
+    <Layout>
     <div className=" flex flex-col p-6">
       <div className="">
         <Modal action={action} open={open}>
@@ -156,5 +158,6 @@ export default function Addstudent1() {
         </div>
       </div>
     </div>
+    </Layout>
   );
 }
