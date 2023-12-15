@@ -8,28 +8,42 @@ import Button from "../shared/button/Button";
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
+import Studentpreview from "./Studentpreview";
 
 export default function Addstudent3() {
   const mock = ["JSS1", "JSS2", "JSS3", "SSS1", "SSS2", "SSS3"];
   const status = ["Admitted", "Pending"];
 
-  
+  const [open, setOpen] = useState(Boolean);
+  const action = () => {
+    setOpen(false)
+  };
 
   const [open1, setOpen1] = useState(Boolean);
   const action1 = () => {
     setOpen1(false)
   };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
   }
+  
   return (
-    <div>
+    <div className="">
       <Layout>
+        
+      <div className="">
+        <Modal action={action} open={open}>
+          <Studentpreview />
+        </Modal>
+      </div>
+
       <div className="">
         <Modal action={action1} open={open1}>
           <ImportCSV />
         </Modal>
       </div>
+
       <div className=" flex flex-col p-6">
         <div className=" flex justify-between items-center pb-5">
           <div className=" flex items-center gap-3 cursor-pointer">
@@ -103,7 +117,10 @@ export default function Addstudent3() {
                     disabled={false}
                   />
                 </div>
-                <div>
+                <div 
+                  onClick={() => {
+                    setOpen(true);
+                  }}>
                   <Button
                     intent="primary"
                     size="base"
@@ -152,6 +169,8 @@ export default function Addstudent3() {
           </div>
         </div>
       </div>
+
+
       </Layout>
     </div>
   );
