@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { AiOutlineImport } from "react-icons/ai";
 import { IoPersonAdd } from "react-icons/io5";
@@ -6,12 +6,27 @@ import Input from "../shared/input/Input";
 import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
 import Imagelogic from "../shared/imagelogic";
+import Modal from "../shared/reusablemodal/Modal";
+import ImportCSV from "./ImportCSV";
+import Layout from "../shared/dashboardLayout/Layout";
 
 export default function Addstudent1() {
   const Gender = ["Male", "Female"];
   const Religion = ["Christian", "Muslim", "Others"];
+
+  const [open, setOpen] = useState(Boolean);
+  const action = () => {
+    setOpen(false);
+  };
+
   return (
+    <Layout>
     <div className=" flex flex-col p-6">
+      <div className="">
+        <Modal action={action} open={open}>
+          <ImportCSV />
+        </Modal>
+      </div>
       <div className=" flex justify-between items-center pb-5">
         <div className=" flex items-center gap-3 cursor-pointer">
           <div className="border py-1 px-2 border-[#E4E7EC] bg-white-100 rounded-lg">
@@ -22,7 +37,12 @@ export default function Addstudent1() {
           <div className=" text-gray-400">Students /</div>
           <div className=" ">Add New Student</div>
         </div>
-        <div className=" flex p-2 border items-center gap-1 border-[#E4E7EC] bg-white-100 rounded-md">
+        <div
+          className=" flex p-2 border items-center gap-1 border-[#E4E7EC] bg-white-100 rounded-md cursor-pointer"
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
           <AiOutlineImport />
           <div>Import CSV</div>
         </div>
@@ -114,7 +134,9 @@ export default function Addstudent1() {
               2
             </div>
             <div>
-              <h1 className=" font-medium text-lg text-gray-400">Parent Information</h1>
+              <h1 className=" font-medium text-lg text-gray-400">
+                Parent Information
+              </h1>
               <h1 className=" text-gray-400 text-sm">
                 Fill out parent details
               </h1>
@@ -125,7 +147,9 @@ export default function Addstudent1() {
               3
             </div>
             <div className="">
-              <h1 className=" font-medium text-lg text-gray-400">Academic Information</h1>
+              <h1 className=" font-medium text-lg text-gray-400">
+                Academic Information
+              </h1>
               <h1 className=" text-gray-400 text-sm">
                 Fill out academic details
               </h1>
@@ -134,5 +158,6 @@ export default function Addstudent1() {
         </div>
       </div>
     </div>
+    </Layout>
   );
 }
