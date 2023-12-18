@@ -9,6 +9,18 @@ import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
 
+import { SignUpState } from "@/pages/addStudentPage";
+import Steps from "../shared/StepNavigation/Steps";
+
+export default function Addstudent2({next, change, prev, state}: {next: any, change: any, prev: any, state:SignUpState}) {
+  return (
+    <div className=" flex flex-col p-6" onSubmit={next}>
+      <div className=" flex justify-between items-center pb-5">
+        <div className=" flex items-center gap-3 cursor-pointer">
+          <div className="border py-1 px-2" onClick={prev}>
+
+
+
 export default function Addstudent2() {
   const [open, setOpen] = useState(Boolean);
   const action = () => {
@@ -25,6 +37,7 @@ export default function Addstudent2() {
       <div className=" flex justify-between items-center pb-5">
         <div className=" flex items-center gap-3 cursor-pointer">
           <div className="border py-1 px-2 border-[#E4E7EC] bg-white-100 rounded-lg">
+
             <FaArrowLeftLong />
           </div>
           <div>Go Back</div>
@@ -57,11 +70,12 @@ export default function Addstudent2() {
               <Input
                 size="large"
                 text="Enter name"
-                name="fname"
+                name="parent_name"
                 disabled={false}
                 success={null}
                 error={null}
-                change={null}
+                change={change} 
+                value={state.parent_name}
               />
             </div>
             <div className=" flex flex-col gap-1">
@@ -69,11 +83,12 @@ export default function Addstudent2() {
               <Input
                 size="large"
                 text="Enter Home Address"
-                name="address"
+                name="home_address"
                 disabled={false}
                 success={null}
                 error={null}
-                change={null}
+                change={change} 
+                value={state.home_address}
               />
             </div>
             <div className=" flex flex-col gap-1">
@@ -81,11 +96,12 @@ export default function Addstudent2() {
               <Input
                 size="large"
                 text="Enter Phone Number"
-                name="number"
+                name="phone_number"
                 disabled={false}
                 success={null}
                 error={null}
-                change={null}
+                change={change} 
+                value={state.phone_number}
               />
             </div>
             <div className=" flex flex-col gap-1">
@@ -93,31 +109,39 @@ export default function Addstudent2() {
               <Input
                 size="large"
                 text="Enter Email address"
-                name="email"
+                name="parent_email"
                 disabled={false}
                 success={null}
                 error={null}
-                change={null}
-              />
+                change={change}
+                value={state.parent_email}/>
             </div>
             <div className=" grid grid-cols-2 gap-2">
               <Button
                 intent="secondary"
                 size="base"
                 text="Back"
-                disabled={false}
+                disabled={false} onClick={prev}
               />
               <Button
                 intent="primary"
                 size="base"
                 text="Next Step"
-                disabled={false}
+                disabled={false} onClick={next}
               />
             </div>
           </form>
         </div>
 
+
+        <div className=" border border-gray-500 rounded-lg">
+          <Steps/>
+          </div>
+
+        {/* <div className=" col-span-1 border border-gray-500 rounded-lg p-3 flex flex-col gap-4">
+
         <div className=" col-span-1 border border-[#E4E7EC] bg-white-100 rounded-lg p-3 flex flex-col gap-4">
+
           <div className=" flex gap-2 items-center">
             <div className=" h-10 w-10 bg-blue-100 rounded-full flex justify-center items-center text-lg text-white-100 font-semibold">
             <FaCheck />
@@ -151,7 +175,7 @@ export default function Addstudent2() {
               </h1>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
     </Layout>

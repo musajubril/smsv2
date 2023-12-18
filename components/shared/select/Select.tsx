@@ -1,15 +1,21 @@
 // import index from '@/pages';
+import { SignUpState } from '@/pages/addStudentPage';
 import React, { useState, useEffect, useRef} from 'react';
 import { IoMdCheckmark } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 
 
 interface SelectProps {
+  text: string;
     options: string[];
     placeholder:string
+    change: React.ChangeEventHandler<HTMLInputElement> | undefined | null;
+    state: SignUpState;
+    setState: any;
+    name: string;
   }
 
-export default function Select({options,placeholder} : SelectProps) {
+export default function Select({options,placeholder, name, change, text, state, setState} : SelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedOption, setSelectedOption] = useState('');
@@ -47,25 +53,35 @@ export default function Select({options,placeholder} : SelectProps) {
     setIsOpen(!isOpen);
   };
 
-  
+ React.useEffect(()=>{setSearchTerm(state[name])}, [state]) 
 
   const handleSelectOption = (option:any) => {
     console.log("Selected Option is:",option)
     setSelectedOption(option)
+    setState({
+      ...state, 
+      [name]: option
+    })
     setIsOpen(false)
-    // setSearchTerm(option);
+    setSearchTerm(option);
+    change
+  };
+
+  const handleInput = (e: any) =>{
+    setSearchTerm(e.target.value)
   };
 
   return (
     <div className=" text-left" ref={dropdownRef}>
       <input
         type="text"
+        name={text}
         onClick={handleToggleDropdown}
         value={searchTerm}
         placeholder={selectedOption ? selectedOption : placeholder}
         className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
-        onChange={(e) => setSearchTerm(e.target.value)}
-        
+        // onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={handleInput}
       />
 
       {isOpen && (
@@ -74,8 +90,10 @@ export default function Select({options,placeholder} : SelectProps) {
             {filteredOptions.map((option, index) => (
               <div
                 key={index}
-                onClick={() => handleSelectOption(option)}
+                onClick={() => handleSelectOption(option)} 
                 className=" flex justify-between items-center mx-1 mt-1 px-1 py-2 rounded-md cursor-pointer hover:bg-gray-600"
+                name={text}
+                value={option}
               >
                 <div>{option}</div>
               </div>

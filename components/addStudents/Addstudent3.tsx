@@ -5,6 +5,12 @@ import { FaCheck } from "react-icons/fa6";
 import Input from "../shared/input/Input";
 import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
+
+import { SignUpState } from "@/pages/addStudentPage";
+
+export default function Addstudent3({ prev, change, state, setState, submit}:{prev: any, submit: any, change: any, state:SignUpState, setState: any}) {
+  const mock = ["JSS1", "JSS2","JSS3", "SSS1","SSS2", "SSS3"];
+
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
@@ -12,6 +18,7 @@ import Studentpreview from "./Studentpreview";
 
 export default function Addstudent3() {
   const mock = ["JSS1", "JSS2", "JSS3", "SSS1", "SSS2", "SSS3"];
+
   const status = ["Admitted", "Pending"];
 
   const [open, setOpen] = useState(Boolean);
@@ -29,6 +36,23 @@ export default function Addstudent3() {
   }
   
   return (
+
+    <div className=" flex flex-col p-6" >
+      <div className=" flex justify-between items-center pb-5">
+        <div className=" flex items-center gap-3 cursor-pointer">
+          <div className="border py-1 px-2">
+            <FaArrowLeftLong />
+          </div>
+          <div>Go Back</div>
+          <div className=" text-gray-400">Dashboard /</div>
+          <div className=" text-gray-400">Students /</div>
+          <div className=" text-gray-400">Add New Student</div>
+        </div>
+        <div className=" flex p-2 border items-center gap-1 ">
+          <AiOutlineImport />
+          <div>Import CSV</div>
+        </div>
+
     <div className="">
       <Layout>
         
@@ -42,6 +66,7 @@ export default function Addstudent3() {
         <Modal action={action1} open={open1}>
           <ImportCSV />
         </Modal>
+
       </div>
 
       <div className=" flex flex-col p-6">
@@ -55,6 +80,57 @@ export default function Addstudent3() {
             <div className=" text-gray-400">Students /</div>
             <div className=" ">Add New Student</div>
           </div>
+
+          <form className="flex flex-col gap-4 pt-3">
+            <div className=" flex flex-col gap-1">
+              <h1 className=" font-medium">Academic Status</h1>
+              <Select options={status} placeholder="Select Status" />
+            </div>
+            <div className=" flex flex-col gap-1">
+              <h1 className=" font-medium">Class</h1>
+              <Select options={mock} placeholder="Select Class" />
+            </div>
+            <div className=" flex flex-col gap-1">
+              <h1 className=" font-medium">Enrollment Date</h1>
+              <input
+                type="date"
+                name="enrollment_date"
+                className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300" selected={state.enrollment_date} onChange={(date: any)=>setState({...state, enrollment_date: date})}
+              />
+            </div>
+            <div className=" flex flex-col gap-1">
+              <div className="flex gap-1">
+                <h1 className=" font-medium">Students Email address</h1>
+                <h1 className=" font-normal text-gray-500">(optional)</h1>
+              </div>
+              <Input
+                size="large"
+                text="Enter Email address"
+                name="student_email"
+                disabled={false}
+                success={null}
+                error={null}
+                change={change}
+                value={state.student_email}
+              />
+            </div>
+            <div className=" grid grid-cols-2 gap-2">
+              <Button
+                intent="secondary"
+                size="base"
+                text="Back"
+                disabled={false} onClick={prev}
+              />
+              <Button
+                intent="primary"
+                size="base"
+                text="Preview"
+                disabled={false} 
+                onClick={submit}
+              />
+            </div>
+          </form>
+
           <div
           className=" flex p-2 border items-center gap-1 border-[#E4E7EC] bg-white-100 rounded-md cursor-pointer"
           onClick={() => {
@@ -64,6 +140,7 @@ export default function Addstudent3() {
           <AiOutlineImport />
           <div>Import CSV</div>
         </div>
+
         </div>
 
         <div className=" grid grid-cols-3 gap-4 ">
