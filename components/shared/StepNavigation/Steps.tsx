@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 export default function Steps() {
   const [page, setPage] = useState(1)
   return (
-    <div className=' w-[406px] h-[1117px] bg-white-100 justify-center p-3 m-6 rounded-xl border border-[#E4E7EC]'>
+    <div className=' bg-white-100 justify-center p-3 rounded-xl'>
       <div className=' flex'>
         <div className=' flex gap-3 flex-col'>
           {

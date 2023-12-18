@@ -5,13 +5,14 @@ import { FaCheck } from "react-icons/fa6";
 import Input from "../shared/input/Input";
 import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
+import { SignUpState } from "@/pages/addStudentPage";
 
-export default function Addstudent3() {
+export default function Addstudent3({ prev, change, state, setState, submit}:{prev: any, submit: any, change: any, state:SignUpState, setState: any}) {
   const mock = ["JSS1", "JSS2","JSS3", "SSS1","SSS2", "SSS3"];
   const status = ["Admitted", "Pending"];
 
   return (
-    <div className=" flex flex-col p-6">
+    <div className=" flex flex-col p-6" >
       <div className=" flex justify-between items-center pb-5">
         <div className=" flex items-center gap-3 cursor-pointer">
           <div className="border py-1 px-2">
@@ -49,8 +50,8 @@ export default function Addstudent3() {
               <h1 className=" font-medium">Enrollment Date</h1>
               <input
                 type="date"
-                name="DOB"
-                className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
+                name="enrollment_date"
+                className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300" selected={state.enrollment_date} onChange={(date: any)=>setState({...state, enrollment_date: date})}
               />
             </div>
             <div className=" flex flex-col gap-1">
@@ -61,11 +62,12 @@ export default function Addstudent3() {
               <Input
                 size="large"
                 text="Enter Email address"
-                name="email"
+                name="student_email"
                 disabled={false}
                 success={null}
                 error={null}
-                change={null}
+                change={change}
+                value={state.student_email}
               />
             </div>
             <div className=" grid grid-cols-2 gap-2">
@@ -73,13 +75,14 @@ export default function Addstudent3() {
                 intent="secondary"
                 size="base"
                 text="Back"
-                disabled={false}
+                disabled={false} onClick={prev}
               />
               <Button
                 intent="primary"
                 size="base"
                 text="Preview"
-                disabled={false}
+                disabled={false} 
+                onClick={submit}
               />
             </div>
           </form>

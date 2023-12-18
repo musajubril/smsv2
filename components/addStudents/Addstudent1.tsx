@@ -5,8 +5,17 @@ import { IoPersonAdd } from "react-icons/io5";
 import Input from "../shared/input/Input";
 import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
+import { SignUpState } from "@/pages/addStudentPage";
+import Steps from "../shared/StepNavigation/Steps";
 
-export default function Addstudent1() {
+export const dateFormat = (dt) => {
+ let date = new Date(dt);
+ console.log(dt, date)
+ const returnDate =  date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate()
+ console.log(returnDate)
+ return returnDate
+};
+export default function Addstudent1({ next, change, state, setState}:{next:any, change:any, state:SignUpState, setState:any}) {
   const Gender = ["Male", "Female"];
   const Religion = ["Christian", "Muslim", "Others"];
   return (
@@ -44,11 +53,12 @@ export default function Addstudent1() {
               <Input
                 size="large"
                 text="Enter first name"
-                name="fname"
+                name="first_name"
                 disabled={false}
                 success={null}
                 error={null}
-                change={null}
+                change={change}
+                value={state.first_name}
               />
             </div>
             <div className=" flex flex-col gap-1">
@@ -56,34 +66,35 @@ export default function Addstudent1() {
               <Input
                 size="large"
                 text="Enter last name"
-                name="lname"
+                name="last_name"
                 disabled={false}
                 success={null}
                 error={null}
-                change={null}
+                change={change}
+                value={state.last_name}
               />
             </div>
             <div className=" grid grid-cols-2 gap-2">
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Gender</h1>
-                <Select options={Gender} placeholder="Select Gender" />
+                <Select options={Gender} placeholder="Select Gender" change={change} text="gender" state={state} setState={setState} name="gender" />
               </div>
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Date Of Birth</h1>
                 <input
                   type="date"
-                  name="DOB"
-                  className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
+                  name="date_of_birth"
+                  className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 " value={state.date_of_birth} onChange={(e: any)=>setState({...state, date_of_birth: e.target.value})}
                 />
               </div>
             </div>
             <div className=" flex flex-col gap-1">
               <h1 className=" font-medium">Religion</h1>
-              <Select options={Religion} placeholder="Select a Religion" />
+              <Select options={Religion} placeholder="Select a Religion" change={change} text="religion" state={state} setState={setState} name="religion"/>
             </div>
             <div className=" flex flex-col gap-1">
               <h1 className=" font-medium">State Of Origin</h1>
-              <Select options={Religion} placeholder="Select a State" />
+              <Select options={Religion} placeholder="Select a State" change={change} text="state_of_origin"state={state} setState={setState} name="state_of_origin"  />
             </div>
             <div>
               <Button
@@ -91,13 +102,15 @@ export default function Addstudent1() {
                 size="base"
                 text="Next"
                 disabled={false}
+                onClick={next}
               />
             </div>
           </form>
         </div>
 
-        <div className=" col-span-1 border border-gray-500 rounded-lg p-3 flex flex-col gap-4">
-          <div className=" flex gap-2 items-center">
+        <div className=" border border-gray-500 rounded-lg">
+          <Steps/>
+          {/* <div className=" flex gap-2 items-center">
             <div className=" h-10 w-10 bg-blue-100 rounded-full flex justify-center items-center text-lg text-white-100 font-semibold">
               1
             </div>
@@ -129,7 +142,7 @@ export default function Addstudent1() {
                 Fill out academic details
               </h1>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
