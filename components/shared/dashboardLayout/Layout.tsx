@@ -1,14 +1,30 @@
 // Layout.js
-import React from "react";
+import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import Hamburger from "@/components/hamburger";
+import Modal from "../reusablemodal/Modal";
+import Button from "../button/Button";
+import { useRouter } from "next/router";
 
 const Layout = ({ children }) => {
+  
+  
+  const [open, setOpen] = useState(Boolean);
+  const action = () => {
+    setOpen(false)
+  };
+  const router = useRouter()
+  const handleLogout = () => {
+    localStorage.removeItem("easysch_token");
+    router.push('/', "/")
+    console.log('User Logged Out');
+  };
+  
   return (
     <div className="flex h-screen overflow-hidden">
       <div className="w-1/4">
-        <Hamburger />
+        <Hamburger logout={ () => {setOpen(true)}} />
       </div>
 
       <div className="w-3/4 overflow-y-scroll p-4">
@@ -35,7 +51,30 @@ const Layout = ({ children }) => {
             </div>
           </div>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">{children}</div>
+        <div className="bg-white p-4 rounded-lg shadow">
+        <div className="">
+        <Modal action={action} open={open}>
+         <div className="flex flex-col gap-6 p-4">
+          <div className=" font-semibold text-3xl text-[#0065C2]">Do You Want to Log out?</div>
+          <div className=" grid grid-cols-2 gap-2">
+              <Button
+                intent="secondary"
+                size="small"
+                text="Yes"
+                disabled={false} 
+                onClick={handleLogout}
+              />
+              <Button
+                intent="primary"
+                size="small"
+                text="No"
+                disabled={false} 
+              />
+            </div>
+         </div>
+        </Modal>
+      </div>
+          {children}</div>
       </div>
     </div>
   );
