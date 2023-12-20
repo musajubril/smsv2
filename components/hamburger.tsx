@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MdMenu, MdClose } from 'react-icons/md';
 import Sidebar from './sidebar';
-const Hamburger = () => {
+const Hamburger = ({ logout}:{logout:any}) => {
   const [open, setOpen] = useState(false);
   return (
     <div>
@@ -9,10 +9,10 @@ const Hamburger = () => {
         {open ? <MdClose /> : <MdMenu />}
       </div>
       <nav className="hidden md:flex">
-        <Sidebar />
+        <Sidebar logout={logout}/>
            </nav>
       <nav className={`lg:hidden ${open ? 'block' : 'hidden'}`}>
-        <Sidebar />
+        <Sidebar logout={logout}/>
           </nav>
     </div>
   );
