@@ -10,7 +10,7 @@ export default function Studentpreview() {
   };
 
   return (
-    <div className=" h-[500px] overflow-y-scroll ">
+    <div className=" h-[500px] overflow-y-scroll scrollbar-hidden ">
       <div className=" flex flex-col gap-4 ">
         <div className=" font-semibold text-2xl flex">Profile Preview</div>
         <div className=" flex  ">

@@ -53,7 +53,7 @@ export default function Select({options,placeholder, name, change, text, state, 
     setIsOpen(!isOpen);
   };
 
- React.useEffect(()=>{setSearchTerm(state[name])}, [state]) 
+ React.useEffect(()=>{state && state[name] && setSearchTerm(state[name])}, [state]) 
 
   const handleSelectOption = (option:any) => {
     console.log("Selected Option is:",option)
@@ -92,8 +92,8 @@ export default function Select({options,placeholder, name, change, text, state, 
                 key={index}
                 onClick={() => handleSelectOption(option)} 
                 className=" flex justify-between items-center mx-1 mt-1 px-1 py-2 rounded-md cursor-pointer hover:bg-gray-600"
-                name={text}
-                value={option}
+                // name={text}
+                // value={option}
               >
                 <div>{option}</div>
               </div>

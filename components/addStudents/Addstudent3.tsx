@@ -7,16 +7,14 @@ import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
 
 import { SignUpState } from "@/pages/addStudentPage";
-
-export default function Addstudent3({ prev, change, state, setState, submit}:{prev: any, submit: any, change: any, state:SignUpState, setState: any}) {
-  const mock = ["JSS1", "JSS2","JSS3", "SSS1","SSS2", "SSS3"];
-
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
 import Studentpreview from "./Studentpreview";
 
-export default function Addstudent3() {
+export default function Addstudent3({ prev, change, state, setState, submit}:{prev: any, submit: any, change: any, state:SignUpState, setState: any}) {
+
+
   const mock = ["JSS1", "JSS2", "JSS3", "SSS1", "SSS2", "SSS3"];
 
   const status = ["Admitted", "Pending"];
@@ -35,23 +33,23 @@ export default function Addstudent3() {
     e.preventDefault();
   }
   
+    // <div className=" flex flex-col p-6" >
+    //   <div className=" flex justify-between items-center pb-5">
+    //     <div className=" flex items-center gap-3 cursor-pointer">
+    //       <div className="border py-1 px-2">
+    //         <FaArrowLeftLong />
+    //       </div>
+    //       <div>Go Back</div>
+    //       <div className=" text-gray-400">Dashboard /</div>
+    //       <div className=" text-gray-400">Students /</div>
+    //       <div className=" text-gray-400">Add New Student</div>
+    //     </div>
+    //     <div className=" flex p-2 border items-center gap-1 ">
+    //       <AiOutlineImport />
+    //       <div>Import CSV</div>
+    //     </div>
   return (
 
-    <div className=" flex flex-col p-6" >
-      <div className=" flex justify-between items-center pb-5">
-        <div className=" flex items-center gap-3 cursor-pointer">
-          <div className="border py-1 px-2">
-            <FaArrowLeftLong />
-          </div>
-          <div>Go Back</div>
-          <div className=" text-gray-400">Dashboard /</div>
-          <div className=" text-gray-400">Students /</div>
-          <div className=" text-gray-400">Add New Student</div>
-        </div>
-        <div className=" flex p-2 border items-center gap-1 ">
-          <AiOutlineImport />
-          <div>Import CSV</div>
-        </div>
 
     <div className="">
       <Layout>
@@ -81,7 +79,7 @@ export default function Addstudent3() {
             <div className=" ">Add New Student</div>
           </div>
 
-          <form className="flex flex-col gap-4 pt-3">
+          {/* <form className="flex flex-col gap-4 pt-3">
             <div className=" flex flex-col gap-1">
               <h1 className=" font-medium">Academic Status</h1>
               <Select options={status} placeholder="Select Status" />
@@ -129,7 +127,7 @@ export default function Addstudent3() {
                 onClick={submit}
               />
             </div>
-          </form>
+          </form> */}
 
           <div
           className=" flex p-2 border items-center gap-1 border-[#E4E7EC] bg-white-100 rounded-md cursor-pointer"
@@ -156,11 +154,11 @@ export default function Addstudent3() {
             <form className="flex flex-col gap-4 pt-3" onSubmit={handleSubmit}>
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Academic Status</h1>
-                <Select options={status} placeholder="Select Status" />
+                <Select options={status} placeholder="Select Status" state={state} setState={setState} text="status" name="status" change={change} />
               </div>
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Class</h1>
-                <Select options={mock} placeholder="Select Class" />
+                <Select options={mock} placeholder="Select Class" state={state} setState={setState} text="class" name="class" change={change} />
               </div>
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Enrollment Date</h1>

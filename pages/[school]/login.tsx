@@ -11,9 +11,9 @@ import { queryKeys } from "@/api/queryKey";
 
 export default function Login() {
   const router = useRouter();
-  const params: { slug: string } = useParams();
+  const params: { school: string } = useParams();
   console.log(params, router.query);
-  const school = params?.slug;
+  const school = params?.school;
   const { data } = useQuery({
     queryKey: [queryKeys.getSchool, school],
     queryFn: async () => await getSchool({ url: GETSCHOOL(school) }),

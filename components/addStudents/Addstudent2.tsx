@@ -13,15 +13,11 @@ import { SignUpState } from "@/pages/addStudentPage";
 import Steps from "../shared/StepNavigation/Steps";
 
 export default function Addstudent2({next, change, prev, state}: {next: any, change: any, prev: any, state:SignUpState}) {
-  return (
-    <div className=" flex flex-col p-6" onSubmit={next}>
-      <div className=" flex justify-between items-center pb-5">
-        <div className=" flex items-center gap-3 cursor-pointer">
-          <div className="border py-1 px-2" onClick={prev}>
 
 
 
-export default function Addstudent2() {
+
+
   const [open, setOpen] = useState(Boolean);
   const action = () => {
     setOpen(false);
