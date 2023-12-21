@@ -6,17 +6,17 @@ export const STUDENTS = (id: string)=> `${LOGGEDIN (id)}/students`
 export const TEACHERS = (schoolId) =>`${LOGGEDIN(schoolId)}/staffs`; //Add and get teachers
 export const GETSCHOOL = (slug) => `${API_URL}/schools/${slug}`
 export const LOGIN_URL =(schoolId)=> `${API_URL}/schools/${schoolId}/token`;
+export const TEACHER = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}`; //get singe teacher
+export const STUDENT = (schoolId, studentId) => `${STUDENTS(schoolId)}/${studentId}`; // get single student
+// export const STUDENTS = (schoolId) =>`${LOGGED_IN(schoolId)}/students`; //Add and get students
 // export const VERIFY_OTP = (schoolId) => `${API_URL}/schools/${schoolId}/otp`
 // export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/user-activate/${uid}`
 // export const REGISTER_URL = `${API_URL}/register`;
-// export const STUDENTS = (schoolId) =>`${LOGGED_IN(schoolId)}/students`; //Add and get students
 // export const STUDENTSCOUNT = (schoolId) =>`${LOGGED_IN(schoolId)}/metadata`; //Add and get students
 // export const SENDMESSAGE = (schoolId) =>`${LOGGED_IN(schoolId)}/send-message`; //Add and get students
 // export const BIRTHDAYS = (schoolId) =>`${LOGGED_IN(schoolId)}/birthdays`; //Add and get students
 // export const TEACHERBIRTHDAYS = (schoolId) =>`${LOGGED_IN(schoolId)}/birthdays?role=Teacher`; //Add and get students
-// export const STUDENT = (schoolId, studentId) => `${STUDENTS(schoolId)}/${studentId}`; // get single student
 // export const STUDENTPAYMENT = (schoolId, studentId) => `${STUDENT(schoolId, studentId)}/payments`
-// export const TEACHER = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}`; //get singe teacher
 // // export const TEACHERACCOUNT = `${TEACHER(teacher_id)}`; //get singe teacher
 // export const TEACHERCOURSES = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}/courses`; //get singe teacher
 // // export const TEACHER_COURSES = `${TEACHERCOURSES(teacher_id)}`

@@ -1,9 +1,121 @@
+import { getRequest, getSchool } from "@/api/apiCall";
+import { GETSCHOOL, TEACHER } from "@/api/apiUrl";
+import { queryKeys } from "@/api/queryKey";
 import Layout from "@/components/shared/dashboardLayout/Layout";
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "next/navigation";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { PiPencilLine } from "react-icons/pi";
 
-export default function studentPage() {
+export default function staffPage() {
+//   data
+// : 
+// {id: 2, full_name: "Musa ", groups: [{id: 1, name: "Owner", permissions: []}], last_login: null,…}
+// address
+// : 
+// null
+// code
+// : 
+// null
+// code_expiration
+// : 
+// null
+// date_of_birth
+// : 
+// null
+// email
+// : 
+// "bcowner@gmail.com"
+// first_name
+// : 
+// "Musa"
+// full_name
+// : 
+// "Musa "
+// gender
+// : 
+// null
+// groups
+// : 
+// [{id: 1, name: "Owner", permissions: []}]
+// id
+// : 
+// 2
+// image
+// : 
+// null
+// is_active
+// : 
+// true
+// is_staff
+// : 
+// false
+// is_superuser
+// : 
+// false
+// last_login
+// : 
+// null
+// last_name
+// : 
+// ""
+// phone_number
+// : 
+// "09078044747"
+// religion
+// : 
+// null
+// role
+// : 
+// null
+// school
+// : 
+// 1
+// uid
+// : 
+// "997b3470-d2ef-4500-b326-17b69f4dcc34"
+// user_permissions
+// : 
+// []
+// username
+// : 
+// "09078044747"
+// message
+// : 
+// "Staff retrieved successfully"
+// status
+// : 
+// tru
+  const router = useRouter();
+  const params: { school: string } = useParams();
+ 
+  const school = params?.school;
+  const { data } = useQuery({
+    queryKey: [queryKeys.getSchool, school],
+    queryFn: async () => await getSchool({ url: GETSCHOOL(school) }),
+    retry: 2,
+    enabled: !!school,
+  });
+  const [schoolData, setSchoolData] = useState(data?.data);
+  useEffect(() => {
+    setSchoolData(data?.data);
+  }, [data?.data]);
+
+  const { data:getstaff } = useQuery({
+    queryKey: [queryKeys.getstaff,schoolData],
+    queryFn: async () => await getRequest({ url: TEACHER(schoolData?.uid,2)}),
+  });
+  console.log (getstaff)
+  const [staff, setStaff] = useState<any>({});
+  
+  useEffect(() => {
+    if (getstaff?.data) {
+      setStaff(getstaff.data);
+    }
+  }, [getstaff]);
+ 
   return (
     <Layout>
       <div className=" flex flex-col p-6">
@@ -33,9 +145,9 @@ export default function studentPage() {
                 <img src="/Avatar.png" alt="" className="cursor-pointer pb-3" />
               </div>
               <div className=" text-center">
-                <h1 className=" text-base  font-semibold">Jones Amalya</h1>
+                <h1 className=" text-base  font-semibold">{staff.full_name}</h1>
                 <h1 className=" text-sm  font-normal text-[#878787]">
-                  ID:123456
+                  ID:{staff.id}
                 </h1>
               </div>
             </div>
@@ -43,13 +155,13 @@ export default function studentPage() {
             <div className=" grid grid-cols-2 pl-6">
               <div className=" flex flex-col justify-center ">
                 <h1 className=" text-sm  font-normal text-[#878787]">Gender</h1>
-                <h1 className=" text-base  font-semibold">Male</h1>
+                <h1 className=" text-base  font-semibold">{staff.gender}</h1>
               </div>
               <div className=" flex flex-col justify-center ">
                 <h1 className=" text-sm  font-normal text-[#878787]">
                   Qualification
                 </h1>
-                <h1 className=" text-base  font-semibold">ND, Bsc</h1>
+                <h1 className=" text-base  font-semibold">{staff.Qualification}</h1>
               </div>
             </div>
           </div>
@@ -64,14 +176,14 @@ export default function studentPage() {
                   <h1 className=" text-sm  font-semibold text-[#878787]">
                     Phone Number
                   </h1>
-                  <h1 className=" text-base  font-semibold">08062850014</h1>
+                  <h1 className=" text-base  font-semibold">{staff.phone_number}</h1>
                 </div>
                 <div className=" flex flex-col justify-center ">
                   <h1 className=" text-sm  font-semibold text-[#878787]">
                     Email Address
                   </h1>
                   <h1 className=" text-base  font-semibold">
-                    Example@gmail.com
+                    {staff.email}
                   </h1>
                 </div>
               </div>
@@ -81,7 +193,7 @@ export default function studentPage() {
                     Home address
                   </h1>
                   <h1 className=" text-base  font-semibold">
-                    10 Oggunno Street, Ajah, Lagos state
+                   {staff.address}
                   </h1>
                 </div>
               </div>
@@ -96,14 +208,14 @@ export default function studentPage() {
                   <h1 className=" text-sm  font-semibold text-[#878787]">
                     Deparment
                   </h1>
-                  <h1 className=" text-base  font-semibold">Academics</h1>
+                  <h1 className=" text-base  font-semibold">Null</h1>
                 </div>
                 <div className=" flex flex-col justify-center ">
                   <h1 className=" text-sm  font-semibold text-[#878787]">
                     Class[es]
                   </h1>
                   <h1 className=" text-base  font-semibold">
-                    Jss1, Jss2, Jss3
+                    Null
                   </h1>
                 </div>
               </div>
@@ -112,14 +224,14 @@ export default function studentPage() {
                   <h1 className=" text-sm  font-semibold text-[#878787]">
                     Qualification
                   </h1>
-                  <h1 className=" text-base  font-semibold">ND, Bsc</h1>
+                  <h1 className=" text-base  font-semibold">Null</h1>
                 </div>
                 <div className=" flex flex-col justify-center ">
                   <h1 className=" text-sm  font-semibold text-[#878787]">
                     Subjects
                   </h1>
                   <h1 className=" text-base  font-semibold">
-                    Mathematics, Basic Technology
+                    Null
                   </h1>
                 </div>
               </div>
@@ -128,7 +240,7 @@ export default function studentPage() {
                   <h1 className=" text-sm  font-semibold text-[#878787]">
                     Role
                   </h1>
-                  <h1 className=" text-base  font-semibold">Teacher</h1>
+                  <h1 className=" text-base  font-semibold">Null</h1>
                 </div>
               </div>
             </div>
