@@ -42,7 +42,7 @@ export default function student_list() {
                 type="search"
                 name=""
                 id=""
-                className=" border border-[#E4E7EC] py-2 px-4 rounded-md"
+                className=" border border-[#E4E7EC] py-2 px-4 rounded-md outline-none"
                 placeholder="Search here..."
               />
             </div>
