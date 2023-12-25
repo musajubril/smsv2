@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Addstudent2 from '@/components/addStudents/Addstudent2';
 import Addstudent3 from '@/components/addStudents/Addstudent3';
 import Addstudent1 from '@/components/addStudents/Addstudent1';
 import { useRouter } from 'next/router';
-import { useMutation } from '@tanstack/react-query';
-import { SIGNUP } from '@/api/apiUrl';
-import { postRequest } from '@/api/apiCall';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { GETSCHOOL, STUDENTS } from '@/api/apiUrl';
+import { postRequest, getSchool } from '@/api/apiCall';
+import { useParams } from 'next/navigation';
+import { queryKeys } from '@/api/queryKey';
+
 
 
 export type  SignUpState = {
@@ -23,6 +26,24 @@ export type  SignUpState = {
   enrollment_date: string
 }
 export default function AddStudent() {
+// const router = useRouter();
+const params: { school: string } = useParams();
+// console.log(params, router.query);
+const school = params?.school;
+const { data } = useQuery({
+  queryKey: [queryKeys.getSchool, school],
+  queryFn: async () => await getSchool ({ url: GETSCHOOL(school) }),
+  retry: 2,
+  enabled: !!school,
+});
+
+const [schoolData, setSchoolData] = useState(data?.data);
+useEffect(() => {
+  setSchoolData(data?.data);
+}, [data?.data]);
+// console.log(schoolData);
+
+
   const [currentStep, setCurrentStep] = useState(0);
   const router = useRouter()
   const handleNextStep = (e:any) => {
@@ -53,12 +74,11 @@ export default function AddStudent() {
     state_of_origin:"",
     enrollment_date: ""
   })
-const {mutate} = useMutation({
-  mutationFn: async(data: SignUpState) => await
-  postRequest({url:SIGNUP, data}),
-  onSuccess:()=>{
-  }
-})
+  const mutation = useMutation({
+    mutationFn: async (newLogin: any) => {
+      postRequest({ url: STUDENTS(schoolData?.uid), data: newLogin });
+    }
+  });
 
 const handleChange = (e: any)=> {
   setState({
@@ -67,18 +87,11 @@ const handleChange = (e: any)=> {
   })
   console.log(state)
 }
-// const handleDropdownChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//   setState({
-//     ...state,
-//     [e.target.name]: e.target.value
-//   });
-// };
+
 const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
   e.preventDefault();
-  console.log(state)
-  mutate({
-    ...state
-  })
+  console.log(state);
+  mutation.mutate({state});
 }
 
 

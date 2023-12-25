@@ -5,10 +5,8 @@ import { IoPersonAdd } from "react-icons/io5";
 import Input from "../shared/input/Input";
 import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
-
-import { SignUpState } from "@/pages/addStudentPage";
+import { SignUpState } from "@/pages/[school]/student/add";
 import Steps from "../shared/StepNavigation/Steps";
-
 import Imagelogic from "../shared/imagelogic";
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
@@ -133,10 +131,9 @@ export default function Addstudent1({ next, change, state, setState}:{next:any, 
 
 
         <div className=" border border-gray-500 rounded-lg">
-          <Steps/>
-          {/* <div className=" flex gap-2 items-center">
+         <div className=" flex gap-2 items-center"> 
 
-        <div className=" col-span-1 border border-[#E4E7EC] bg-white-100 rounded-lg p-3 flex flex-col gap-4">
+        <div className=" col-span-1 bg-white-100 rounded-lg p-3 flex flex-col gap-4">
           <div className=" flex gap-2 items-center">
 
             <div className=" h-10 w-10 bg-blue-100 rounded-full flex justify-center items-center text-lg text-white-100 font-semibold">
@@ -174,9 +171,11 @@ export default function Addstudent1({ next, change, state, setState}:{next:any, 
                 Fill out academic details
               </h1>
             </div>
-          </div> */}
+          </div> 
         </div>
       </div>
+    </div>
+    </div>
     </div>
     </Layout>
   );

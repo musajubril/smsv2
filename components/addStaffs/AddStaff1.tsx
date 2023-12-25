@@ -5,8 +5,9 @@ import Button from "../shared/button/Button";
 import Imagelogic from "../shared/imagelogic";
 import Select from "../shared/select/Select";
 import Layout from "../shared/dashboardLayout/Layout";
+import { AddStaffState } from "@/pages/[school]/staff/add";
 
-export default function AddStaff1() {
+export default function AddStaff1({next, state, change, setState}:{next:any, state:AddStaffState, change: any, setState:any}) {
   const Gender = ["Male", "Female"];
   const State = ["Lagos", "Abia", "Oyo"];
   return (
@@ -39,11 +40,12 @@ export default function AddStaff1() {
                 <Input
                   size="large"
                   text="Enter first name"
-                  name="fname"
+                  name="first_name"
                   disabled={false}
                   success={null}
                   error={null}
-                  change={null}
+                  change={change}
+                  value={state.first_name}
                 />
               </div>
               <div className=" flex flex-col gap-1">
@@ -51,27 +53,29 @@ export default function AddStaff1() {
                 <Input
                   size="large"
                   text="Enter last name"
-                  name="lname"
+                  name="last_name"
                   disabled={false}
                   success={null}
                   error={null}
-                  change={null}
+                  value={state.last_name}
+                  change={change}
                 />
               </div>
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Gender</h1>
-                <Select options={Gender} placeholder="Select gender" />
+                <Select options={Gender} placeholder="Select gender" change={change} text="gender" state={state} setState={setState} name="gender" />
               </div>
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Email Address</h1>
                 <Input
                   size="large"
                   text="Enter email address"
-                  name="email"
+                  name="email_address"
                   disabled={false}
                   success={null}
                   error={null}
-                  change={null}
+                  change={change}
+                  value={state.email_address}
                 />
               </div>
               <div className=" flex flex-col gap-1">
@@ -79,11 +83,12 @@ export default function AddStaff1() {
                 <Input
                   size="large"
                   text="Enter phone number"
-                  name="phone"
+                  name="phone_number"
                   disabled={false}
                   success={null}
                   error={null}
-                  change={null}
+                  change={change}
+                  value={state.phone_number}
                 />
               </div>
               <div className=" flex flex-col gap-1">
@@ -91,16 +96,17 @@ export default function AddStaff1() {
                 <Input
                   size="large"
                   text="Enter home address"
-                  name="address"
+                  name="home_address"
                   disabled={false}
                   success={null}
                   error={null}
-                  change={null}
+                  change={change}
+                  value={state.home_address}
                 />
               </div>
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">State</h1>
-                <Select options={State} placeholder="Select gender" />
+                <Select options={State} placeholder="Select gender" change={change} text="gender" state={state} setState={setState} name="gender"  />
               </div>
               <div>
                 <Button
@@ -108,6 +114,7 @@ export default function AddStaff1() {
                   size="base"
                   text="Next"
                   disabled={false}
+                  onClick={next}
                 />
               </div>
             </form>
