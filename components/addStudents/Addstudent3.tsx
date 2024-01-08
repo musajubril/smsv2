@@ -5,8 +5,7 @@ import { FaCheck } from "react-icons/fa6";
 import Input from "../shared/input/Input";
 import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
-
-import { SignUpState } from "@/pages/addStudentPage";
+import { SignUpState } from "@/pages/[school]/student/add";
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
@@ -190,6 +189,7 @@ export default function Addstudent3({ prev, change, state, setState, submit}:{pr
                     size="base"
                     text="Back"
                     disabled={false}
+                    onClick={prev}
                   />
                 </div>
                 <div 
@@ -201,6 +201,7 @@ export default function Addstudent3({ prev, change, state, setState, submit}:{pr
                     size="base"
                     text="Preview"
                     disabled={false}
+                    onClick={submit}
                   />
                 </div>
               </div>

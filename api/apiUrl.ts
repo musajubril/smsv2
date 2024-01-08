@@ -2,10 +2,12 @@ const API_URL = `https://sms-vv4i.onrender.com/api/v1`
 const LOGGEDIN = (uid: string) => `${API_URL}/schools/${uid}`
 export const LOGIN = `${API_URL}/login`
 export const SIGNUP = `${API_URL}/signup`
-export const STUDENTS = (id: string)=> `${LOGGEDIN (id)}/students`
+// export const STUDENTS = (id: string)=> `${LOGGEDIN (id)}/students`
 export const TEACHERS = (schoolId) =>`${LOGGEDIN(schoolId)}/staffs`; //Add and get teachers
-export const GETSCHOOL = (slug) => `${API_URL}/schools/${slug}`
+export const GETSCHOOL = (school) => `${API_URL}/schools/${school}`
 export const LOGIN_URL =(schoolId)=> `${API_URL}/schools/${schoolId}/token`;
+
+export const STUDENTS = (schoolId) =>`${LOGGEDIN(schoolId)}/students`; //Add and get students
 export const TEACHER = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}`; //get singe teacher
 export const STUDENT = (schoolId, studentId) => `${STUDENTS(schoolId)}/${studentId}`; // get single student
 // export const STUDENTS = (schoolId) =>`${LOGGED_IN(schoolId)}/students`; //Add and get students

@@ -8,15 +8,10 @@ import Button from "../shared/button/Button";
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
-
-import { SignUpState } from "@/pages/addStudentPage";
+import { SignUpState } from "@/pages/[school]/student/add";
 import Steps from "../shared/StepNavigation/Steps";
 
 export default function Addstudent2({next, change, prev, state}: {next: any, change: any, prev: any, state:SignUpState}) {
-
-
-
-
 
   const [open, setOpen] = useState(Boolean);
   const action = () => {
@@ -130,13 +125,10 @@ export default function Addstudent2({next, change, prev, state}: {next: any, cha
         </div>
 
 
-        <div className=" border border-gray-500 rounded-lg">
-          <Steps/>
-          </div>
 
-        {/* <div className=" col-span-1 border border-gray-500 rounded-lg p-3 flex flex-col gap-4">
+        <div className=" col-span-1 p-3 flex flex-col gap-4"> 
 
-        <div className=" col-span-1 border border-[#E4E7EC] bg-white-100 rounded-lg p-3 flex flex-col gap-4">
+        <div className=" col-span-1 border border-[#E4E7EC] bg-white-100 rounded-lg flex flex-col gap-4">
 
           <div className=" flex gap-2 items-center">
             <div className=" h-10 w-10 bg-blue-100 rounded-full flex justify-center items-center text-lg text-white-100 font-semibold">
@@ -171,8 +163,9 @@ export default function Addstudent2({next, change, prev, state}: {next: any, cha
               </h1>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
+    </div>
     </div>
     </Layout>
   );

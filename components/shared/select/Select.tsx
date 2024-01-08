@@ -1,8 +1,9 @@
 // import index from '@/pages';
-import { SignUpState } from '@/pages/addStudentPage';
+import { SignUpState } from '@/pages/[school]/student/add';
 import React, { useState, useEffect, useRef} from 'react';
 import { IoMdCheckmark } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
+import { AddStaffState } from '@/pages/[school]/staff/add';
 
 
 interface SelectProps {

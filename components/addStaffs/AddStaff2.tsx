@@ -6,8 +6,9 @@ import { FaCheck } from "react-icons/fa6";
 import Layout from "../shared/dashboardLayout/Layout";
 import Modal from "../shared/reusablemodal/Modal";
 import ProfilePreview from "./ProfilePreview";
+import { AddStaffState } from "@/pages/[school]/staff/add";
 
-export default function AddStaff2() {
+export default function AddStaff2({prev, submit, state, change, setState}: {prev:any, submit:any, state:AddStaffState, setState:any, change:any}) {
   const Qualification = ["BSC", "HND", "ND", "NCE"];
   const Role = ["Teacher", "Cleaner", "Principal"];
   const Department = ["Academics", "Cleaning"];
@@ -64,27 +65,27 @@ export default function AddStaff2() {
                   <h1 className=" font-medium">Department</h1>
                   <Select
                     options={Department}
-                    placeholder="Select department"
+                    placeholder="Select department" change={change} text="department" state={state} setState={setState} name="department" 
                   />
                 </div>
                 <div className=" flex flex-col gap-1">
                   <h1 className=" font-medium">Qualification</h1>
                   <Select
                     options={Qualification}
-                    placeholder="Select qualification"
+                    placeholder="Select qualification" change={change} text="qualification" state={state} setState={setState} name="qualification" 
                   />
                 </div>
                 <div className=" flex flex-col gap-1">
                   <h1 className=" font-medium">Role</h1>
-                  <Select options={Role} placeholder="Select role" />
+                  <Select options={Role} placeholder="Select role" change={change} text="role" state={state} setState={setState} name="role" />
                 </div>
                 <div className=" flex flex-col gap-1">
                   <h1 className=" font-medium">Class</h1>
-                  <Select options={Class} placeholder="Select class" />
+                  <Select options={Class} placeholder="Select class" change={change} text="class" state={state} setState={setState} name="class"  />
                 </div>
                 <div className=" flex flex-col gap-1">
                   <h1 className=" font-medium">Subject</h1>
-                  <Select options={Subject} placeholder="Select subject" />
+                  <Select options={Subject} placeholder="Select subject" change={change} text="subject" state={state} setState={setState} name="subject" />
                 </div>
                 <div className=" grid grid-cols-2 gap-2">
                   <Button
@@ -92,12 +93,14 @@ export default function AddStaff2() {
                     size="base"
                     text="Back"
                     disabled={false}
+                    onClick={prev}
                   />
                   <Button
                     intent="primary"
                     size="base"
                     text="Next"
                     disabled={false}
+                    onClick={submit}
                   />
                 </div>
               </form>
