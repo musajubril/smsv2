@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { PiPencilLine } from "react-icons/pi";
 import Button from "../shared/button/Button";
+import Link from "next/link";
 
 export default function Studentpreview() {
   const [open, setOpen] = useState(Boolean);
@@ -152,12 +153,14 @@ export default function Studentpreview() {
           </div>
           <div
           >
+            <Link href='/student_list'>
             <Button
               intent="primary"
               size="base"
               text="Confirm"
               disabled={false}
-            />
+              />
+              </Link>
           </div>
         </div>
       </div>

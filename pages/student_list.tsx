@@ -2,6 +2,7 @@ import StudentList from "@/components/StudentList";
 import Button from "@/components/shared/button/Button";
 import Layout from "@/components/shared/dashboardLayout/Layout";
 import Dropdown from "@/components/shared/dropdown/Dropdown";
+import Link from "next/link";
 import React, { useState } from "react";
 import { AiOutlineExport, AiOutlineImport } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
@@ -12,6 +13,11 @@ export default function student_list() {
   const enrollmentStatusOptions = ["Admitted", "Pending"];
   const sortOptions = ["Ascending", "Descending"];
 
+  let school;
+  if (typeof window !== 'undefined') {
+    school = localStorage.getItem('sch_name');
+  }
+  
   const handleSelect = () => {};
 
   return (
@@ -26,12 +32,14 @@ export default function student_list() {
                 <div>Export CSV</div>
               </div>
               <div>
+                <Link href={`/${school}/student/add`}>
                 <Button
                   intent="primary"
                   size="base"
                   text="Add New Student"
                   disabled={false}
-                />
+                  />
+                  </Link>
               </div>
             </div>
           </div>

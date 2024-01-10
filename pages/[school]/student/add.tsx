@@ -30,6 +30,12 @@ export default function AddStudent() {
 const params: { school: string } = useParams();
 // console.log(params, router.query);
 const school = params?.school;
+
+if (school){
+  localStorage.setItem('sch_name', params.school);
+}
+
+
 const { data } = useQuery({
   queryKey: [queryKeys.getSchool, school],
   queryFn: async () => await getSchool ({ url: GETSCHOOL(school) }),
