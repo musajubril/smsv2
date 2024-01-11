@@ -43,7 +43,7 @@ export default function Dropdown({ options, onSelect, placeholder }){
         <IoIosArrowDown />
       </div>
       {isOpen && (
-        <div className="absolute top-full left-0 bg-white-100 shadow-lg rounded-md mt-2 outline-dashed">
+        <div className="absolute top-full left-0 bg-white-100 shadow-lg rounded-md mt-2">
           {options.map((option) => (
             <div
               key={option}
