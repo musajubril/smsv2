@@ -7,8 +7,92 @@ import React, { useState } from "react";
 import { AiOutlineExport, AiOutlineImport } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 
+
+const students = [
+  {
+    id: "1",
+    full_name: "Shakirat Akanji",
+    class: "SSS 2",
+    gender: "Female",
+    enrollment_status: "Admitted",
+    image: "/aaron/dorcas",
+  },
+  {
+    id: "2",
+    full_name: "Shakirat Akanji",
+    class: "SSS 2",
+    gender: "Female",
+    enrollment_status: "Admitted",
+    image: "/aaron/dorcas",
+  },
+  {
+    id: "3",
+    full_name: "Shakirat Akanji",
+    class: "SSS 2",
+    gender: "Female",
+    enrollment_status: "Pending",
+    image: "/aaron/dorcas",
+  },
+  {
+    id: "4",
+    full_name: "Shakirat Akanji",
+    class: "SSS 2",
+    gender: "Female",
+    enrollment_status: "Admitted",
+    image: "/aaron/dorcas",
+  },
+  {
+    id: "5",
+    full_name: "Shakirat Akanji",
+    class: "SSS 2",
+    gender: "Female",
+    enrollment_status: "Pending",
+    image: "/aaron/dorcas",
+  },
+  {
+    id: "6",
+    full_name: " Akanji Adeware",
+    class: "SSS 1",
+    gender: "Male",
+    enrollment_status: "Admitted",
+    image: "/aaron/dorcas",
+  },
+  {
+    id: "7",
+    full_name: " Akanji Adeware",
+    class: "SSS 1",
+    gender: "Male",
+    enrollment_status: "Admitted",
+    image: "/aaron/dorcas",
+  },
+  {
+    id: "8",
+    full_name: " Akanji Adeware",
+    class: "SSS 1",
+    gender: "Male",
+    enrollment_status: "Pending",
+    image: "/aaron/dorcas",
+  },
+  {
+    id: "9",
+    full_name: " Akanji Adeware",
+    class: "SSS 1",
+    gender: "Male",
+    enrollment_status: "Admitted",
+    image: "/aaron/dorcas",
+  },
+  {
+    id: "10",
+    full_name: " Akanji Adeware",
+    class: "SSS 1",
+    gender: "Male",
+    enrollment_status: "Pending",
+    image: "/aaron/dorcas",
+  },
+];
+
 export default function student_list() {
-  const classOptions = ["SSS1", "SSS2", "SSS3"];
+  const classOptions = ["SSS 1", "SSS 2", "SSS 3"];
   const genderOptions = ["Male", "Female"];
   const enrollmentStatusOptions = ["Admitted", "Pending"];
   const sortOptions = ["Ascending", "Descending"];
@@ -18,8 +102,38 @@ export default function student_list() {
     school = localStorage.getItem('sch_name');
   }
   
-  const handleSelect = () => {};
+  const [filteredStudents, setFilteredStudents] = useState(students);
 
+  const handleClassSelect = (e) => {
+    let filteredList = [...students];
+    console.log(e);
+    filteredList = students.filter((student) => student.class === e);
+    setFilteredStudents(filteredList);
+    console.log(filteredList);
+
+  };
+
+  const handleGenderSelect = (e) => {
+    let filteredList = [...students];
+    console.log(e);
+    filteredList = students.filter((student) => student.gender === e);
+    setFilteredStudents(filteredList);
+    console.log(filteredList);
+
+  };
+
+  const handleStatusSelect = (e) => {
+    let filteredList = [...students];
+    console.log(e);
+    filteredList = students.filter((student) => student.enrollment_status === e);
+    setFilteredStudents(filteredList);
+    console.log(filteredList);
+
+  };
+
+  const handleSortSelect = (e) => {
+  };
+  
   return (
     <div>
       <Layout>
@@ -59,22 +173,22 @@ export default function student_list() {
               <div className="flex items-center gap-3">
                 <Dropdown
                   options={classOptions}
-                  onSelect={handleSelect}
+                  onSelect={handleClassSelect}
                   placeholder="Class"
                 />
                 <Dropdown
                   options={genderOptions}
-                  onSelect={handleSelect}
+                  onSelect={handleGenderSelect}
                   placeholder="Gender"
                 />
                 <Dropdown
                   options={enrollmentStatusOptions}
-                  onSelect={handleSelect}
+                  onSelect={handleStatusSelect}
                   placeholder="Enrollment Status"
                 />
                 <Dropdown
                   options={sortOptions}
-                  onSelect={handleSelect}
+                  onSelect={handleSortSelect}
                   placeholder="Sort"
                 />
               </div>
@@ -82,7 +196,7 @@ export default function student_list() {
           </div>
 
           <div>
-            <StudentList />
+            <StudentList  students={filteredStudents} />
           </div>
         </div>
       </Layout>
