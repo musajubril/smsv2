@@ -44,8 +44,11 @@ export default function Login() {
       login({ url: LOGIN_URL(schoolData?.uid), data: newLogin });
     },
     onSuccess(data) {
-      console.log(data);
-      router.push('/', '/')
+      localStorage.setItem('schoolSlug', schoolData?.slug);
+      localStorage.setItem('schoolId', schoolData?.uid);
+      localStorage.setItem('schoolName', schoolData?.name);
+      localStorage.setItem('schoolLogo', schoolData?.logo);
+      router.push(`/${schoolData?.slug}`, `/${schoolData?.slug}`)
     },
   });
 
