@@ -1,95 +1,15 @@
+import { getRequest } from "@/api/apiCall";
+import { STUDENTS } from "@/api/apiUrl";
+import { queryKeys } from "@/api/queryKey";
 import StudentList from "@/components/StudentList";
 import Button from "@/components/shared/button/Button";
 import Layout from "@/components/shared/dashboardLayout/Layout";
 import Dropdown from "@/components/shared/dropdown/Dropdown";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineExport, AiOutlineImport } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
-
-
-const students = [
-  {
-    id: "1",
-    full_name: "Shakirat Akanji",
-    class: "SSS 2",
-    gender: "Female",
-    enrollment_status: "Admitted",
-    image: "/aaron/dorcas",
-  },
-  {
-    id: "2",
-    full_name: "Shakirat Akanji",
-    class: "SSS 2",
-    gender: "Female",
-    enrollment_status: "Admitted",
-    image: "/aaron/dorcas",
-  },
-  {
-    id: "3",
-    full_name: "Shakirat Akanji",
-    class: "SSS 2",
-    gender: "Female",
-    enrollment_status: "Pending",
-    image: "/aaron/dorcas",
-  },
-  {
-    id: "4",
-    full_name: "Shakirat Akanji",
-    class: "SSS 2",
-    gender: "Female",
-    enrollment_status: "Admitted",
-    image: "/aaron/dorcas",
-  },
-  {
-    id: "5",
-    full_name: "Shakirat Akanji",
-    class: "SSS 2",
-    gender: "Female",
-    enrollment_status: "Pending",
-    image: "/aaron/dorcas",
-  },
-  {
-    id: "6",
-    full_name: " Akanji Adeware",
-    class: "SSS 1",
-    gender: "Male",
-    enrollment_status: "Admitted",
-    image: "/aaron/dorcas",
-  },
-  {
-    id: "7",
-    full_name: " Akanji Adeware",
-    class: "SSS 1",
-    gender: "Male",
-    enrollment_status: "Admitted",
-    image: "/aaron/dorcas",
-  },
-  {
-    id: "8",
-    full_name: " Akanji Adeware",
-    class: "SSS 1",
-    gender: "Male",
-    enrollment_status: "Pending",
-    image: "/aaron/dorcas",
-  },
-  {
-    id: "9",
-    full_name: " Akanji Adeware",
-    class: "SSS 1",
-    gender: "Male",
-    enrollment_status: "Admitted",
-    image: "/aaron/dorcas",
-  },
-  {
-    id: "10",
-    full_name: " Akanji Adeware",
-    class: "SSS 1",
-    gender: "Male",
-    enrollment_status: "Pending",
-    image: "/aaron/dorcas",
-  },
-];
 
 export default function student_list() {
   const classOptions = ["SSS 1", "SSS 2", "SSS 3"];
@@ -97,6 +17,17 @@ export default function student_list() {
   const enrollmentStatusOptions = ["Admitted", "Pending"];
   const sortOptions = ["Ascending", "Descending"];
 
+  const uid:any = typeof window !== 'undefined' && localStorage.getItem("school_uid")
+  console.log(uid)
+  const [students, setStudents] = React.useState([])
+  const {data:studentData} = useQuery({
+   queryKey:[queryKeys.getStudents], 
+   queryFn: async()=> await getRequest({url: STUDENTS(uid)})
+  }) 
+  useEffect(()=>{
+   setStudents(studentData?.data)},[studentData])
+  console.log(students);
+  
   let school;
   if (typeof window !== 'undefined') {
     school = localStorage.getItem('sch_name');
@@ -107,7 +38,7 @@ export default function student_list() {
   const handleClassSelect = (e) => {
     let filteredList = [...students];
     console.log(e);
-    filteredList = students.filter((student) => student.class === e);
+    filteredList = students.filter((student) => student.current_class.name === e);
     setFilteredStudents(filteredList);
     console.log(filteredList);
 
@@ -134,6 +65,8 @@ export default function student_list() {
   const handleSortSelect = (e) => {
   };
   
+
+
   return (
     <div>
       <Layout>
@@ -196,7 +129,7 @@ export default function student_list() {
           </div>
 
           <div>
-            <StudentList  students={filteredStudents} />
+            <StudentList  students={students} />
           </div>
         </div>
       </Layout>

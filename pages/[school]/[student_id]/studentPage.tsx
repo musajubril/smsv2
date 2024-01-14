@@ -12,9 +12,11 @@ export default function studentPage() {
 
   
   const router = useRouter();
-  const params: { school: string } = useParams();
+  const params: { school: string, student_id: string } = useParams();
  
   const school = params?.school;
+  const student_id = params?.student_id;
+
   const { data } = useQuery({
     queryKey: [queryKeys.getSchool, school],
     queryFn: async () => await getSchool({ url: GETSCHOOL(school) }),
@@ -27,11 +29,12 @@ export default function studentPage() {
   }, [data?.data]);
 
   const { data:getstudent } = useQuery({
-    queryKey: [queryKeys.getstudent,schoolData],
-    queryFn: async () => await getRequest({ url: STUDENT(schoolData?.uid,2)}),
+    queryKey: [queryKeys.getstudent,schoolData, student_id],
+    queryFn: async () => await getRequest({ url: STUDENT(schoolData?.uid, student_id)}),
   });
   
   const [student, setStudent] = useState<any>({});
+
   
   useEffect(() => {
     if (getstudent?.data) {
@@ -52,7 +55,7 @@ export default function studentPage() {
           <div className=" text-gray-400">Go Back</div>
           <div className=" text-gray-400">Dashboard /</div>
           <div className=" text-gray-400">Students /</div>
-          <div>Jubril Musa</div>
+          <div>{student.full_name}</div>
         </div>
       </div>
 

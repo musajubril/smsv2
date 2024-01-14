@@ -2,12 +2,25 @@ import React from "react";
 import { HiDotsVertical } from "react-icons/hi";
 import { IoIosArrowDropleft } from "react-icons/io";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import { useQuery } from "@tanstack/react-query";
+import { STUDENTS } from '@/api/apiUrl';
+import { getRequest } from '@/api/apiCall';
+import { queryKeys } from '@/api/queryKey';
+import Router, { useRouter } from "next/router";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 
 export default function StudentList({students}) {
- 
+  const router = useRouter();
+  let school;
+  if (typeof window !== 'undefined') {
+    school = localStorage.getItem('sch_name');
+  }
+  
   return (
     <div>
-      <div>
+      <div >
         <div className=" my-6 rounded-lg shadow-lg">
           <div className=" grid grid-cols-6 text-sm bg-[#F5FAFF] p-3  rounded-t-lg">
             <div className=" font-semibold text-xs flex gap-2 col-span-2">
@@ -47,10 +60,14 @@ export default function StudentList({students}) {
                           className=" object-cover "
                         />
                       </div>
-                      <div className=""> <p>{pupil.full_name}</p>
-                      <p className=" font-normal text-xs text-[#475367]">ID:{pupil.id}</p></div>
+                      <Link href={`/${school}/${pupil.id}/studentPage`}>
+                       <div className="">
+                       <p>{pupil.full_name}</p>  
+                      <p className=" font-normal text-xs text-[#475367]">ID:{pupil.id}</p>
+                      </div>
+                      </Link>
                     </div>
-                    <div className="col-span-1">{pupil.class}</div>
+                    <div className="col-span-1">{pupil.current_class.name}</div>
                     <div className="col-span-1 text-gray-400">{pupil.gender}</div>
                     <div
                       className={`col-span-1 w-fit rounded-lg h-fit px-3 ${
@@ -59,7 +76,7 @@ export default function StudentList({students}) {
                           : "bg-[#E7F6EC] text-[#036B26]"
                       }`}
                     >
-                      {pupil.enrollment_status}
+                      Admitted
                     </div>
                     <div className=" cursor-pointer flex justify-center">
                       <HiDotsVertical />
@@ -71,7 +88,7 @@ export default function StudentList({students}) {
         </div>
 
         <div className="flex items-center justify-center">
-          <div className=" flex items-center gap-3">
+          {/* <div className=" flex items-center gap-3">
             <div className=" border border-[#D0D5DD] rounded-md p-2">
               <SlArrowLeft />
             </div>
@@ -85,8 +102,17 @@ export default function StudentList({students}) {
             <div className=" border border-[#D0D5DD] rounded-md p-2">
               <SlArrowRight />
             </div>
-          </div>
+          </div> */}
         </div>
+        {/* <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      /> */}
       </div>
     </div>
   );
