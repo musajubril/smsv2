@@ -15,9 +15,9 @@ export default function Fetchstudents() {
   
   React.useEffect(()=>{
    setStudents(studentData?.data)},[studentData])
-  console.log(studentData);
+  console.log(students);
 
   return (
-    <div>students</div>
+    <div></div>
   )
 }
