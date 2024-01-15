@@ -15,15 +15,18 @@ export type  SignUpState = {
   first_name: string,
   last_name: string,
   date_of_birth: Date | null,
-  parent_name: string,
-  home_address: string,
+  guardian_full_name: string,
+  address: string,
   parent_email: string, 
   student_email: string,
   gender: string,
   phone_number: string,
   religion: string,
+  status: string,
   state_of_origin: string,
-  enrollment_date: string
+  enrollment_date: string,
+  outstanding_debt: string,
+  class_id: string,
 }
 export default function AddStudent() {
 // const router = useRouter();
@@ -75,15 +78,18 @@ useEffect(() => {
     first_name: "",
     date_of_birth: new Date (),
     last_name: "",
-    parent_name: "",
+    guardian_full_name: "",
     phone_number: "",
-    home_address: "",
+    address: "",
     parent_email: "",
     student_email: "",
+    status:"",
     gender: "",
     religion: "",
     state_of_origin:"",
-    enrollment_date: ""
+    enrollment_date: "",
+    outstanding_debt: "200",
+    class_id: "",
   })
   const mutation = useMutation({
     mutationFn: async (newLogin: any) => {
@@ -102,7 +108,7 @@ const handleChange = (e: any)=> {
 const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
   e.preventDefault();
   console.log(state);
-  mutation.mutate({state});
+  mutation.mutate({...state});
 }
 
 
