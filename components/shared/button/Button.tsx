@@ -19,11 +19,12 @@ const buttonStyles = cva("rounded-lg font-semibold flex gap-2 h-full w-full  jus
   interface ButtonProps extends VariantProps<typeof buttonStyles> {
     text: string;
     disabled:boolean
+    onClick:any
   }
-  export default function Button({ intent,size, text,disabled, ...props }: ButtonProps) {
+  export default function Button({ intent,size, text,disabled,onClick, ...props }: ButtonProps) {
  
     return (
-      <button className={`${buttonStyles({ intent, size })}`} {...props}  disabled={disabled}>
+      <button className={`${buttonStyles({ intent, size })}`} {...props} onClick={onClick} disabled={disabled}>
         {text}
       </button>
     );

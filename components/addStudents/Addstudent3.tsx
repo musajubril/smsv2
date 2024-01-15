@@ -157,14 +157,22 @@ export default function Addstudent3({ prev, change, state, setState, submit}:{pr
               </div>
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Class</h1>
-                <Select options={mock} placeholder="Select Class" state={state} setState={setState} text="class" name="class" change={change} />
+                <Select options={mock} placeholder="Select Class" state={state} setState={setState} text="class" name="class_id" change={change} />
               </div>
-              <div className=" flex flex-col gap-1">
+              {/* <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Enrollment Date</h1>
                 <input
                   type="date"
                   name="DOB"
                   className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
+                />
+              </div> */}
+              <div className=" flex flex-col gap-1">
+                <h1 className=" font-medium">Enrollment Date</h1>
+                <input
+                  type="date"
+                  name="enrollment_date"
+                  className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 " value={state.enrollment_date} onChange={(e: any)=>setState({...state, enrollment_date: e.target.value})}
                 />
               </div>
               <div className=" flex flex-col gap-1">
@@ -173,14 +181,14 @@ export default function Addstudent3({ prev, change, state, setState, submit}:{pr
                   <h1 className=" font-normal text-gray-500">(optional)</h1>
                 </div>
                 <Input
-                  size="large"
-                  text="Enter Email address"
-                  name="email"
-                  disabled={false}
-                  success={null}
-                  error={null}
-                  change={null}
-                />
+                    size="large"
+                    text="Enter Email address"
+                    name="student_email"
+                    disabled={false}
+                    success={null}
+                    error={null}
+                    change={change} 
+                    value={state.student_email}                />
               </div>
               <div className=" grid grid-cols-2 gap-2">
                 <div>
@@ -193,9 +201,10 @@ export default function Addstudent3({ prev, change, state, setState, submit}:{pr
                   />
                 </div>
                 <div 
-                  onClick={() => {
-                    setOpen(true);
-                  }}>
+                  // onClick={() => {
+                  //   setOpen(true);
+                  // }}
+                  >
                   <Button
                     intent="primary"
                     size="base"

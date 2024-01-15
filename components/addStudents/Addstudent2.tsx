@@ -61,12 +61,12 @@ export default function Addstudent2({next, change, prev, state}: {next: any, cha
               <Input
                 size="large"
                 text="Enter name"
-                name="parent_name"
+                name="guardian_full_name"
                 disabled={false}
                 success={null}
                 error={null}
                 change={change} 
-                value={state.parent_name}
+                value={state.guardian_full_name}
               />
             </div>
             <div className=" flex flex-col gap-1">
@@ -74,12 +74,12 @@ export default function Addstudent2({next, change, prev, state}: {next: any, cha
               <Input
                 size="large"
                 text="Enter Home Address"
-                name="home_address"
+                name="address"
                 disabled={false}
                 success={null}
                 error={null}
                 change={change} 
-                value={state.home_address}
+                value={state.address}
               />
             </div>
             <div className=" flex flex-col gap-1">
