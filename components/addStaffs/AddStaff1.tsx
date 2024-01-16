@@ -106,7 +106,7 @@ export default function AddStaff1({next, state, change, setState}:{next:any, sta
               </div>
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">State</h1>
-                <Select options={State} placeholder="Select gender" change={change} text="gender" state={state} setState={setState} name="gender"  />
+                <Select options={State} placeholder="Select state" change={change} text="state_of_origin" state={state} setState={setState} name="state_of_origin"  />
               </div>
               <div>
                 <Button
