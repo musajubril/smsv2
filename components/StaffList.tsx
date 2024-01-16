@@ -1,5 +1,6 @@
 import React from 'react'
 import { HiDotsVertical } from 'react-icons/hi'
+import { SlArrowLeft, SlArrowRight } from 'react-icons/sl'
 
 export default function StaffList() {
   const info = [
@@ -67,21 +68,11 @@ export default function StaffList() {
       Qualification: "Bsc",
       Action : <HiDotsVertical />,
       input : <input type="checkbox" name="" id="" />
-    },{
-      image: <img src="./Avatars (2).png" alt="" />,
-      name: "Shakirat Akanji",
-      id: "ID:123456",
-      Department: "Academic",
-      Role: " Teacher",
-      Qualification: "Bsc",
-      Action : <HiDotsVertical />,
-      input : <input type="checkbox" name="" id="" />
     },
- ,
     ]
   return (
     <div>
-      <div className=' px-5'>
+      <div className=' px-5  '>
         <div className='bg-[#F5FAFF] p-2 grid grid-cols-6 text-xs font-medium text-[#000D19]'>
          <div className=' flex gap-2 items-center  col-span-2 '>
            <input type="checkbox" name="" id="" className=' w-5 h-5'/>
@@ -126,6 +117,23 @@ export default function StaffList() {
     
       ))
     }
+    <div className="flex items-center justify-center pt-5">
+          <div className=" flex items-center gap-3">
+            <div className=" border border-[#D0D5DD] rounded-md p-2 shadow">
+              <SlArrowLeft />
+            </div>
+            <div className=" flex gap-3">
+              <div className=" border rounded-md py-1 px-3 items-center">1</div>
+              <div className=" py-1 px-3 items-center text-[#D0D5DD]">2</div>
+              <div className=" py-1 px-3 items-center text-[#D0D5DD]">3</div>
+              <div className=" py-1 px-3 items-center text-[#D0D5DD]">4</div>
+              <div className=" py-1 px-3 items-center text-[#D0D5DD]">5</div>
+            </div>
+            <div className=" border border-[#D0D5DD] rounded-md p-2 shadow">
+              <SlArrowRight />
+            </div>
+          </div>
+        </div>
     </div>
  
   
