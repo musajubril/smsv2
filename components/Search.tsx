@@ -12,7 +12,7 @@ export default function Search() {
 
   return (
     <div className=' '>
-      <div className="md:flex px-4 pt-5 justify-between">
+      <div className="md:flex  justify-between">
         <div className='md:w-[30%]'>
           <input
             type="text"
