@@ -99,8 +99,8 @@ const handleChange = (e:any) => {
 
   return (
     <div>
-     { currentStep === 0 && <AddStaff1 next={handleNextStep} change={handleChange} state={state}  />}
-     { currentStep  ===1 && (<AddStaff2 prev={handlePreviousStep} submit={handleSubmit} state={state} change={handleChange}/>)}
+     { currentStep === 0 && <AddStaff1 next={handleNextStep} change={handleChange} state={state} setState={setState} />}
+     { currentStep  ===1 && (<AddStaff2 prev={handlePreviousStep} submit={handleSubmit} state={state} change={handleChange} setState={setState}/>)}
     </div>
   );
 }

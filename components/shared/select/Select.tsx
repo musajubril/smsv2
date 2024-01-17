@@ -11,8 +11,8 @@ interface SelectProps {
     options: string[];
     placeholder:string
     change: React.ChangeEventHandler<HTMLInputElement> | undefined | null;
-    state: SignUpState;
-    setState: any;
+    state: SignUpState | AddStaffState;
+    setState: React.Dispatch<React.SetStateAction<SignUpState | AddStaffState>>;
     name: string;
   }
 
