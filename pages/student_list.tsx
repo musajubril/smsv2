@@ -18,47 +18,46 @@ export default function student_list() {
   const sortOptions = ["Ascending", "Descending"];
 
   const uid:any = typeof window !== 'undefined' && localStorage.getItem("school_uid")
-  console.log(uid)
   const [students, setStudents] = React.useState([])
   const {data:studentData} = useQuery({
    queryKey:[queryKeys.getStudents], 
    queryFn: async()=> await getRequest({url: STUDENTS(uid)})
   }) 
+  const [filteredStudents, setFilteredStudents] = useState(null);
   useEffect(()=>{
-   setStudents(studentData?.data)},[studentData])
-  console.log(students);
+   setStudents(studentData?.data)
+   setFilteredStudents(studentData?.data)}
+   ,[studentData])
+  // console.log(students);
+  // console.log(filteredStudents)
   
   let school;
   if (typeof window !== 'undefined') {
     school = localStorage.getItem('sch_name');
   }
   
-  const [filteredStudents, setFilteredStudents] = useState(students);
 
   const handleClassSelect = (e) => {
     let filteredList = [...students];
-    console.log(e);
     filteredList = students.filter((student) => student.current_class.name === e);
     setFilteredStudents(filteredList);
-    console.log(filteredList);
+    // console.log(filteredList);
 
   };
 
   const handleGenderSelect = (e) => {
     let filteredList = [...students];
-    console.log(e);
     filteredList = students.filter((student) => student.gender === e);
     setFilteredStudents(filteredList);
-    console.log(filteredList);
+    // console.log(filteredList);
 
   };
 
   const handleStatusSelect = (e) => {
     let filteredList = [...students];
-    console.log(e);
     filteredList = students.filter((student) => student.enrollment_status === e);
     setFilteredStudents(filteredList);
-    console.log(filteredList);
+    // console.log(filteredList);
 
   };
 
@@ -81,11 +80,12 @@ export default function student_list() {
               <div>
                 <Link href={`/${school}/student/add`}>
                 <Button
-                  intent="primary"
-                  size="base"
-                  text="Add New Student"
-                  disabled={false}
-                  />
+                    intent="primary"
+                    size="base"
+                    text="Add New Student"
+                    disabled={false} 
+                    onClick={undefined}
+                      />
                   </Link>
               </div>
             </div>
@@ -129,7 +129,7 @@ export default function student_list() {
           </div>
 
           <div>
-            <StudentList  students={students} />
+            <StudentList  students={filteredStudents} />
           </div>
         </div>
       </Layout>
