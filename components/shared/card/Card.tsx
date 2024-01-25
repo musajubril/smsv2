@@ -3,7 +3,7 @@ import { RiGraduationCapLine } from "react-icons/ri";
 import { cva, VariantProps } from "class-variance-authority";
 
 
-const inputStyles = cva(" h-12 w-12 text-2xl rounded-full flex justify-center items-center ", {
+const inputStyles = cva("  text-2xl rounded-full flex justify-center items-center p-1 ", {
     variants: {
       intent: {
         student: "bg-[#EBF5FF] text-[#0065C2] ",
@@ -24,7 +24,7 @@ const inputStyles = cva(" h-12 w-12 text-2xl rounded-full flex justify-center it
 export default function Card({ intent, text, number }: InputProps) {
   return (
     <div>
-      <div className="w-full h-full py-4 px-5 shadow-md  cursor-pointer border border-[#EDEDED] rounded-lg flex gap-4 justify-start items-center">
+      <div className=" bg-white-100 text-center  p-2 shadow  cursor-pointer border border-[#EDEDED] rounded-lg flex gap-4  items-center pl-5">
         <div className={`${inputStyles({ intent })}`}>
             <RiGraduationCapLine />
         </div>
