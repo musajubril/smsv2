@@ -26,15 +26,15 @@ export default function StaffDoughnut() {
 
   return (
     <>
-    <div className="">
+    <div className=" ">
       <div className="text-xl font-semibold px-6 pt-6 items-center">
         Staff
       </div>
-      <div className=" px-[29px]">
-        <div className="pt-[30px]">
+      <div className="  pt-4  ">
+        <div className=" w-[80%] h-[50%] justify-center flex ">
           <Doughnut data={data} options={options} />
         </div>
-        <div className="flex items-center pt-4">
+        <div className="flex items-center pt-4 ">
           {data.labels.map((label, index) => (
             <div key={index} className="flex gap-2 items-center px-4">
               <div className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-[#00C7B4]' : 'bg-[#0080F5]'}`}></div>
