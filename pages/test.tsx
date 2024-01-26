@@ -30,21 +30,27 @@ export default function test() {
       "Class": std.current_class.name,
       "Gender": std.gender,
       "Date of birth": std.date_of_birth,
-      "Religion": std.religion,
+      // "Religion": std.religion,
       // "State": std.state_of_origin,
       // "Email": std.email,
     }
   })
 
-  // const mappedImages = students?.map((std) => {
-  //   return {
-  //     "Image": std.image,
-  //   }
-  // })
-  // console.log(mappedImages)
-
+  const mappedImages = students?.map((std) => {
+    return {
+      "Image": std.image,
+    }
+  })
+  
+  const mappedIds = students?.map((std) => {
+    return {
+      "ID": std.id,
+    }
+  })
+  
+  // console.log(mappedIds)
 
   return (
-    <div><Table students={mappedStudents} hasCheckBox={false} hasImage={false}></Table></div>
+    <div><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false}></Table></div>
   )
 }
