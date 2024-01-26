@@ -9,13 +9,15 @@ import { queryKeys } from '@/api/queryKey';
 import Router, { useRouter } from "next/router";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ReactPaginate from "react-paginate";
+import Pagination from "./shared/Pagination";
 
 export default function StudentList({students}) {
+  
+  
   const router = useRouter();
   let school;
   if (typeof window !== 'undefined') {
-    school = localStorage.getItem('sch_name');
+    school = localStorage.getItem('schoolSlug');
   }
   
   return (
@@ -87,32 +89,9 @@ export default function StudentList({students}) {
           </div>
         </div>
 
-        <div className="flex items-center justify-center">
-          {/* <div className=" flex items-center gap-3">
-            <div className=" border border-[#D0D5DD] rounded-md p-2">
-              <SlArrowLeft />
-            </div>
-            <div className=" flex gap-3">
-              <div className=" border rounded-md py-1 px-3 items-center">1</div>
-              <div className=" py-1 px-3 items-center text-[#D0D5DD]">2</div>
-              <div className=" py-1 px-3 items-center text-[#D0D5DD]">3</div>
-              <div className=" py-1 px-3 items-center text-[#D0D5DD]">4</div>
-              <div className=" py-1 px-3 items-center text-[#D0D5DD]">5</div>
-            </div>
-            <div className=" border border-[#D0D5DD] rounded-md p-2">
-              <SlArrowRight />
-            </div>
-          </div> */}
-        </div>
-        {/* <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={5}
-        pageCount={pageCount}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-      /> */}
+      {/* <Pagination
+          paginate={paginate}
+        ></Pagination> */}
       </div>
     </div>
   );

@@ -7,9 +7,9 @@ export const TEACHERS = (schoolId) =>`${LOGGEDIN(schoolId)}/staffs`; //Add and g
 export const GETSCHOOL = (school) => `${API_URL}/schools/${school}`
 export const LOGIN_URL =(schoolId)=> `${API_URL}/schools/${schoolId}/token`;
 
-export const STUDENTS = (schoolId) =>`${LOGGEDIN(schoolId)}/students`; //Add and get students
+export const STUDENTS = (schoolId: any, off: any) => `${LOGGEDIN(schoolId)}/students?limit=10&offset=${off}`; //Add and get students
+export const STUDENT = (schoolId, studentId) => `${LOGGEDIN(schoolId)}/students/${studentId}`; // get single student
 export const TEACHER = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}`; //get singe teacher
-export const STUDENT = (schoolId, studentId) => `${STUDENTS(schoolId)}/${studentId}`; // get single student
 // export const STUDENTS = (schoolId) =>`${LOGGED_IN(schoolId)}/students`; //Add and get students
 // export const VERIFY_OTP = (schoolId) => `${API_URL}/schools/${schoolId}/otp`
 // export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/user-activate/${uid}`
