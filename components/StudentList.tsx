@@ -62,7 +62,7 @@ export default function StudentList({students}) {
                           className=" object-cover "
                         />
                       </div>
-                      <Link href={`/${school}/${pupil.id}/studentPage`}>
+                      <Link href={`/${school}/student/${pupil.id}/`}>
                        <div className="">
                        <p>{pupil.full_name}</p>  
                       <p className=" font-normal text-xs text-[#475367]">ID:{pupil.id}</p>

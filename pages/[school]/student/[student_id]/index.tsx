@@ -1,6 +1,7 @@
 import { getRequest, getSchool } from "@/api/apiCall";
 import { GETSCHOOL, STUDENT, STUDENTS } from "@/api/apiUrl";
 import { queryKeys } from "@/api/queryKey";
+import Layout from "@/components/shared/dashboardLayout/Layout";
 import { useQuery } from "@tanstack/react-query";
 import { useParams} from "next/navigation";
 import { useRouter } from "next/router";
@@ -43,7 +44,7 @@ export default function studentPage() {
   }, [getstudent]);
  
   return (
-    <div>
+    <Layout>
 {
 
     <div className=" flex flex-col p-6">
@@ -177,7 +178,7 @@ export default function studentPage() {
       </div>
     </div>
     }
-    </div>
+    </Layout>
   //  )) 
    
   );

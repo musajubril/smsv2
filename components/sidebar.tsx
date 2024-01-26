@@ -33,8 +33,8 @@ export default function ({ logout, slug }: { logout: any, slug : string }) {
     },
     {
       icon: <HiOutlineUsers />,
-      name: "Staff",
-      path: `/${isAuthenticated ? router.query.school : slug}/staff`,
+      name: "Staffs",
+      path: `/${isAuthenticated ? router.query.school : slug}/staffs`,
     },
     {
       icon: <MdMenuBook />,
