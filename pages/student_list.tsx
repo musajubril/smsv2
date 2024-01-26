@@ -10,6 +10,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { AiOutlineExport, AiOutlineImport } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
+import Pagination from "@/components/shared/Pagination";
 
 export default function student_list() {
   const classOptions = ["SSS 1", "SSS 2", "SSS 3"];
@@ -17,16 +18,24 @@ export default function student_list() {
   const enrollmentStatusOptions = ["Admitted", "Pending"];
   const sortOptions = ["Ascending", "Descending"];
 
-  const uid:any = typeof window !== 'undefined' && localStorage.getItem("school_uid")
+  const [off, setOff] = useState(1);
+
+  const uid:any = typeof window !== 'undefined' && localStorage.getItem("schoolId")
   const [students, setStudents] = React.useState([])
   const {data:studentData} = useQuery({
-   queryKey:[queryKeys.getStudents], 
-   queryFn: async()=> await getRequest({url: STUDENTS(uid)})
+   queryKey:[queryKeys.getStudents, off], 
+   queryFn: async()=> await getRequest({url: STUDENTS(uid, off)})
   }) 
+
+  const paginate = (pageNumber) => {
+    setOff(pageNumber)
+  };
+
   const [filteredStudents, setFilteredStudents] = useState(null);
   useEffect(()=>{
    setStudents(studentData?.data)
-   setFilteredStudents(studentData?.data)}
+    setFilteredStudents(studentData?.data)
+  }
    ,[studentData])
   // console.log(students);
   // console.log(filteredStudents)
@@ -63,8 +72,6 @@ export default function student_list() {
 
   const handleSortSelect = (e) => {
   };
-  
-
 
   return (
     <div>
@@ -129,8 +136,11 @@ export default function student_list() {
           </div>
 
           <div>
-            <StudentList  students={filteredStudents} />
+            <StudentList  students={filteredStudents}/>
           </div>
+          <Pagination
+          paginate={paginate}
+        ></Pagination>
         </div>
       </Layout>
     </div>
