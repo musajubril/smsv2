@@ -26,12 +26,12 @@ export default function StudentDonut() {
 
   return (
     <>
-    <div>
-      <div className="text-xl font-semibold px-6 pt-6 items-center">
+    <div className=''>
+      <div className="text-xl font-semibold px-6 pt-6 items-center  bg-white-100">
         Students
       </div>
-      <div className=" px-[29px]">
-        <div className="pt-[30px] w-[50%] h-[50%]" >
+      <div className=" pt-4  ">
+        <div className=" w-[80%] h-[50%] justify-center flex" >
           <Doughnut data={data} options={options} />
         </div>
         <div className="flex items-center pt-4">

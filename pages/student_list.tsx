@@ -32,13 +32,15 @@ export default function student_list() {
   };
 
   const [filteredStudents, setFilteredStudents] = useState(null);
+
   useEffect(()=>{
    setStudents(studentData?.data)
-    setFilteredStudents(studentData?.data)
+
+   setFilteredStudents(studentData?.data)
+
   }
    ,[studentData])
-  // console.log(students);
-  // console.log(filteredStudents)
+
   
   let school;
   if (typeof window !== 'undefined') {
@@ -50,7 +52,6 @@ export default function student_list() {
     let filteredList = [...students];
     filteredList = students.filter((student) => student.current_class.name === e);
     setFilteredStudents(filteredList);
-    // console.log(filteredList);
 
   };
 
@@ -58,7 +59,6 @@ export default function student_list() {
     let filteredList = [...students];
     filteredList = students.filter((student) => student.gender === e);
     setFilteredStudents(filteredList);
-    // console.log(filteredList);
 
   };
 
@@ -66,12 +66,26 @@ export default function student_list() {
     let filteredList = [...students];
     filteredList = students.filter((student) => student.enrollment_status === e);
     setFilteredStudents(filteredList);
-    // console.log(filteredList);
 
   };
 
   const handleSortSelect = (e) => {
   };
+
+
+
+  const [searchedStudents, setSearchedStudents] = useState(null);
+  const [searchTerm,setSearchTerm] = useState(null)
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    let searchedList  = [...students].filter( item => {
+     return item.full_name.toLowerCase().includes(searchTerm?.toLowerCase())
+    })
+    setSearchedStudents(searchedList);
+      // console.log(searchedStudents)
+  }
+
+
 
   return (
     <div>
@@ -106,6 +120,7 @@ export default function student_list() {
                 id=""
                 className=" border border-[#E4E7EC] py-2 px-4 rounded-md outline-none"
                 placeholder="Search here..."
+                onChange={e => handleSearch(e)}
               />
             </div>
             <div className=" flex gap-3">
@@ -136,7 +151,9 @@ export default function student_list() {
           </div>
 
           <div>
-            <StudentList  students={filteredStudents}/>
+
+            <StudentList  students={searchTerm ? searchedStudents : filteredStudents} />
+
           </div>
           <Pagination
           paginate={paginate}
