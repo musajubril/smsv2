@@ -13,10 +13,10 @@ import { IoIosArrowDown } from "react-icons/io";
 import Pagination from "@/components/shared/Pagination";
 
 export default function student_list() {
-  const classOptions = ["SSS 1", "SSS 2", "SSS 3"];
-  const genderOptions = ["Male", "Female"];
-  const enrollmentStatusOptions = ["Admitted", "Pending"];
-  const sortOptions = ["Ascending", "Descending"];
+  const classOptions = ["All","SSS 1", "SSS 2", "SSS 3"];
+  const genderOptions = ["All","Male", "Female"];
+  const enrollmentStatusOptions = ["All","Admitted", "Pending"];
+  const sortOptions = ["All","Ascending", "Descending"];
 
   const [off, setOff] = useState(1);
 
@@ -49,24 +49,33 @@ export default function student_list() {
   
 
   const handleClassSelect = (e) => {
-    let filteredList = [...students];
-    filteredList = students.filter((student) => student.current_class.name === e);
+    let filteredList;
+    if (e === "All") {
+      filteredList = students; 
+    } else {
+      filteredList = students.filter((student) => student.current_class.name === e);
+    }
     setFilteredStudents(filteredList);
-
   };
 
   const handleGenderSelect = (e) => {
-    let filteredList = [...students];
-    filteredList = students.filter((student) => student.gender === e);
+    let filteredList;
+    if (e === "All") {
+      filteredList = students; 
+    } else {
+      filteredList = students.filter((student) => student.gender === e);
+    }
     setFilteredStudents(filteredList);
-
   };
 
   const handleStatusSelect = (e) => {
-    let filteredList = [...students];
-    filteredList = students.filter((student) => student.enrollment_status === e);
+    let filteredList;
+    if (e === "All") {
+      filteredList = students; 
+    } else {
+      filteredList = students.filter((student) => student.enrollment_status === e);
+    }
     setFilteredStudents(filteredList);
-
   };
 
   const handleSortSelect = (e) => {
