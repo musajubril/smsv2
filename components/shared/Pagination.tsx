@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { HiOutlineArrowLeft, HiOutlineArrowRight } from "react-icons/hi";
 
-export default function Pagination({ paginate }) {
+export default function Pagination({ paginate, count }) {
+
+  // const [pagesLength , setPageslength] = useState(null)
+  // console.log(count)
+    // setPageslength(Math.floor(count/20))
+    const pagesLength = Math.floor(count/20) 
+    // console.log(pagesLength)
+ 
+    
+
   const [pagenumbers, setPagenumbers] = useState([]);
   useEffect(() => {
     const pageArray = [{ num: 1, active: true }];
-    for (let i = 2; i <= 21; i++) {
+    for (let i = 2; i <= pagesLength; i++) {
       pageArray.push({ num: i, active: false });
     }
     setPagenumbers(pageArray);
-  }, []);
+  }, []); 
 
   const lastpage = pagenumbers[pagenumbers.length - 1];
 
@@ -17,7 +26,7 @@ export default function Pagination({ paginate }) {
 
   const newpagenumbers = pagenumbers.slice(currentPage - 1, currentPage + 2);
 
-  const lastpagenumbers = pagenumbers.slice(18, 21);
+  const lastpagenumbers = pagenumbers.slice(pagesLength - 3, pagesLength);
 
   const handleClicked = (number) => {
     const updatedPagenumbers = pagenumbers.map((page) => {
@@ -72,7 +81,8 @@ export default function Pagination({ paginate }) {
   };
 
   return (
-    <div>
+    <div className={``}>
+      {
       <div className="flex justify-center items-center gap-4">
         <button className=" cursor-pointer pb-3" onClick={prev}>
           <HiOutlineArrowLeft></HiOutlineArrowLeft>
@@ -136,7 +146,7 @@ export default function Pagination({ paginate }) {
           <li
             className={` text-base font-semibold cursor-pointer ${
               newpagenumbers?.includes(lastpage) ? "hidden " : " block"
-            } ${newpagenumbers?.includes(pagenumbers[19]) ? "hidden " : " block"}
+            } ${newpagenumbers?.includes(pagenumbers[pagesLength - 2]) ? "hidden " : " block"}
              `}
           >
             ...
@@ -165,6 +175,7 @@ export default function Pagination({ paginate }) {
           <HiOutlineArrowRight></HiOutlineArrowRight>
         </button>
       </div>
+      }
     </div>
   );
 }
