@@ -7,7 +7,7 @@ export default function Dropdown({ options, onSelect, placeholder }){
   const dropdownRef = useRef(null);
 
   const handleSelect = (option) => {
-    setSelectedOption(option);
+    setSelectedOption(option === "All" ? null : option);
     onSelect(option);
     closeDropdown();
   };

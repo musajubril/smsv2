@@ -18,8 +18,8 @@ export default function StaffList({staffs}) {
     }
   return (
     <div>
-      <div className=' px-5  '>
-<div className=" grid grid-cols-6 text-sm bg-[#F5FAFF] p-3  rounded-t-lg">
+      <div className='  shadow  '>
+<div className=" grid grid-cols-6 text-sm bg-[#F5FAFF]  p-3  rounded-t-lg">
             <div className=" font-semibold text-xs flex gap-2 col-span-2">
               <input type="checkbox" name="" id="" className=" h-5 w-5" />
               Name
@@ -66,20 +66,22 @@ export default function StaffList({staffs}) {
                       </div>
                       </Link>
                     </div>
-                    <div className="col-span-1">{teachers.role}</div>
-                    <div className="col-span-1 text-gray-400">..</div>
+                    <div className="col-span-1 text-gray-400">Null</div>
+                    <div className="col-span-1 ">{teachers.role}</div>
 
-                    <div className=" cursor-pointer flex justify-center">
-                      <HiDotsVertical />
+                    <div className=" cursor-pointer ">
+                      Null
+                      
                     </div>
+                    <div className=' flex  justify-center items-center'><HiDotsVertical /></div>
                   </div>
                 ))
             }
           </div>
 
 
-    <div className="flex items-center justify-center pt-5">
-          <div className=" flex items-center gap-3">
+    {/* <div className="flex items-center justify-center pt-5"> */}
+          {/* <div className=" flex items-center gap-3">
             <div className=" border border-[#D0D5DD] rounded-md p-2 shadow">
               <SlArrowLeft />
             </div>
@@ -93,8 +95,8 @@ export default function StaffList({staffs}) {
             <div className=" border border-[#D0D5DD] rounded-md p-2 shadow">
               <SlArrowRight />
             </div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
     </div>
  
   
