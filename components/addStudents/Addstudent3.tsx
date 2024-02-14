@@ -11,7 +11,7 @@ import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
 import Studentpreview from "./Studentpreview";
 
-export default function Addstudent3({ prev, change, state, setState, submit}:{prev: any, submit: any, change: any, state:SignUpState, setState: any}) {
+export default function Addstudent3({ prev, change, state, setState, submit, open: showCSVPreview, setOpen: setShowCSVPreview}:{prev: any, submit: any, change: any, state:SignUpState, setState: any,  open: boolean, setOpen: any}) {
 
 
   const mock = ["JSS1", "JSS2", "JSS3", "SSS1", "SSS2", "SSS3"];
@@ -31,27 +31,11 @@ export default function Addstudent3({ prev, change, state, setState, submit}:{pr
   const handleSubmit = (e) => {
     e.preventDefault();
   }
-  
-    // <div className=" flex flex-col p-6" >
-    //   <div className=" flex justify-between items-center pb-5">
-    //     <div className=" flex items-center gap-3 cursor-pointer">
-    //       <div className="border py-1 px-2">
-    //         <FaArrowLeftLong />
-    //       </div>
-    //       <div>Go Back</div>
-    //       <div className=" text-gray-400">Dashboard /</div>
-    //       <div className=" text-gray-400">Students /</div>
-    //       <div className=" text-gray-400">Add New Student</div>
-    //     </div>
-    //     <div className=" flex p-2 border items-center gap-1 ">
-    //       <AiOutlineImport />
-    //       <div>Import CSV</div>
-    //     </div>
+  console.log(showCSVPreview)
   return (
 
 
     <div className="">
-      <Layout>
         
       <div className="">
         <Modal action={action} open={open}>
@@ -61,14 +45,14 @@ export default function Addstudent3({ prev, change, state, setState, submit}:{pr
 
       <div className="">
         <Modal action={action1} open={open1}>
-          <ImportCSV />
+          <ImportCSV showCSVPreview={showCSVPreview} setShowCSVPreview={setShowCSVPreview}/>
         </Modal>
 
       </div>
 
       <div className=" flex flex-col p-6">
-        <div className=" flex justify-between items-center pb-5">
-          <div className=" flex items-center gap-3 cursor-pointer">
+        <div className=" flex justify-between items-center">
+          {/* <div className=" flex items-center gap-3 cursor-pointer">
             <div className="border py-1 px-2 border-[#E4E7EC] bg-white-100 rounded-lg">
               <FaArrowLeftLong />
             </div>
@@ -76,7 +60,7 @@ export default function Addstudent3({ prev, change, state, setState, submit}:{pr
             <div className=" text-gray-400">Dashboard /</div>
             <div className=" text-gray-400">Students /</div>
             <div className=" ">Add New Student</div>
-          </div>
+          </div> */}
 
           {/* <form className="flex flex-col gap-4 pt-3">
             <div className=" flex flex-col gap-1">
@@ -127,7 +111,7 @@ export default function Addstudent3({ prev, change, state, setState, submit}:{pr
               />
             </div>
           </form> */}
-
+{/* 
           <div
           className=" flex p-2 border items-center gap-1 border-[#E4E7EC] bg-white-100 rounded-md cursor-pointer"
           onClick={() => {
@@ -136,7 +120,7 @@ export default function Addstudent3({ prev, change, state, setState, submit}:{pr
         >
           <AiOutlineImport />
           <div>Import CSV</div>
-        </div>
+        </div> */}
 
         </div>
 
@@ -254,9 +238,6 @@ export default function Addstudent3({ prev, change, state, setState, submit}:{pr
           </div>
         </div>
       </div>
-
-
-      </Layout>
     </div>
   );
 }

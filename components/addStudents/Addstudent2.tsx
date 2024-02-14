@@ -11,18 +11,17 @@ import Layout from "../shared/dashboardLayout/Layout";
 import { SignUpState } from "@/pages/[school]/student/add";
 import Steps from "../shared/StepNavigation/Steps";
 
-export default function Addstudent2({next, change, prev, state}: {next: any, change: any, prev: any, state:SignUpState}) {
+export default function Addstudent2({next, change, prev, state, open:showCSVPreview, setOpen:setShowCSVPreview}: {next: any, change: any, prev: any, state:SignUpState, open: boolean, setOpen: any}) {
 
-  const [open, setOpen] = useState(Boolean);
-  const action = () => {
-    setOpen(false);
-  };
+  // const [open, setOpen] = useState(Boolean);
+  // const action = () => {
+  //   setOpen(false);
+  // };
   return (
-    <Layout>
     <div className=" flex flex-col p-6">
-      <div>
+      {/* <div>
         <Modal action={action} open={open}>
-          <ImportCSV />
+          <ImportCSV showCSVPreview={showCSVPreview} setShowCSVPreview={setShowCSVPreview}/>
         </Modal>
       </div>
       <div className=" flex justify-between items-center pb-5">
@@ -45,7 +44,7 @@ export default function Addstudent2({next, change, prev, state}: {next: any, cha
           <AiOutlineImport />
           <div>Import CSV</div>
         </div>
-      </div>
+      </div> */}
 
       <div className=" grid grid-cols-3 gap-4 ">
         <div className=" col-span-2 border border-[#E4E7EC] bg-white-100 rounded-lg  p-4">
@@ -164,6 +163,5 @@ export default function Addstudent2({next, change, prev, state}: {next: any, cha
         </div>
     </div>
     </div>
-    </Layout>
   );
 }

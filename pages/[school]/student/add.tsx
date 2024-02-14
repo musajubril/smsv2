@@ -8,6 +8,12 @@ import { GETSCHOOL, STUDENTS } from '@/api/apiUrl';
 import { postRequest, getSchool } from '@/api/apiCall';
 import { useParams } from 'next/navigation';
 import { queryKeys } from '@/api/queryKey';
+import Layout from '@/components/shared/dashboardLayout/Layout';
+import AddStudentsTable from '@/components/addStudentsTable';
+import ImportCSV from '@/components/addStudents/ImportCSV';
+import Modal from '@/components/shared/reusablemodal/Modal';
+import { FaArrowLeftLong } from 'react-icons/fa6';
+import { AiOutlineImport } from 'react-icons/ai';
 
 
 
@@ -26,9 +32,15 @@ export type  SignUpState = {
   state_of_origin: string,
   enrollment_date: string,
   outstanding_debt: string,
-  class_id: string,
+  class_id: string, 
 }
-export default function AddStudent() {
+export default function AddStudent({}: {open: boolean, setOpen: any}) {
+  const [open, setOpen] = useState(Boolean);
+  const [showCSVPreview, setShowCSVPreview] = useState(Boolean);
+  const action = () => {
+    setOpen(false)
+  };
+  // const[showCSVPreview, setShowCSVPreview] = useState()
 // const router = useRouter();
 const params: { school: string } = useParams();
 // console.log(params, router.query);
@@ -105,17 +117,58 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
   console.log(state);
   mutation.mutate({...state});
 }
+const [files, setFiles] = useState<File|FileList>()
 
+// const [open, setOpen] = useState(false)
 
+console.log(showCSVPreview)
   return (
     <div>
+      <Layout>
+        
+      <div className="">
+      <Modal action={action} open={open}>
+          <ImportCSV showCSVPreview={showCSVPreview} setFiles={setFiles} setOpen={setOpen} setShowCSVPreview={setShowCSVPreview}/>
+        </Modal>
+      </div>
+      
+{
+  !showCSVPreview ?
+  <>
+  <div className=' px-6'>
+         <div className=" flex justify-between items-center">
+        <div className=" flex items-center gap-3 cursor-pointer">
+          <div className="border py-1 px-2 border-[#E4E7EC] bg-white-100 rounded-lg">
+            <FaArrowLeftLong />
+          </div>
+          <div>Go Back</div>
+          <div className=" text-gray-400">Dashboard /</div>
+          <div className=" text-gray-400">Students /</div>
+          <div className=" ">Add New Student</div>
+        </div>
+        <div
+          className=" flex p-2 border items-center gap-1 border-[#E4E7EC] bg-white-100 rounded-md cursor-pointer"
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          <AiOutlineImport />
+          <div>Import CSV</div>
+        </div>
+      </div>
+      </div>
 
-        {currentStep === 0 && <Addstudent1  change={handleChange}  state={state} setState={setState} next={handleNextStep}/>} 
+        {currentStep === 0 && <Addstudent1  open={open} setOpen={setOpen} change={handleChange}  state={state} setState={setState} next={handleNextStep}/>} 
      
-      {currentStep===1 && <Addstudent2 state={state} prev={handlePreviousStep} next={handleNextStep} change={handleChange} />} 
+      {currentStep===1 && <Addstudent2 open={open} setOpen={setOpen} state={state} prev={handlePreviousStep} next={handleNextStep} change={handleChange} />} 
          {currentStep === 2 && (
-        <Addstudent3 change={handleChange}  state={state} setState={setState} prev={handlePreviousStep} submit={handleSubmit}  />
-      )}
+           <Addstudent3 change={handleChange} open={open} setOpen={setOpen}  state={state} setState={setState} prev={handlePreviousStep} submit={handleSubmit}  />
+           )}
+           </>
+           :
+           <AddStudentsTable files={files} />
+          }
+      </Layout>
     </div>
   )
 }
