@@ -19,7 +19,7 @@ export const dateFormat = (dt) => {
  console.log(returnDate)
  return returnDate
 };
-export default function Addstudent1({ next, change, state, setState}:{next:any, change:any, state:SignUpState, setState:any}) {
+export default function Addstudent1({ next, change, state, setState, open:showCSVPreview, setOpen:setShowCSVPreview}:{next:any, change:any, state:SignUpState, setState:any, open: boolean, setOpen: any}) {
   const Gender = ["Male", "Female"];
   const Religion = ["Christian", "Muslim", "Others"];
 
@@ -29,11 +29,10 @@ export default function Addstudent1({ next, change, state, setState}:{next:any, 
   };
 
   return (
-    <Layout>
     <div className=" flex flex-col p-6">
-      <div className="">
+      {/* <div className="">
         <Modal action={action} open={open}>
-          <ImportCSV />
+          <ImportCSV showCSVPreview={showCSVPreview} setShowCSVPreview={setShowCSVPreview}/>
         </Modal>
       </div>
       <div className=" flex justify-between items-center pb-5">
@@ -55,7 +54,7 @@ export default function Addstudent1({ next, change, state, setState}:{next:any, 
           <AiOutlineImport />
           <div>Import CSV</div>
         </div>
-      </div>
+      </div> */}
 
       <div className=" grid grid-cols-3 gap-4 ">
         <div className=" col-span-2 border border-[#E4E7EC] bg-white-100 rounded-lg p-4">
@@ -177,6 +176,5 @@ export default function Addstudent1({ next, change, state, setState}:{next:any, 
     </div>
     </div>
     </div>
-    </Layout>
   );
 }

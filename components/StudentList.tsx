@@ -10,6 +10,7 @@ import Router, { useRouter } from "next/router";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Pagination from "./shared/Pagination";
+import Table from "./shared/reusableTable/Table";
 
 export default function StudentList({students}) {
   
@@ -19,6 +20,29 @@ export default function StudentList({students}) {
   if (typeof window !== 'undefined') {
     school = localStorage.getItem('schoolSlug');
   }
+
+  const mappedStudents = students?.map((std) => {
+    return {
+      "Name": std.full_name,
+      "Class": std.current_class.name,
+      "Gender": std.gender,
+      "Date of birth": std.date_of_birth,
+      // "Religion": std.religion,
+      "State": std.state_of_origin,
+      "Email": std.email,
+    }
+  })
+   const mappedImages = students?.map((std) => {
+    return {
+      "Image": std.image,
+    }
+  })
+  
+  const mappedIds = students?.map((std) => {
+    return {
+      "ID": std.id,
+    }
+  })
   
   return (
     <div>
@@ -38,7 +62,7 @@ export default function StudentList({students}) {
               Action
             </div>
           </div>
-          <div className="flex flex-col gap-3 py-2 px-3">
+          {/* <div className="flex flex-col gap-3 py-2 px-3">
             {
               students &&
                 students.map((pupil) => (
@@ -86,12 +110,15 @@ export default function StudentList({students}) {
                   </div>
                 ))
             }
-          </div>
+          </div> */}
         </div>
 
       {/* <Pagination
           paginate={paginate}
         ></Pagination> */}
+      
+   
+      <Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={true} hasImage={true}></Table>
       </div>
     </div>
   );
