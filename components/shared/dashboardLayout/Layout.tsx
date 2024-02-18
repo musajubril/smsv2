@@ -21,11 +21,11 @@ const Layout = ({ children }) => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="w-1/4">
+      <div className="md:w-1/4">
         <Hamburger logout={() => setOpen(true)} />
       </div>
 
-      <div className="w-3/4 overflow-y-scroll p-4">
+      <div className="w-full overflow-y-scroll p-4">
         <div className="flex justify-between ">
           {/* Render search bar and icons only on larger screens */}
           <div className="hidden md:block relative items-center">
