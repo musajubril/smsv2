@@ -80,7 +80,7 @@ export default function Select({options,placeholder, name, change, text, state, 
         onClick={handleToggleDropdown}
         value={searchTerm}
         placeholder={selectedOption ? selectedOption : placeholder}
-        className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
+        className=" w-full px-4 py-3 text-sm font-medium  bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
         // onChange={(e) => setSearchTerm(e.target.value)}
         onChange={handleInput}
       />

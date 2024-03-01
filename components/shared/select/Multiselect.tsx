@@ -1,15 +1,15 @@
 // import index from '@/pages';
-import React, { useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { IoMdCheckmark } from "react-icons/io";
 import { RxCross2 } from "react-icons/rx";
 
 
 interface SelectProps {
-    options: string[];
-    placeholder:string
-  }
+  options: string[];
+  placeholder: string
+}
 
-export default function Multiselect({options, placeholder} : SelectProps) {
+export default function Multiselect({ options, placeholder }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedOption, setSelectedOption] = useState<string[]>([]);
@@ -51,15 +51,15 @@ export default function Multiselect({options, placeholder} : SelectProps) {
     const filtered = selectedOption.filter((opt) => opt !== option);
     setSelectedOption(filtered);
   };
-  
 
-  const handleSelectOption = (option:any) => {
-    console.log("Selected Option is:",option)
+
+  const handleSelectOption = (option: any) => {
+    console.log("Selected Option is:", option)
     if (!selectedOption.includes(option)) {
-        setSelectedOption([...selectedOption, option]);
-      }
-      
-    
+      setSelectedOption([...selectedOption, option]);
+    }
+
+
     // setSearchTerm(option);
   };
 
@@ -72,7 +72,7 @@ export default function Multiselect({options, placeholder} : SelectProps) {
         placeholder={searchTerm ? searchTerm : placeholder}
         className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
         onChange={(e) => setSearchTerm(e.target.value)}
-        
+
       />
 
       {isOpen && (
@@ -85,7 +85,7 @@ export default function Multiselect({options, placeholder} : SelectProps) {
                 className=" flex justify-between items-center mx-1 mt-1 px-1 py-2 rounded-md cursor-pointer hover:bg-gray-600"
               >
                 <div>{option}</div>
-              {selectedOption.includes(option) && (
+                {selectedOption.includes(option) && (
                   <div className=' text-blue-200'>
                     <IoMdCheckmark />
                   </div>
@@ -95,16 +95,18 @@ export default function Multiselect({options, placeholder} : SelectProps) {
           </div>
         </div>
       )}
-        {selectedOption.length > 0 && (
-        <div className=" py-3 flex w-full">
-          {selectedOption.map((option, index) => (
-            <button key={index} className="font-medium mx-1 border rounded-lg px-2 py-1 flex justify-between items-center gap-2 text-gray-300">
-              {option} 
-              <div onClick={() => {handleDelete(option)}}>
-              <RxCross2 />
-              </div>
-            </button>
-          ))}
+      {selectedOption.length > 0 && (
+        <div className=" py-3 flex  w-full">
+          <div className='  grid grid-cols-3 gap-3 '>
+            {selectedOption.map((option, index) => (
+              <button key={index} className="font-medium mx-1 border rounded-lg h-8  justify-between gap-2 items-center flex  text-gray-300  px-2 text-xs py-2">
+                {option}
+                <div onClick={() => { handleDelete(option) }}>
+                  <RxCross2 />
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </div>
