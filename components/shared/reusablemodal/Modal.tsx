@@ -5,7 +5,8 @@ type ModalProps = {
   children?: React.ReactNode;
   open?: boolean;
 };
-export default function Modal({ action, children, open }: ModalProps) {
+
+const Modal: React.FC<ModalProps> = ({ action, children, open }) => {
   return (
     <div
       className={`modal-background h-full max-h-screen w-full bg-[#00000080] bg-opacity-40 left-0 top-0 justify-center items-center ${
@@ -15,16 +16,17 @@ export default function Modal({ action, children, open }: ModalProps) {
     >
       <div className="flex flex-col justify-end">
         <div
-          className="bg-white rounded-2xl xl:h-auto max-h-[calc(100vh-100px)] relative"
-          style={{ height: "" }}
+          className={`bg-white-100 rounded-2xl xl:h-auto max-h-[calc(100vh-100px)] relative ${
+            open ? "overflow-auto" : "overflow-hidden"
+          } w-full`}
           onClick={(e) => e.stopPropagation()}
         >
           <div className="gap-5 bg-[white] items-center rounded-xl">
             <div
               onClick={() => action(false)}
-              className="flex justify-end hover:cursor-pointer absolute top-4 right-4 "
+              className="flex justify-end hover:cursor-pointer absolute top-4 right-4"
             >
-              <img src="cancel.svg" alt="cancel button" className="h-10 w-10 pb-[8px]" />
+              <img src="cancel.svg" alt="cancel button" className="h-8 w-8 pb-[8px]" />
             </div>
             <div className="p-12">{children}</div>
           </div>
@@ -32,4 +34,6 @@ export default function Modal({ action, children, open }: ModalProps) {
       </div>
     </div>
   );
-}
+};
+
+export default Modal;
