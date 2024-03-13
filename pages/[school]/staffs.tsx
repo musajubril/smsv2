@@ -86,7 +86,7 @@ export default function staff_list() {
         <div className=' flex gap-3 flex-col w-full' >
           <div className=' flex items-center justify-between '>
             <h1 className='text-black text-2xl font-semibold'>Staff</h1>
-            <div>
+            <Link href={`/${school}/staff/add`}>
               <Button
                 intent="primary"
                 size="base"
@@ -94,7 +94,7 @@ export default function staff_list() {
                 disabled={false}
                 onClick={undefined}
               />
-            </div>
+            </Link>
           </div>
           <div>
             <div className=' '>

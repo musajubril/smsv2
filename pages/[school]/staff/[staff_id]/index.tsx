@@ -3,6 +3,7 @@ import { GETSCHOOL, TEACHER, TEACHERS } from "@/api/apiUrl";
 import { queryKeys } from "@/api/queryKey";
 import Layout from "@/components/shared/dashboardLayout/Layout";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -46,12 +47,17 @@ export default function staffPage() {
       <div className=" flex flex-col p-6">
         <div className=" flex justify-between items-center pb-5">
           <div className=" flex items-center gap-3 cursor-pointer">
-            <div className="border border-[#E4E7EC] bg-white-100 py-1 px-2 rounded-lg">
-              <FaArrowLeftLong />
-            </div>
-            <div className=" text-gray-400">Go Back</div>
-            <div className=" text-gray-400">Dashboard /</div>
-            <div className=" text-gray-400">Staff /</div>
+          <div
+                onClick={router.back}
+                className=" flex items-center gap-3 cursor-pointer"
+              >
+                <div className="border py-1 px-2 border-[#E4E7EC] bg-white-100 rounded-lg">
+                  <FaArrowLeftLong />
+                </div>
+                <div>Go Back</div>
+              </div>
+              <Link href={`/${school}/`} className=" text-gray-400 hover:text-black">Dashboard /</Link>
+            <div className=" text-gray-400 hover:text-black" onClick={router.back}>Staff /</div>
             <div>Musa Kalamu</div>
           </div>
         </div>

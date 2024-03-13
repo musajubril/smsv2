@@ -7,14 +7,33 @@ import Layout from "../shared/dashboardLayout/Layout";
 import Modal from "../shared/reusablemodal/Modal";
 import ProfilePreview from "./ProfilePreview";
 import { AddStaffState } from "@/pages/[school]/staff/add";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
-export default function AddStaff2({prev, submit, state, change, setState}: {prev:any, submit:any, state:AddStaffState, setState:any, change:any}) {
+export default function AddStaff2({
+  prev,
+  submit,
+  state,
+  change,
+  setState,
+}: {
+  prev: any;
+  submit: any;
+  state: AddStaffState;
+  setState: any;
+  change: any;
+}) {
   const Qualification = ["BSC", "HND", "ND", "NCE"];
   const Role = ["Teacher", "Cleaner", "Principal"];
   const Department = ["Academics", "Cleaning"];
   const Class = ["Jss1", "Jss2", "Jss3"];
   const Subject = ["Maths", "English", "Yoruba", "Physics"];
 
+  const router = useRouter();
+  let school;
+  if (typeof window !== 'undefined') {
+    school = localStorage.getItem('schoolSlug');
+  }
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const openProfilePreview = () => {
@@ -38,14 +57,17 @@ export default function AddStaff2({prev, submit, state, change, setState}: {prev
         </Modal>
         <div className="flex flex-col pt-6 ">
           <div className="flex pb-5 gap-2 cursor-pointer p-0">
-            <div className="">
+            <div
+              onClick={router.back}
+              className=" flex items-center gap-3 cursor-pointer"
+            >
               <div className="border py-1 px-2 border-[#E4E7EC] bg-white-100 rounded-lg">
                 <FaArrowLeftLong />
               </div>
+              <div>Go Back</div>
             </div>
-            <div className="">Go Back</div>
-            <div className="text-gray-400">DashBoard /</div>
-            <div className="text-gray-400">Staff /</div>
+            <Link href={`/${school}/`} className="text-gray-400 hover:text-black">DashBoard /</Link>
+            <div className="text-gray-400 hover:text-black" onClick={router.back}>Staff /</div>
             <div className="">Add New Staff</div>
           </div>
 
@@ -65,27 +87,61 @@ export default function AddStaff2({prev, submit, state, change, setState}: {prev
                   <h1 className=" font-medium">Department</h1>
                   <Select
                     options={Department}
-                    placeholder="Select department" change={change} text="department" state={state} setState={setState} name="department" 
+                    placeholder="Select department"
+                    change={change}
+                    text="department"
+                    state={state}
+                    setState={setState}
+                    name="department"
                   />
                 </div>
                 <div className=" flex flex-col gap-1">
                   <h1 className=" font-medium">Qualification</h1>
                   <Select
                     options={Qualification}
-                    placeholder="Select qualification" change={change} text="qualification" state={state} setState={setState} name="qualification" 
+                    placeholder="Select qualification"
+                    change={change}
+                    text="qualification"
+                    state={state}
+                    setState={setState}
+                    name="qualification"
                   />
                 </div>
                 <div className=" flex flex-col gap-1">
                   <h1 className=" font-medium">Role</h1>
-                  <Select options={Role} placeholder="Select role" change={change} text="role" state={state} setState={setState} name="role" />
+                  <Select
+                    options={Role}
+                    placeholder="Select role"
+                    change={change}
+                    text="role"
+                    state={state}
+                    setState={setState}
+                    name="role"
+                  />
                 </div>
                 <div className=" flex flex-col gap-1">
                   <h1 className=" font-medium">Class</h1>
-                  <Select options={Class} placeholder="Select class" change={change} text="class" state={state} setState={setState} name="class"  />
+                  <Select
+                    options={Class}
+                    placeholder="Select class"
+                    change={change}
+                    text="class"
+                    state={state}
+                    setState={setState}
+                    name="class"
+                  />
                 </div>
                 <div className=" flex flex-col gap-1">
                   <h1 className=" font-medium">Subject</h1>
-                  <Select options={Subject} placeholder="Select subject" change={change} text="subject" state={state} setState={setState} name="subject" />
+                  <Select
+                    options={Subject}
+                    placeholder="Select subject"
+                    change={change}
+                    text="subject"
+                    state={state}
+                    setState={setState}
+                    name="subject"
+                  />
                 </div>
                 <div className=" grid grid-cols-2 gap-2">
                   <Button
