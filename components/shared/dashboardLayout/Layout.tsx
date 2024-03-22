@@ -34,27 +34,26 @@ const Layout = ({ children }) => {
       </div>
 
       <div className="w-full overflow-y-scroll p-4">
-        <div className="flex justify-between ">
+        <div className="flex justify-between mb-2">
           {/* Render search bar and icons only on larger screens */}
-          <div className="hidden md:block relative items-center">
-            <CiSearch className="h-5 w-5 text-gray-500 absolute left-4" />
+          <div className="hidden md:flex relative items-center ">
+            <CiSearch className="h-5 w-5 text-[#475367] absolute left-4" />
             <input
               type="text"
-              placeholder="Search..."
-              className="py-1 pl-10 pr-2 border border-gray-400 rounded-sm focus:outline-none w-[605px] focus:border-blue-500"
+              placeholder=" Search here..."
+              className=" py-2 pl-10 pr-2 text-sm bg-[#F9FAFB]  rounded-sm focus:outline-none w-[629px] focus:border-blue-500"
             />
           </div>
           <div className="flex justify-between items-center gap-2">
             {/* Render icons only on larger screens */}
-            <div className="hidden md:flex w-10 h-10 items-center justify-center">
-              <IoMdNotificationsOutline className="h-6 w-6 text-gray-500" />
+            <div className="hidden md:flex w-10 h-10 items-center justify-center bg-[#F0F2F5] rounded-[50%] ">
+              <IoMdNotificationsOutline className="h-6 w-6 text-[#475367]" />
             </div>
 
-            {/* Render profile picture only on larger screens */}
             <div className="hidden md:block">
               <img
                 src="Avatars.png"
-                alt=""
+                alt="Image"
                 className="w-10 h-10 rounded-full"
               />
             </div>
