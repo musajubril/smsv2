@@ -74,7 +74,7 @@ export default function Login() {
           </div>
         </div>
 
-        <div className=" px-5 pt-5 bg-gray-700 col-span-1 flex flex-col justify-center  ">
+        <div className=" px-5 pt-5  col-span-1 flex flex-col justify-center  ">
           <div className="text-3xl font flex justify-center font-bold">{schoolData?.name}</div>
           <form onSubmit={handleSubmit} className="p-8 ">
             <div className=" pb-3">
