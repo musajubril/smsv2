@@ -25,7 +25,7 @@ export default function Login() {
   useEffect(() => {
     setSchoolData(data?.data);
   }, [data?.data]);
-  console.log(schoolData);
+  console.log(schoolData?.logo);
 
   const [state, setState] = useState({
     email: "",
@@ -44,11 +44,11 @@ export default function Login() {
       login({ url: LOGIN_URL(schoolData?.uid), data: newLogin });
     },
     onSuccess(data) {
-      localStorage.setItem('schoolSlug', schoolData?.slug);
-      localStorage.setItem('schoolId', schoolData?.uid);
-      localStorage.setItem('schoolName', schoolData?.name);
-      localStorage.setItem('schoolLogo', schoolData?.logo);
-      router.push(`/${schoolData?.slug}`, `/${schoolData?.slug}`)
+      localStorage.setItem("schoolSlug", schoolData?.slug);
+      localStorage.setItem("schoolId", schoolData?.uid);
+      localStorage.setItem("schoolName", schoolData?.name);
+      localStorage.setItem("schoolLogo", schoolData?.logo);
+      router.push(`/${schoolData?.slug}`, `/${schoolData?.slug}`);
     },
   });
 
@@ -63,9 +63,19 @@ export default function Login() {
   };
   return (
     <div>
-      <div className=" px-5 py-7 lg:grid grid-cols-2 gap-6">
-        <div className=" py-10 col-span-1 ">
-          <div className="text-xl font-bold">SMS</div>
+      <div className="h-screen px-5 lg:grid grid-cols-2 gap-6 ">
+
+        {/* image  */}
+        <div className="hidden  lg:block  col-span-1">
+          <div className="  h-full flex items-center justify-center">
+            <div className=" flex items-center justify-center ">
+              <img src={schoolData?.logo} alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div className=" px-5 pt-5  col-span-1 flex flex-col justify-center  ">
+          <div className="text-3xl font flex justify-center font-bold">{schoolData?.name}</div>
           <form onSubmit={handleSubmit} className="p-8 ">
             <div className=" pb-3">
               <div className="flex justify-start  ">
@@ -145,9 +155,6 @@ export default function Login() {
               </div>
             </div>
           </form>
-        </div>
-        <div className="hidden lg:block py-4 col-span-1">
-          <div className="bg-[#000842] h-full  rounded-xl"></div>
         </div>
       </div>
     </div>
