@@ -73,7 +73,7 @@ export default function Select({options,placeholder, name, change, text, state, 
   };
 
   return (
-    <div className=" text-left" ref={dropdownRef}>
+    <div className="relative text-left" ref={dropdownRef}>
       <input
         type="text"
         name={text}
@@ -86,8 +86,8 @@ export default function Select({options,placeholder, name, change, text, state, 
       />
 
       {isOpen && (
-        <div className=" pt-2  rounded-md shadow-lg">
-          <div className="  bg-white border border-gray-500  rounded-md">
+        <div className="absolute mt-2 pt-2 w-full rounded-md shadow-lg bg-gray-700">
+          <div className="  bg-white   rounded-md">
             {filteredOptions.map((option, index) => (
               <div
                 key={index}
