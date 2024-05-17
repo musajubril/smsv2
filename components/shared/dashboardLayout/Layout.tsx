@@ -33,8 +33,8 @@ const Layout = ({ children }) => {
         <Hamburger logout={() => setOpen(true)} />
       </div>
 
-      <div className="w-full overflow-y-scroll p-4">
-        <div className="flex justify-between mb-2">
+      <div className="w-full overflow-y-scroll bg-white-300">
+        <div className="flex justify-between mb-2 bg-white-100 py-3 px-9">
           {/* Render search bar and icons only on larger screens */}
           <div className="hidden md:flex relative items-center ">
             <CiSearch className="h-5 w-5 text-[#475367] absolute left-4" />
@@ -59,7 +59,7 @@ const Layout = ({ children }) => {
             </div>
           </div>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
+        <div className="bg-white p-4 rounded-lg">
           <div className="">
             <Modal action={action} open={open}>
               <div className="flex flex-col gap-6 p-4">

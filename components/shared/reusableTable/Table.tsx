@@ -21,7 +21,7 @@ export default function Table({
   return (
     <div>
       <div className=" px-4">
-        <div className=" my-6 rounded-lg shadow-lg">
+        <div className=" my-6 rounded-lg">
           <div
             className={` grid grid-cols-${key_length} ${
               key_length === 5 ? "grid-cols-5" : ""
@@ -36,7 +36,7 @@ export default function Table({
             ))}
           </div>
 
-          <div className="flex flex-col gap-5 py-3 px-3 ">
+          <div className="flex flex-col gap-5 py-3 px-3 bg-white-100">
             {students.map((pupil, pupilIndex) => (
               <div
                 key={pupilIndex}

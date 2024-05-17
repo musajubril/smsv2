@@ -18,7 +18,7 @@ export default function StaffList({staffs}) {
     }
   return (
     <div>
-      <div className='  shadow  '>
+      <div className='   '>
 <div className=" grid grid-cols-6 text-sm bg-[#F5FAFF]  p-3  rounded-t-lg">
             <div className=" font-semibold text-xs flex gap-2 col-span-2">
               <input type="checkbox" name="" id="" className=" h-5 w-5" />
@@ -34,7 +34,7 @@ export default function StaffList({staffs}) {
             </div>
           </div>
 
-<div className="flex flex-col gap-3 py-2 px-3">
+<div className="flex flex-col gap-3 py-2 px-3 bg-white-100">
             {
               staffs &&
                 staffs.map((teachers) => (
