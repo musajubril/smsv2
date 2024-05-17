@@ -24,7 +24,7 @@ export default function ({ logout, slug }: { logout: any, slug : string }) {
     {
       icon: <RiHome5Line />,
       name: "Home",
-      path: `/${isAuthenticated ? router.query.school : slug}`,
+      path: `/${isAuthenticated ? router.query.school : slug}/teacher`,
     },
     {
       icon: <MdMenuBook />,

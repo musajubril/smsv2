@@ -26,6 +26,7 @@ export default function Login() {
     setSchoolData(data?.data);
   }, [data?.data]);
   console.log(schoolData?.logo);
+  // school logo
 
   const [state, setState] = useState({
     email: "",
