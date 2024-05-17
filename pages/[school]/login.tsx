@@ -44,7 +44,7 @@ export default function Login() {
     mutationFn: async (newLogin: any) => {
       login({ url: LOGIN_URL(schoolData?.uid), data: newLogin });
     },
-    onSuccess(data) {
+    onSuccess:(data)=> {
       localStorage.setItem("schoolSlug", schoolData?.slug);
       localStorage.setItem("schoolId", schoolData?.uid);
       localStorage.setItem("schoolName", schoolData?.name);
