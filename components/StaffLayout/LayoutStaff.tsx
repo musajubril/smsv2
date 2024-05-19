@@ -14,9 +14,19 @@ const LayoutStaff = ({ children }) => {
     setOpen(false);
   };
   const router = useRouter();
+
+  let school;
+  if (typeof window !== 'undefined') {
+    school = localStorage.getItem('schoolSlug');
+  }
+
   const handleLogout = () => {
+    localStorage.removeItem('schoolSlug');
+    localStorage.removeItem('schoolId');
+    localStorage.removeItem('schoolName' );
+    localStorage.removeItem('schoolLogo');
     localStorage.removeItem("easysch_token");
-    router.push("/", "/");
+    router.push(`/${school}/login`, `/${school}/login`);
     console.log("User Logged Out");
   };
 

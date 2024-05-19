@@ -23,8 +23,10 @@ const Layout = ({ children }) => {
     localStorage.removeItem('schoolId');
     localStorage.removeItem('schoolName' );
     localStorage.removeItem('schoolLogo');
+    localStorage.removeItem("easysch_token");
     router.push(`/${school}/login`, `/${school}/login`);
     console.log("User Logged Out");
+
   };
 
   return (
@@ -78,8 +80,7 @@ const Layout = ({ children }) => {
                     intent="primary"
                     size="small"
                     text="No"
-                    disabled={false}
-                  />
+                    disabled={false} onClick={undefined}                  />
                 </div>
               </div>
             </Modal>
