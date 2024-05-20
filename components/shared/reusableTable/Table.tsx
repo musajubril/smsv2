@@ -17,7 +17,7 @@ export default function Table({
   }
 
   const keys = Object.keys(students[0]);
-  const key_length = keys.length + 1;
+  const key_length = keys.includes("Name") ? keys.length + 1 :  keys.length;
   //   console.log(keys);
   //   console.log(key_length);
 
@@ -127,7 +127,7 @@ export default function Table({
               {keys.map((key, index) => (
                 <div
                   className={` font-semibold text-xs ${
-                    key != "Name" ? " col-sp" : "col-span-2"
+                    key != "Name" ? " col-span-1" : "col-span-2"
                   }`}
                   key={index}
                 >
