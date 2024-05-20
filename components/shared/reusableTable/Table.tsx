@@ -6,9 +6,11 @@ export default function Table({
   students,
   hasCheckBox,
   hasImage,
+  hasAction,
   imageUrls,
   IDs,
   isAttendance,
+  actionHandle
 }) {
   if (!students || students.length === 0) {
     return;
@@ -22,7 +24,6 @@ export default function Table({
   return (
     <div>
       <div className=" px-4">
-
         {isAttendance ? (
           // ATTENDANCE MODE
           <div className=" my-6 rounded-lg">
@@ -55,7 +56,6 @@ export default function Table({
                   className={`grid grid-cols-${key_length + 2} gap-3`}
                 >
                   {keys.map((key, keyIndex) => (
-
                     <div
                       className={`flex items-center gap-2 ${
                         key != "Name" ? " col-span-1" : "col-span-2"
@@ -118,7 +118,7 @@ export default function Table({
           <div className=" my-6 rounded-lg shadow-lg">
             {/* TABLE HEADER  */}
             <div
-              className={` grid grid-cols-${key_length} ${
+              className={` grid grid-cols-${hasAction ? key_length + 1 : key_length} ${
                 key_length === 5 ? "grid-cols-5" : ""
               } ${key_length === 7 ? "grid-cols-7" : ""} ${
                 key_length === 8 ? "grid-cols-8" : ""
@@ -134,6 +134,12 @@ export default function Table({
                   {key}
                 </div>
               ))}
+
+              {hasAction ? (
+                <div className="font-semibold text-xs">Action</div>
+              ) : (
+                ""
+              )}
             </div>
 
             {/* TABLE BODY  */}
@@ -141,7 +147,7 @@ export default function Table({
               {students.map((pupil, pupilIndex) => (
                 <div
                   key={pupilIndex}
-                  className={`grid grid-cols-${key_length} ${
+                  className={`grid grid-cols-${hasAction ? key_length + 1 : key_length} ${
                     key_length === 5 ? "grid-cols-5" : ""
                   } ${key_length === 7 ? "grid-cols-7" : ""} ${
                     key_length === 8 ? "grid-cols-8" : ""
@@ -195,6 +201,14 @@ export default function Table({
                       </div>
                     </div>
                   ))}
+
+                  {hasAction ? (
+                    <div onClick={actionHandle}>
+                      <HiDotsVertical />
+                    </div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               ))}
             </div>
