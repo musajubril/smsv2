@@ -8,12 +8,18 @@ import { GETSCHOOL, LOGIN, LOGIN_URL } from "@/api/apiUrl";
 import router, { useRouter } from "next/router";
 import { useParams } from "next/navigation";
 import { queryKeys } from "@/api/queryKey";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
   const router = useRouter();
   const params: { school: string } = useParams();
   console.log(params, router.query);
   const school = params?.school;
+
+  const token: string =
+    typeof window !== "undefined" && localStorage.getItem("easysch_token");
+  console.log(token);
+
   const { data } = useQuery({
     queryKey: [queryKeys.getSchool, school],
     queryFn: async () => await getSchool({ url: GETSCHOOL(school) }),
@@ -25,7 +31,6 @@ export default function Login() {
   useEffect(() => {
     setSchoolData(data?.data);
   }, [data?.data]);
-  console.log(schoolData?.logo);
   // school logo
 
   const [state, setState] = useState({
@@ -49,7 +54,22 @@ export default function Login() {
       localStorage.setItem("schoolId", schoolData?.uid);
       localStorage.setItem("schoolName", schoolData?.name);
       localStorage.setItem("schoolLogo", schoolData?.logo);
-      router.push(`/${schoolData?.slug}`, `/${schoolData?.slug}`);
+
+      if (token) {
+        const decodedToken: { groups: Array<string> } = jwtDecode(token);
+        console.log(decodedToken);
+
+        if (Array.isArray(decodedToken.groups)) {
+          if (decodedToken.groups.includes("Teacher")) {
+            router.push(`/${school}/teacher`);
+            console.log("teacher");
+
+          } else if (decodedToken.groups.includes("Owner")) {
+            router.push(`/${school}`);
+            console.log("owner");
+          }
+        }
+      }
     },
   });
 
@@ -65,7 +85,6 @@ export default function Login() {
   return (
     <div>
       <div className="h-screen px-5 lg:grid grid-cols-2 gap-6 ">
-
         {/* image  */}
         <div className="hidden  lg:block  col-span-1">
           <div className="  h-full flex items-center justify-center">
@@ -76,7 +95,9 @@ export default function Login() {
         </div>
 
         <div className=" px-5 pt-5  col-span-1 flex flex-col justify-center  ">
-          <div className="text-3xl font flex justify-center font-bold">{schoolData?.name}</div>
+          <div className="text-3xl font flex justify-center font-bold">
+            {schoolData?.name}
+          </div>
           <form onSubmit={handleSubmit} className="p-8 ">
             <div className=" pb-3">
               <div className="flex justify-start  ">
@@ -106,6 +127,7 @@ export default function Login() {
                 change={handleChange}
                 name="email"
                 text={"Email address"}
+                value={undefined}
               />
               <Input
                 size="large"
@@ -115,6 +137,7 @@ export default function Login() {
                 change={handleChange}
                 name="password"
                 text={"Password"}
+                value={undefined}
               />
             </div>
             <div className="">
@@ -139,6 +162,7 @@ export default function Login() {
                   intent="primary"
                   text={"Log in"}
                   disabled={false}
+                  onClick={undefined}
                 />
               </div>
 
