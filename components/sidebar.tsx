@@ -9,6 +9,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
 import { IoChevronDown} from "react-icons/io5";
 import { IoIosArrowUp } from "react-icons/io";
+import { GiFamilyHouse } from "react-icons/gi";
 
 export default function Sidebar ({ logout, slug }: { logout: any, slug: string }) {
   const router = useRouter();
@@ -45,22 +46,27 @@ export default function Sidebar ({ logout, slug }: { logout: any, slug: string }
       name: "Staffs",
       path: `/${isAuthenticated ? router.query.school : slug}/staffs`,
     },
+    // {
+    //   icon: <MdMenuBook />,
+    //   name: "Computer Based Test",
+    //   path: `/${isAuthenticated ? router.query.school : slug}/cbt`,
+    //   iconClosed: <IoChevronDown />,
+    //   iconOpened: <IoIosArrowUp />,
+    //   subNav: [
+    //     {
+    //       name: "Classes",
+    //       path: `/${isAuthenticated ? router.query.school : slug}/cbt/classes`,
+    //     },
+    //     {
+    //       name: "Question Bank",
+    //       path: `/${isAuthenticated ? router.query.school : slug}/cbt/questionBank`,
+    //     },
+    //   ],
+    // },
     {
-      icon: <MdMenuBook />,
-      name: "Computer Based Test",
-      path: `/${isAuthenticated ? router.query.school : slug}/cbt`,
-      iconClosed: <IoChevronDown />,
-      iconOpened: <IoIosArrowUp />,
-      subNav: [
-        {
-          name: "Classes",
-          path: `/${isAuthenticated ? router.query.school : slug}/cbt/classes`,
-        },
-        {
-          name: "Question Bank",
-          path: `/${isAuthenticated ? router.query.school : slug}/cbt/questionBank`,
-        },
-      ],
+      icon:<GiFamilyHouse />,
+      name:"Classes",
+      path:`/${isAuthenticated ? router.query.school : slug}/admin/Classes`
     },
     {
       icon: <IoSettingsOutline />,
