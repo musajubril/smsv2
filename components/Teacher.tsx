@@ -14,7 +14,7 @@ export default function Teacher() {
   const Class = ["JSS 1", "JSS 2", "JSS 3"];
 
   const uid: any =
-    typeof window !== "undefined" && localStorage.getItem("school_uid");
+    typeof window !== "undefined" && localStorage.getItem("schoolId");
   const { data: studentData } = useQuery({
     queryKey: [queryKeys.getStudents],
     queryFn: async () => await getRequest({ url: STUDENTS(uid, 1) }),

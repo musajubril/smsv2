@@ -5,7 +5,7 @@ import { getRequest } from '@/api/apiCall';
 import { queryKeys } from '@/api/queryKey';
 
 export default function Fetchstaff() {
-  const uid:any = typeof window !== 'undefined' && localStorage.getItem("school_uid")
+  const uid:any = typeof window !== 'undefined' && localStorage.getItem("schoolId")
   console.log(uid)
   const [staffs, setStaffs] = React.useState([])
   const {data:staffsData} = useQuery({

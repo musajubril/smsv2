@@ -47,7 +47,7 @@ export default function StudentList({students}) {
   return (
     <div>
       <div >
-      <Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={true} hasImage={true} isAttendance={false}></Table>
+      <Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={true} hasImage={true} isAttendance={false} hasAction={undefined} actionHandle={undefined}></Table>
       </div>
     </div>
   );
