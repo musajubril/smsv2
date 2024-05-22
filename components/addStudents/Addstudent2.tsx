@@ -8,7 +8,7 @@ import Button from "../shared/button/Button";
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
-import { SignUpState } from "@/pages/[school]/student/add";
+import { SignUpState } from "@/pages/[school]/admin/student/add";
 import Steps from "../shared/StepNavigation/Steps";
 
 export default function Addstudent2({next, change, prev, state, open:showCSVPreview, setOpen:setShowCSVPreview}: {next: any, change: any, prev: any, state:SignUpState, open: boolean, setOpen: any}) {

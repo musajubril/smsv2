@@ -118,7 +118,7 @@ export default function student_list() {
                 <div>Export CSV</div>
               </div>
               <div>
-                <Link href={`/${school}/student/add`}>
+                <Link href={`/${school}/admin/student/add`}>
                   <Button
                     intent="primary"
                     size="base"

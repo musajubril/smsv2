@@ -102,6 +102,8 @@ export default function Teacher() {
           hasCheckBox={false}
           hasImage={true}
           isAttendance={true}
+          hasAction={undefined}
+          actionHandle={undefined}
         ></Table>
       </div>
     </div>

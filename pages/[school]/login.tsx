@@ -61,11 +61,11 @@ export default function Login() {
 
         if (Array.isArray(decodedToken.groups)) {
           if (decodedToken.groups.includes("Teacher")) {
-            router.push(`/${school}/teacher`);
+            router.push(`/${school}/staffs/`);
             console.log("teacher");
 
           } else if (decodedToken.groups.includes("Owner")) {
-            router.push(`/${school}`);
+            router.push(`/${school}/admin/`);
             console.log("owner");
           }
         }

@@ -32,40 +32,40 @@ export default function Sidebar ({ logout, slug }: { logout: any, slug: string }
     {
       icon: <RiHome5Line />,
       name: "Home",
-      path: `/${isAuthenticated ? router.query.school : slug}`,
+      path: `/${isAuthenticated ? router.query.school : slug}/admin/`,
     },
     
     {
       icon: <PiGraduationCapThin />,
       name: "Students",
-      path: `/${isAuthenticated ? router.query.school : slug}/students`,
+      path: `/${isAuthenticated ? router.query.school : slug}/admin/students`,
     },
     {
       icon: <HiOutlineUsers />,
       name: "Staffs",
-      path: `/${isAuthenticated ? router.query.school : slug}/staffs`,
+      path: `/${isAuthenticated ? router.query.school : slug}/admin/staffs`,
     },
     {
       icon: <MdMenuBook />,
       name: "Computer Based Test",
-      path: `/${isAuthenticated ? router.query.school : slug}/cbt`,
+      path: `/${isAuthenticated ? router.query.school : slug}/admin/cbt`,
       iconClosed: <IoChevronDown />,
       iconOpened: <IoIosArrowUp />,
       subNav: [
         {
           name: "Classes",
-          path: `/${isAuthenticated ? router.query.school : slug}/cbt/classes`,
+          path: `/${isAuthenticated ? router.query.school : slug}/admin/cbt/classes`,
         },
         {
           name: "Question Bank",
-          path: `/${isAuthenticated ? router.query.school : slug}/cbt/questionBank`,
+          path: `/${isAuthenticated ? router.query.school : slug}/admin/cbt/questionBank`,
         },
       ],
     },
     {
       icon: <IoSettingsOutline />,
       name: "Settings",
-      path: `/${isAuthenticated ? router.query.school : slug}/settings`,
+      path: `/${isAuthenticated ? router.query.school : slug}/admin/settings`,
     },
   ];
 

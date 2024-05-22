@@ -5,7 +5,7 @@ import { FaCheck } from "react-icons/fa6";
 import Input from "../shared/input/Input";
 import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
-import { SignUpState } from "@/pages/[school]/student/add";
+import { SignUpState } from "@/pages/[school]/admin/student/add";
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
