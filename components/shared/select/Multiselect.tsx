@@ -5,14 +5,21 @@ import { RxCross2 } from "react-icons/rx";
 
 
 interface SelectProps {
-  options: string[];
+  options: {label:string, value:string | number }[];
   placeholder: string
+  state: {label:string, value:string}[] ;
+  setState: any;
 }
 
-export default function Multiselect({ options, placeholder }: SelectProps) {
+type OptionProps = {
+  label:string,
+   value:string | number 
+}
+
+export default function Multiselect({ options, placeholder, state, setState }: SelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedOption, setSelectedOption] = useState<string[]>([]);
+  const [selectedOption, setSelectedOption] = useState<{label:string, value:string | number }[]>([]);
   const [filteredOptions, setFilteredOptions] = useState(options);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -38,7 +45,7 @@ export default function Multiselect({ options, placeholder }: SelectProps) {
 
   useEffect(() => {
     const filtered = options.filter(option =>
-      option.toLowerCase().includes(searchTerm.toLowerCase())
+      option.label.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredOptions(filtered);
   }, [searchTerm]);
@@ -47,8 +54,8 @@ export default function Multiselect({ options, placeholder }: SelectProps) {
     setIsOpen(!isOpen);
   };
 
-  const handleDelete = (option: string) => {
-    const filtered = selectedOption.filter((opt) => opt !== option);
+  const handleDelete = (option:OptionProps) => {
+    const filtered = selectedOption.filter((opt) => opt.value !== option.value);
     setSelectedOption(filtered);
   };
 
@@ -58,7 +65,8 @@ export default function Multiselect({ options, placeholder }: SelectProps) {
     if (!selectedOption.includes(option)) {
       setSelectedOption([...selectedOption, option]);
     }
-
+ console.log(selectedOption)
+ setState(selectedOption)
 
     // setSearchTerm(option);
   };
@@ -84,8 +92,8 @@ export default function Multiselect({ options, placeholder }: SelectProps) {
                 onClick={() => handleSelectOption(option)}
                 className=" flex justify-between items-center mx-1 mt-1 px-1 py-2 rounded-md cursor-pointer hover:bg-gray-600"
               >
-                <div>{option}</div>
-                {selectedOption.includes(option) && (
+                <div>{option.label}</div>
+                {selectedOption.includes( option) && (
                   <div className=' text-blue-200'>
                     <IoMdCheckmark />
                   </div>
@@ -100,7 +108,7 @@ export default function Multiselect({ options, placeholder }: SelectProps) {
           <div className='  grid grid-cols-3 gap-3 '>
             {selectedOption.map((option, index) => (
               <button key={index} className="font-medium mx-1 border rounded-lg h-8  justify-between gap-2 items-center flex  text-gray-300  px-2 text-xs py-2">
-                {option}
+                {option.label}
                 <div onClick={() => { handleDelete(option) }}>
                   <RxCross2 />
                 </div>
