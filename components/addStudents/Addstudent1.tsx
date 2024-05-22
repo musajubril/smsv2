@@ -5,7 +5,7 @@ import { IoPersonAdd } from "react-icons/io5";
 import Input from "../shared/input/Input";
 import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
-import { SignUpState } from "@/pages/[school]/student/add";
+import { SignUpState } from "@/pages/[school]/admin/student/add";
 import Steps from "../shared/StepNavigation/Steps";
 import Imagelogic from "../shared/imagelogic";
 import Modal from "../shared/reusablemodal/Modal";

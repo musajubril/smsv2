@@ -14,7 +14,7 @@ export default function classes() {
           <div className=" flex justify-between items-center pb-3">
             <p className=" font-semibold text-2xl">Classes</p>
             <div>
-              <Link href={`/student/add`}>
+              <Link href={`/admin/student/add`}>
                 <Button
                   intent="primary"
                   size="base"

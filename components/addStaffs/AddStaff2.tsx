@@ -6,7 +6,7 @@ import { FaCheck } from "react-icons/fa6";
 import Layout from "../shared/dashboardLayout/Layout";
 import Modal from "../shared/reusablemodal/Modal";
 import ProfilePreview from "./ProfilePreview";
-import { AddStaffState } from "@/pages/[school]/staff/add";
+import { AddStaffState } from "@/pages/[school]/admin/staff/add";
 import { useRouter } from "next/router";
 import Link from "next/link";
 

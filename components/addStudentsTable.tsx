@@ -3,7 +3,7 @@ import Table from './shared/reusableTable/Table'
 import ImportCSV from './addStudents/ImportCSV'
 import Layout from "@/components/shared/dashboardLayout/Layout";
 import Barchart from './shared/Charts/Barchart_class';
-import {outTable, ExcelRenderer} from 'react-excel-renderer'
+// import {outTable, ExcelRenderer} from 'react-excel-renderer'
 import Button from './shared/button/Button';
 
 export default function AddStudentsTable({ files }) {

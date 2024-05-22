@@ -24,17 +24,17 @@ export default function ({ logout, slug }: { logout: any, slug : string }) {
     {
       icon: <RiHome5Line />,
       name: "Home",
-      path: `/${isAuthenticated ? router.query.school : slug}/teacher`,
+      path: `/${isAuthenticated ? router.query.school : slug}/staffs/`,
     },
     {
       icon: <MdMenuBook />,
       name: "Upload Results",
-      path: `/${isAuthenticated ? router.query.school :slug}/cbt`,
+      path: `/${isAuthenticated ? router.query.school :slug}/staffs/subject/`,
     },
     {
       icon: <IoSettingsOutline />,
       name: "Settings",
-      path: `/${isAuthenticated ? router.query.school : slug}/settings`,
+      path: `/${isAuthenticated ? router.query.school : slug}/staffs/staff_settings`,
     },
   ];
     console.log(router.asPath)

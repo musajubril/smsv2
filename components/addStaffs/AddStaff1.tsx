@@ -5,7 +5,7 @@ import Button from "../shared/button/Button";
 import Imagelogic from "../shared/imagelogic";
 import Select from "../shared/select/Select";
 import Layout from "../shared/dashboardLayout/Layout";
-import { AddStaffState } from "@/pages/[school]/staff/add";
+import { AddStaffState } from "@/pages/[school]/admin/staff/add";
 import { useRouter } from "next/router";
 import Link from "next/link";
 

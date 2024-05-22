@@ -86,7 +86,7 @@ export default function staff_list() {
         <div className=' flex gap-3 flex-col w-full' >
           <div className=' flex items-center justify-between '>
             <h1 className='text-black text-2xl font-semibold'>Staff</h1>
-            <Link href={`/${school}/staff/add`}>
+            <Link href={`/${school}/admin/staff/add`}>
               <Button
                 intent="primary"
                 size="base"
@@ -139,8 +139,7 @@ export default function staff_list() {
           </div>
           <StaffList staffs={searchTerm ? searchedStaffs : filteredStaffs} />
         <Pagination
-          paginate={paginate}
-        ></Pagination>
+            paginate={paginate} count={undefined}        ></Pagination>
         </div>
       </Layout>
     </div>

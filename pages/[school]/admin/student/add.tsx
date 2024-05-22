@@ -93,11 +93,11 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
     state_of_origin: "",
     enrollment_date: "",
     outstanding_debt: "200",
-    class_id: "",
+    class_id: "1",
   });
   const mutation = useMutation({
     mutationFn: async (newLogin: any) => {
-      postRequest({ url: STUDENTS(schoolData?.uid), data: newLogin });
+      postRequest({ url: STUDENTS(schoolData?.uid, 1), data: newLogin });
     },
   });
 
@@ -114,6 +114,7 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
     console.log(state);
     mutation.mutate({ ...state });
   };
+
   const [files, setFiles] = useState<File | FileList>();
 
   // const [open, setOpen] = useState(false)
@@ -138,14 +139,27 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
             <div className=" px-6">
               <div className=" flex justify-between items-center">
                 <div className=" flex items-center gap-3 cursor-pointer">
-                  <div onClick={router.back} className=" flex items-center gap-3 cursor-pointer">
+                  <div
+                    onClick={router.back}
+                    className=" flex items-center gap-3 cursor-pointer"
+                  >
                     <div className="border py-1 px-2 border-[#E4E7EC] bg-white-100 rounded-lg">
                       <FaArrowLeftLong />
                     </div>
                     <div>Go Back</div>
                   </div>
-                  <Link href={`/${school}/`} className=" text-gray-400 hover:text-black">Dashboard /</Link>
-                  <div className=" text-gray-400 hover:text-black" onClick={router.back}>Students /</div>
+                  <Link
+                    href={`/${school}/`}
+                    className=" text-gray-400 hover:text-black"
+                  >
+                    Dashboard /
+                  </Link>
+                  <div
+                    className=" text-gray-400 hover:text-black"
+                    onClick={router.back}
+                  >
+                    Students /
+                  </div>
                   <div className=" ">Add New Student</div>
                 </div>
                 <div

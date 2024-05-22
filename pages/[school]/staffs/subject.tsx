@@ -1,3 +1,4 @@
+import LayoutStaff from "@/components/StaffLayout/LayoutStaff";
 import Button from "@/components/shared/button/Button";
 import Layout from "@/components/shared/dashboardLayout/Layout";
 import Dropdown from "@/components/shared/dropdown/Dropdown";
@@ -27,7 +28,7 @@ export default function subject() {
 
   return (
     <div>
-      <Layout>
+      <LayoutStaff>
         <div>
           {/* top  */}
 
@@ -97,7 +98,7 @@ export default function subject() {
             </div>
           </div>
         </div>
-      </Layout>
+      </LayoutStaff>
     </div>
   );
 }

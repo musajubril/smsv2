@@ -5,7 +5,7 @@ export default function setting() {
   return (
     <Layout>
     <div>
-      setting
+      Settings
     </div>
     </Layout>
   )
