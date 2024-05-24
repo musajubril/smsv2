@@ -1,41 +1,40 @@
-import React, { useState } from 'react';
-import { BsBoxArrowInDownLeft } from 'react-icons/bs';
+import React, { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import Modal from '@/components/shared/reusablemodal/Modal';
 import Input from '../shared/input/Input';
 import Button from '@/components/shared/button/Button';
+import Multiselect from '@/components/shared/select/Multiselect';
 import { getRequest } from '@/api/apiCall';
 import { GET_COURSES } from '@/api/apiUrl';
 import { queryKeys } from '@/api/queryKey';
-import { useQuery } from '@tanstack/react-query';
-import Multiselect from '@/components/shared/select/Multiselect';
-import Modal from '@/components/shared/reusablemodal/Modal'; 
-import Link from 'next/link';
 
 const AddNewclass = ({ isModalOpen, handleCloseModal, handleAddClass }) => {
-  const [selectedDropdownValue, setSelectedDropdownValue] = useState('');
-  // const subjectOptions = ['Mathematics', 'English Language', 'Biology', 'Chemistry', 'Physics', 'Agricultural science', 'Literature', 'Information Technology', 'Civic Education'];
-
-  
+  const [className, setClassName] = useState('');
+  const [selectedSubjects, setSelectedSubjects] = useState([]);
   const [subjectOptions, setSubjectOptions] = useState([]);
 
   const uid = typeof window !== 'undefined' && localStorage.getItem("schoolId");
-  console.log(uid);
 
-  const { data:subjectData } = useQuery({
+  const { data: subjectData } = useQuery({
     queryKey: [queryKeys.getStudents, uid],
     queryFn: async () => await getRequest({ url: GET_COURSES(uid) }),
     enabled: !!uid,
   });
 
-  console.log(subjectData?.data);
-
-  React.useEffect(() => {
-    if (subjectData?.data) { // Check for data existence
-      const options = subjectData.data.map(course => course.name);
+  useEffect(() => {
+    if (subjectData?.data) {
+      const options = subjectData.data.map(course => ({ value: course.id, label: course.name }));
       setSubjectOptions(options);
-      console.log('subjectOptions after setting:', subjectOptions);
     }
   }, [subjectData]);
-  console.log('subjectOptions:', subjectOptions);
+
+  const handleClassNameChange = (e) => {
+    setClassName(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    handleAddClass(className, selectedSubjects);
+  };
 
   return (
     <Modal action={handleCloseModal} open={isModalOpen}>
@@ -44,19 +43,33 @@ const AddNewclass = ({ isModalOpen, handleCloseModal, handleAddClass }) => {
         <div className='flex flex-col gap-3'>
           <div className='flex flex-col w-full'>
             <h1 className='font-bold text-lg justify-start flex'>ClassName</h1>
-            <Input text={'Enter classname'} name={''} error={false} size='large' success={false} disabled={false} change={() => {}} value={undefined} />
+            <Input 
+              text={'Enter classname'} 
+              name={'classname'} 
+              error={false} 
+              size='large' 
+              success={false} 
+              disabled={false} 
+              change={handleClassNameChange} 
+              value={className} 
+            />
           </div>
           <div className='flex flex-col w-full'>
             <h1 className='font-bold text-lg justify-start flex'>Subject</h1>
-            {subjectOptions.length > 0 ?
-
-            <div><Multiselect options={subjectOptions} placeholder={'Enter Subject'} /></div>
-            : (
-              <div></div>
-            )
-            }
+            {subjectOptions.length > 0 ? (
+              <div>
+                <Multiselect 
+                  options={subjectOptions} 
+                  placeholder={'Enter Subject'} 
+                  state={selectedSubjects} 
+                  setState={setSelectedSubjects} 
+                />
+              </div>
+            ) : (
+              <div>Loading subjects...</div>
+            )}
           </div>
-          <Button text='Add Class' disabled={false} onClick={handleAddClass} size='small' intent='primary' />
+          <Button text='Add Class' disabled={false} onClick={handleSubmit} size='small' intent='primary' />
         </div>
       </div>
     </Modal>
