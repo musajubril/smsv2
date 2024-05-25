@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import Layout from "@/components/shared/dashboardLayout/Layout";
 import Button from "@/components/shared/button/Button";
 import Table from "@/components/shared/reusableTable/Table";
-import { getRequest } from '@/api/apiCall';
+import { getRequest, postRequest } from '@/api/apiCall';
 import { HOMEROOMS } from '@/api/apiUrl';
 import { queryKeys } from '@/api/queryKey';
 import AddNewclass from "@/components/Questionbankmodals/Addnewclass";
@@ -15,8 +15,8 @@ export default function Classes() {
 
   const [isAddNewClassModalOpen, setIsAddNewClassModalOpen] = useState(false);
   const [isClassaddedOpen, setIsClassaddedOpen] = useState(false);
-  const [newClassName, setNewClassName] = useState(""); // State to store the new class name
-  const [selectedSubjects, setSelectedSubjects] = useState([]); // State to store selected subjects
+  const [newClassName, setNewClassName] = useState(""); 
+  const [selectedSubjects, setSelectedSubjects] = useState([]); 
 
   useEffect(() => {
     if (router.query.modal === "true") {
@@ -36,12 +36,7 @@ export default function Classes() {
     setIsClassaddedOpen(false);
   };
 
-  const handleAddClass = (className, subjects) => {
-    setNewClassName(className); 
-    setSelectedSubjects(subjects); 
-    setIsAddNewClassModalOpen(false);
-    setIsClassaddedOpen(true);
-  };
+
 
   const uid = typeof window !== 'undefined' && localStorage.getItem("schoolId");
 
@@ -76,6 +71,25 @@ export default function Classes() {
     console.log("clicked");
   };
 
+  const [newClassData, setNewClassData] = useState({
+    name: "",
+    fee:"",
+
+  });
+
+  const mutation = useMutation({
+    mutationFn: async (newClass) => {
+      await postRequest({ url: HOMEROOMS(uid), data: newClass });
+     
+      setNewClassData({ name: "", fee: "" }); 
+      setIsClassaddedOpen(true); 
+    },
+  });
+
+  const handleAddClass = () => { 
+    mutation.mutate(newClassData); 
+  };
+
   return (
     <div>
       <Layout>
@@ -94,6 +108,8 @@ export default function Classes() {
                 isModalOpen={isAddNewClassModalOpen}
                 handleCloseModal={handleCloseAddNewClassModal}
                 handleAddClass={handleAddClass} 
+                setNewClassData = {setNewClassData}
+                newClassData = {newClassData}
               />
             </div>
           </div>
