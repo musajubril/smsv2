@@ -8,7 +8,7 @@ import { AddStaffState } from '@/pages/[school]/admin/staff/add';
 
 interface SelectProps {
   text: string;
-    options: string[];
+    options: any;
     placeholder:string
     change: React.ChangeEventHandler<HTMLInputElement> | undefined | null;
     state: SignUpState | AddStaffState;

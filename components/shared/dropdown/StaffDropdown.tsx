@@ -8,8 +8,8 @@ export default function StaffDropdown({ options, onSelect, placeholder }) {
 
   const handleSelect = (option) => {
     setSelectedOption(option === "All" ? null : option);
-    onSelect(option);
     setIsOpen(false);
+    onSelect(option);
   };
 
   const toggleDropdown = () => {
@@ -46,6 +46,9 @@ export default function StaffDropdown({ options, onSelect, placeholder }) {
       </div>
       {isOpen && (
         <div className="absolute whitespace-nowrap right-0 bg-white-100 shadow-lg rounded-md mt-2 outline-none p-2">
+          <div onClick={() => handleSelect('All')} className={`cursor-pointer rounded w-full p-1 text-[12px] md:text-sm ${
+                selectedOption === 'All' ? "text-black" : ""
+              } hover:bg-gray-500`}>All</div>
           {options.map((option) => (
             <div
               key={option}

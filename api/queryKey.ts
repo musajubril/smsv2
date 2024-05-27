@@ -3,5 +3,6 @@ export const queryKeys = {
     getStaffs: "getStaffs",
     getSchool: "getSchool",
     getstudent: "getstudent",
-    getstaff: "getstaff"
+    getstaff: "getstaff",
+    getcourse: "getcourse"
 }

@@ -44,6 +44,9 @@ export default function Dropdown({ options, onSelect, placeholder }){
       </div>
       {isOpen && (
         <div className="absolute top-full left-0 bg-white-100 shadow-lg rounded-md mt-2">
+          <div onClick={() => handleSelect('All')} className={`cursor-pointer rounded w-full p-1 text-[12px] md:text-sm ${
+                    selectedOption === 'All' ? "text-black" : ""
+                  } hover:bg-gray-500`}>All</div>
           {options.map((option) => (
             <div
               key={option}
