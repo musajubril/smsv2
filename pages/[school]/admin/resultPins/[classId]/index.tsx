@@ -44,7 +44,7 @@ export default function pins() {
 
 
   return (
-    <Layout>
+    <div className=' p-4'>
         <div className=" flex flex-col">
             <div className=" grid grid-cols-3 gap-6 py-3">
               { students &&
@@ -56,6 +56,6 @@ export default function pins() {
               }
             </div>
           </div>
-    </Layout>
+    </div>
   )
 }
