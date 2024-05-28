@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Router, { useRouter } from "next/router";
 import React from "react";
 import { HiDotsVertical } from "react-icons/hi";
 
@@ -10,12 +11,15 @@ export default function Table({
   imageUrls,
   IDs,
   isAttendance,
-  actionHandle
+  actionHandle,
+  nameUrls
 }) {
   if (!students || students.length === 0) {
     return;
   }
 
+
+  const router = useRouter();
   const keys = Object.keys(students[0]);
   const key_length = keys.includes("Name") ? keys.length + 1 :  keys.length;
   //   console.log(keys);
@@ -39,6 +43,11 @@ export default function Table({
                     key != "Name" ? " col-sp" : "col-span-2"
                   }`}
                   key={index}
+                  onClick={() => {
+                    if (key === "Name") {
+                      router.push(`${nameUrls}/${IDs[index].ID}`);
+                    }
+                  }}
                 >
                   {key}
                 </div>
@@ -156,9 +165,15 @@ export default function Table({
                   {keys.map((key, keyIndex) => (
                     <div
                       className={`flex items-center gap-2 ${
-                        key != "Name" ? " col-span-1" : "col-span-2"
+                        key != "Name" ? " col-span-1" : "col-span-2 cursor-pointer"
                       }`}
                       key={keyIndex}
+                      onClick={() => {
+                        if (key === "Name") {
+                          router.push(`${nameUrls}/${IDs[pupilIndex].ID}`);
+                        }
+                      }}
+
                     >
                       <div
                         className={` ${key != "Name" ? "hidden" : "block"} ${

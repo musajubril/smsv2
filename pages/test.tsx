@@ -72,14 +72,14 @@ export default function test() {
   }, [mock]);
 
   return (
-    // <Layout><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false} isAttendance={undefined} hasAction={true} actionHandle={handleAction}></Table></Layout>
-    <div>
-      <Multiselect
-        options={subjectOptions}
-        placeholder={"dummy"}
-        state={mock}
-        setState={setMock}
-      />
-    </div>
+    <Layout><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false} isAttendance={undefined} hasAction={true} actionHandle={handleAction} nameUrls={`/best-college/admin/student`}></Table></Layout>
+    // <div>
+    //   <Multiselect
+    //     options={subjectOptions}
+    //     placeholder={"dummy"}
+    //     state={mock}
+    //     setState={setMock}
+    //   />
+    // </div>
   );
 }

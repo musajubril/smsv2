@@ -10,6 +10,10 @@ export const LOGIN_URL =(schoolId)=> `${API_URL}/schools/${schoolId}/token`;
 export const STUDENTS = (schoolId: any, off: any) => `${LOGGEDIN(schoolId)}/students?limit=10&offset=${off}`; //Add and get students
 export const STUDENT = (schoolId, studentId) => `${LOGGEDIN(schoolId)}/students/${studentId}`; // get single student
 export const TEACHER = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}`; //get singe teacher
+export const HOMEROOMS = (schoolId) =>`${LOGGEDIN(schoolId)}/classes`; // get and classes
+export const HOMEROOM = (schoolId, classId) => `${HOMEROOMS(schoolId)}/${classId}`; //get single class
+export const CLASSSTUDENTS = (schoolId, classId) => `${HOMEROOM(schoolId, classId)}/students` // get a single course
+export const CLASSPIN = (schoolId, classId) =>`${LOGGEDIN(schoolId)}/students/${classId}/result-pin`; // get student result pins
 // export const STUDENTS = (schoolId) =>`${LOGGED_IN(schoolId)}/students`; //Add and get students
 // export const VERIFY_OTP = (schoolId) => `${API_URL}/schools/${schoolId}/otp`
 // export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/user-activate/${uid}`
@@ -23,14 +27,11 @@ export const TEACHER = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacher
 // export const TEACHERCOURSES = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}/courses`; //get singe teacher
 // // export const TEACHER_COURSES = `${TEACHERCOURSES(teacher_id)}`
 // export const STUDENTCOURSES = (schoolId, studentId) => `${STUDENTS(schoolId)}/${studentId}/courses`; //get singe teacher
-export const HOMEROOMS = (schoolId) =>`${LOGGEDIN(schoolId)}/classes`; // get and classes
-// export const HOMEROOM = (schoolId, classId) => `${HOMEROOMS(schoolId)}/${classId}`; //get single class
 // export const HOMEROOMCOURSES = (schoolId, classId) => `${HOMEROOMS(schoolId)}/${classId}/courses`; //get singe teacher
 // export const PAYMENTS = (schoolId) =>`${LOGGED_IN(schoolId)}/payments`; // get and make payments
 // export const PAYMENT = (schoolId, paymentId) => `${PAYMENTS(schoolId)}/${paymentId}`; //get a single payment
 export const GET_COURSES = (schoolId) =>`${LOGGEDIN(schoolId)}/courses`; // get and courses
 // export const COURSE = (schoolId, courseId) => `${GET_COURSES(schoolId)}/${courseId}`;
-// export const CLASSSTUDENTS = (schoolId, classId) => `${HOMEROOM(schoolId, classId)}/students` // get a single course
 // export const  COURSESTUDENTS = (schoolId, id) => `${GET_COURSES(schoolId)}/${id}/students`
 // export const GRADE = (schoolId, id) => `${STUDENT(schoolId, id)}/grade`
 // export const RESULTS = (schoolId, id) => `${STUDENT(schoolId, id)}/result`
