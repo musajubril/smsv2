@@ -8,6 +8,8 @@ import Layout from "../shared/dashboardLayout/Layout";
 import { AddStaffState } from "@/pages/[school]/admin/staff/add";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import statesInNigeria from "../stateInNigeria";
+
 
 export default function AddStaff1({
   next,
@@ -27,7 +29,8 @@ export default function AddStaff1({
   }
 
   const Gender = ["Male", "Female"];
-  const State = ["Lagos", "Abia", "Oyo"];
+  const States = statesInNigeria.map((stateName) => stateName);
+
   return (
     <Layout>
       <div className="flex flex-col pt-6 ">
@@ -96,12 +99,12 @@ export default function AddStaff1({
                 <Input
                   size="large"
                   text="Enter email address"
-                  name="email_address"
+                  name="email"
                   disabled={false}
                   success={null}
                   error={null}
                   change={change}
-                  value={state.email_address}
+                  value={state.email}
                 />
               </div>
               <div className=" flex flex-col gap-1">
@@ -122,18 +125,18 @@ export default function AddStaff1({
                 <Input
                   size="large"
                   text="Enter home address"
-                  name="home_address"
+                  name="address"
                   disabled={false}
                   success={null}
                   error={null}
                   change={change}
-                  value={state.home_address}
+                  value={state.address}
                 />
               </div>
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">State</h1>
                 <Select
-                  options={State}
+                  options={States}
                   placeholder="Select state"
                   change={change}
                   text="state_of_origin"

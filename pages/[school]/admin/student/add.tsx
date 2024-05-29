@@ -16,22 +16,57 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { AiOutlineImport } from "react-icons/ai";
 import Link from "next/link";
 
+// <option>Islam</option>
+//               <option>Christianity</option>
+//  {
+//   first_name: "",
+//   last_name: "",
+//   religion: "",
+//   phone_number: "",
+//   address: "",
+//   date_of_birth: new Date(),
+//   email: "",
+//   gender: "",
+//   image: "",
+//   role: "",
+// }
+
+
+// {
+//   first_name: "",
+//   last_name: "",
+//   religion: "",
+//   middle_name: "",
+//   guardian_full_name: "",
+//   phone_number: "",
+//   phone_number2: "",
+//   address: "",
+//   state_of_origin: "",
+//   date_of_birth: new Date(),
+//   email: "",
+//   lga: "",
+//   outstanding_debt: 0,
+//   class_id: null,
+//   gender: null,
+//   guardian_name: "",
+//   image: ""
+// }
+
 export type SignUpState = {
   first_name: string;
+  middle_name: string;
   last_name: string;
-  date_of_birth: Date | null;
+  date_of_birth:  Date | null;
   guardian_full_name: string;
   address: string;
-  parent_email: string;
-  student_email: string;
+  email: string;
   gender: string;
   phone_number: string;
   religion: string;
-  status: string;
   state_of_origin: string;
-  enrollment_date: string;
   outstanding_debt: string;
   class_id: string;
+  image: string;
 };
 export default function AddStudent({}: { open: boolean; setOpen: any }) {
   const [open, setOpen] = useState(Boolean);
@@ -80,25 +115,27 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
 
   const [state, setState] = React.useState<SignUpState>({
     first_name: "",
+    middle_name: "",
     date_of_birth: new Date(),
     last_name: "",
     guardian_full_name: "",
     phone_number: "",
     address: "",
-    parent_email: "",
-    student_email: "",
-    status: "",
+    email: "",
     gender: "",
     religion: "",
     state_of_origin: "",
-    enrollment_date: "",
     outstanding_debt: "200",
     class_id: "1",
+    image: ""
   });
   const mutation = useMutation({
     mutationFn: async (newLogin: any) => {
       postRequest({ url: STUDENTS(schoolData?.uid, 1), data: newLogin });
     },
+    onSuccess:()=>{
+      router.push(`/${school}/admin/students`)
+    }
   });
 
   const handleChange = (e: any) => {

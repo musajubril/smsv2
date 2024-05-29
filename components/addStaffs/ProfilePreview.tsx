@@ -104,8 +104,7 @@ export default function Studentpreview() {
               intent="secondary"
               size="base"
               text="Edit"
-              disabled={false}
-            />
+              disabled={false} onClick={undefined}            />
           </div>
           <div
           >
@@ -113,8 +112,7 @@ export default function Studentpreview() {
               intent="primary"
               size="base"
               text="Confirm"
-              disabled={false}
-            />
+              disabled={false} onClick={undefined}            />
           </div>
         </div>
       </div>

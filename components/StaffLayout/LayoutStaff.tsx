@@ -16,15 +16,15 @@ const LayoutStaff = ({ children }) => {
   const router = useRouter();
 
   let school;
-  if (typeof window !== 'undefined') {
-    school = localStorage.getItem('schoolSlug');
+  if (typeof window !== "undefined") {
+    school = localStorage.getItem("schoolSlug");
   }
 
   const handleLogout = () => {
-    localStorage.removeItem('schoolSlug');
-    localStorage.removeItem('schoolId');
-    localStorage.removeItem('schoolName' );
-    localStorage.removeItem('schoolLogo');
+    localStorage.removeItem("schoolSlug");
+    localStorage.removeItem("schoolId");
+    localStorage.removeItem("schoolName");
+    localStorage.removeItem("schoolLogo");
     localStorage.removeItem("easysch_token");
     router.push(`/${school}/login`, `/${school}/login`);
     console.log("User Logged Out");
@@ -79,10 +79,12 @@ const LayoutStaff = ({ children }) => {
                     onClick={handleLogout}
                   />
                   <Button
-                                      intent="primary"
-                                      size="small"
-                                      text="No"
-                                      disabled={false} onClick={undefined}                  />
+                    intent="primary"
+                    size="small"
+                    text="No"
+                    disabled={false}
+                    onClick={() => setOpen(false)}
+                  />
                 </div>
               </div>
             </Modal>

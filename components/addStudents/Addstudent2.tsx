@@ -94,18 +94,6 @@ export default function Addstudent2({next, change, prev, state, open:showCSVPrev
                 value={state.phone_number}
               />
             </div>
-            <div className=" flex flex-col gap-1">
-              <h1 className=" font-medium">Guardian/Parent's Email address</h1>
-              <Input
-                size="large"
-                text="Enter Email address"
-                name="parent_email"
-                disabled={false}
-                success={null}
-                error={null}
-                change={change}
-                value={state.parent_email}/>
-            </div>
             <div className=" grid grid-cols-2 gap-2">
               <Button
                 intent="secondary"

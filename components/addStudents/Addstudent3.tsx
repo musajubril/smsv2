@@ -43,12 +43,12 @@ export default function Addstudent3({ prev, change, state, setState, submit, ope
         </Modal>
       </div>
 
-      <div className="">
+      {/* <div className="">
         <Modal action={action1} open={open1}>
           <ImportCSV showCSVPreview={showCSVPreview} setShowCSVPreview={setShowCSVPreview}/>
         </Modal>
 
-      </div>
+      </div> */}
 
       <div className=" flex flex-col p-6">
         <div className=" flex justify-between items-center">
@@ -136,10 +136,6 @@ export default function Addstudent3({ prev, change, state, setState, submit, ope
             </div>
             <form className="flex flex-col gap-4 pt-3" onSubmit={handleSubmit}>
               <div className=" flex flex-col gap-1">
-                <h1 className=" font-medium">Academic Status</h1>
-                <Select options={status} placeholder="Select Status" state={state} setState={setState} text="status" name="status" change={change} />
-              </div>
-              <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Class</h1>
                 <Select options={mock} placeholder="Select Class" state={state} setState={setState} text="class" name="class_id" change={change} />
               </div>
@@ -151,14 +147,7 @@ export default function Addstudent3({ prev, change, state, setState, submit, ope
                   className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
                 />
               </div> */}
-              <div className=" flex flex-col gap-1">
-                <h1 className=" font-medium">Enrollment Date</h1>
-                <input
-                  type="date"
-                  name="enrollment_date"
-                  className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 " value={state.enrollment_date} onChange={(e: any)=>setState({...state, enrollment_date: e.target.value})}
-                />
-              </div>
+              
               <div className=" flex flex-col gap-1">
                 <div className="flex gap-1">
                   <h1 className=" font-medium">Students Email address</h1>
@@ -167,12 +156,12 @@ export default function Addstudent3({ prev, change, state, setState, submit, ope
                 <Input
                     size="large"
                     text="Enter Email address"
-                    name="student_email"
+                    name="email"
                     disabled={false}
                     success={null}
                     error={null}
                     change={change} 
-                    value={state.student_email}                />
+                    value={state.email}                />
               </div>
               <div className=" grid grid-cols-2 gap-2">
                 <div>
@@ -192,7 +181,7 @@ export default function Addstudent3({ prev, change, state, setState, submit, ope
                   <Button
                     intent="primary"
                     size="base"
-                    text="Preview"
+                    text="Submit"
                     disabled={false}
                     onClick={submit}
                   />
