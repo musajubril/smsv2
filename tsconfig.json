@@ -17,6 +17,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/[school]/admin/resultPins/[classId]", "pages/[school]/admin/resultPins/[classId]"],
   "exclude": ["node_modules"]
 }

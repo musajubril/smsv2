@@ -11,6 +11,7 @@ import Imagelogic from "../shared/imagelogic";
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
+import statesInNigeria from "../stateInNigeria";
 
 export const dateFormat = (dt) => {
  let date = new Date(dt);
@@ -22,6 +23,9 @@ export const dateFormat = (dt) => {
 export default function Addstudent1({ next, change, state, setState, open:showCSVPreview, setOpen:setShowCSVPreview}:{next:any, change:any, state:SignUpState, setState:any, open: boolean, setOpen: any}) {
   const Gender = ["Male", "Female"];
   const Religion = ["Christian", "Muslim", "Others"];
+  const States = statesInNigeria.map((stateName) => stateName);
+
+
 
   const [open, setOpen] = useState(Boolean);
   const action = () => {
@@ -114,7 +118,7 @@ export default function Addstudent1({ next, change, state, setState, open:showCS
             </div>
             <div className=" flex flex-col gap-1">
               <h1 className=" font-medium">State Of Origin</h1>
-              <Select options={Religion} placeholder="Select a State" change={change} text="state_of_origin"state={state} setState={setState} name="state_of_origin"  />
+              <Select options={States} placeholder="Select a State" change={change} text="state_of_origin"state={state} setState={setState} name="state_of_origin"  />
             </div>
             <div>
               <Button
