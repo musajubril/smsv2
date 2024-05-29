@@ -11,6 +11,12 @@ import { useQuery } from "@tanstack/react-query";
 export default function Teacher() {
   const handleChange = () => {};
 
+  let school;
+  if (typeof window !== 'undefined') {
+    school = localStorage.getItem('schoolSlug');
+  }
+
+
   const Class = ["JSS 1", "JSS 2", "JSS 3"];
 
   const uid: any =
@@ -104,6 +110,7 @@ export default function Teacher() {
           isAttendance={true}
           hasAction={undefined}
           actionHandle={undefined}
+          nameUrls={`/${school}/admin/student`}
         ></Table>
       </div>
     </div>

@@ -13,9 +13,9 @@ export type AddStaffState = {
   first_name: string,
   last_name: string,
   gender: string,
-  email_address: string,
+  email: string,
   phone_number: string,
-  home_address: string,
+  address: string,
   state_of_origin: string,
   department: string,
   qualification: string,
@@ -25,7 +25,7 @@ export type AddStaffState = {
 }
 
 export default function addStaffPage() {
-  // const router = useRouter();
+  const router = useRouter();
   const params: { school: string } = useParams();
   // console.log(params, router.query);
   const school = params?.school;
@@ -62,9 +62,9 @@ const [state, setState] = React.useState<AddStaffState>({
   first_name: "",
   last_name: "",
   gender: "",
-  email_address: "",
+  email: "",
   phone_number: "",
-  home_address: "",
+  address: "",
   state_of_origin: "",
   department: "",
   qualification: "",
@@ -78,6 +78,9 @@ const [state, setState] = React.useState<AddStaffState>({
 const mutation = useMutation({
   mutationFn: async (newLogin: any) => {
     postRequest({ url: TEACHERS(schoolData?.uid), data: newLogin });
+  },
+  onSuccess:()=>{
+    router.push(`/${school}/admin/staffs`)
   }
 });
 
@@ -93,7 +96,7 @@ const handleChange = (e:any) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
     console.log(state);
-    mutation.mutate({state});
+    mutation.mutate({...state});
   }
 
 

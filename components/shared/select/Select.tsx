@@ -86,7 +86,7 @@ export default function Select({options,placeholder, name, change, text, state, 
       />
 
       {isOpen && (
-        <div className="absolute mt-2 pt-2 w-full rounded-md shadow-lg bg-gray-700">
+        <div className="absolute z-50 mt-2 pt-2 w-full rounded-md shadow-lg bg-gray-700">
           <div className="  bg-white   rounded-md">
             {filteredOptions.map((option, index) => (
               <div

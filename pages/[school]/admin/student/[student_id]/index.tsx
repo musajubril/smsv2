@@ -58,7 +58,7 @@ export default function studentPage() {
                 </div>
                 <div>Go Back</div>
               </div>
-              <Link href={`/${school}/`} className=" text-gray-400 hover:text-black">Dashboard /</Link>
+              <Link href={`/${school}/admin`} className=" text-gray-400 hover:text-black">Dashboard /</Link>
               <div className=" text-gray-400 hover:text-black" onClick={router.back}>Students /</div>
               <div>{student.full_name}</div>
             </div>

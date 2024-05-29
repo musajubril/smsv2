@@ -59,7 +59,7 @@ export default function StaffList({staffs}) {
                         />
                       </div>
                   
-                      <Link href={`/${school}/staff/${teachers.id}/`}>
+                      <Link href={`/${school}/admin/staff/${teachers.id}/`}>
                        <div className="">
                        <p>{teachers.full_name}</p>  
                       <p className=" font-normal text-xs text-[#475367]">ID:{teachers.id}</p>
