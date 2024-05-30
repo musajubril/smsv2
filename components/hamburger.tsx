@@ -9,10 +9,10 @@ const Hamburger = ({ logout}:{logout:any}) => {
         {open ? <MdClose /> : <MdMenu />}
       </div>
       <nav className="hidden md:flex">
-        <Sidebar logout={logout}/>
+        <Sidebar logout={logout} slug={''}/>
            </nav>
       <nav className={`lg:hidden ${open ? 'block' : 'hidden'}`}>
-        <Sidebar logout={logout}/>
+        <Sidebar logout={logout} slug={''}/>
           </nav>
     </div>
   );

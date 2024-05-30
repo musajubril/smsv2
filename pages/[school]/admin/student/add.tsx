@@ -17,6 +17,8 @@ import { AiOutlineImport } from "react-icons/ai";
 import Link from "next/link";
 
 
+
+
 export type SignUpState = {
   first_name: string;
   middle_name: string;

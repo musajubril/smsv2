@@ -25,7 +25,7 @@ export type AddStaffState = {
 }
 
 export default function addStaffPage() {
-  // const router = useRouter();
+  const router = useRouter();
   const params: { school: string } = useParams();
   // console.log(params, router.query);
   const school = params?.school;
@@ -96,7 +96,9 @@ const handleChange = (e:any) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
     console.log(state);
+
     mutation.mutate({ ...state});
+
   }
 
 

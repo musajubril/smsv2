@@ -36,6 +36,7 @@ export default function Addstudent1({
   open: boolean;
   setOpen: any;
 }) {
+
   // const Gender = ["Male", "Female"];
   // const Religion = ["Christianity", "Islam"];
   const States = statesInNigeria;
@@ -51,6 +52,7 @@ export default function Addstudent1({
   ];
 
   
+
 
   const [open, setOpen] = useState(Boolean);
   const action = () => {

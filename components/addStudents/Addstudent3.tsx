@@ -201,6 +201,7 @@ export default function Addstudent3({
                   <h1 className=" font-normal text-gray-500">(optional)</h1>
                 </div>
                 <Input
+
                   size="large"
                   text="Enter Email address"
                   name="email"
@@ -210,6 +211,7 @@ export default function Addstudent3({
                   change={change}
                   value={state.email}
                 />
+
               </div>
               <div className=" grid grid-cols-2 gap-2">
                 <div>

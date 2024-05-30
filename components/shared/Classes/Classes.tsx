@@ -112,7 +112,6 @@ export default function Classes() {
 
           <div>
             <ClassesTable
-              students={students}
             />
           </div>
           {/* <div className={``}>
