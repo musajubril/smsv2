@@ -1,10 +1,11 @@
 import { getRequest } from "@/api/apiCall";
-import { STUDENTS } from "@/api/apiUrl";
+import { HOMEROOMS, STUDENTS } from "@/api/apiUrl";
 import { queryKeys } from "@/api/queryKey";
 import ClassCard from "@/components/shared/classCard/ClassCard";
 import Layout from "@/components/shared/dashboardLayout/Layout";
 import Table from "@/components/shared/reusableTable/Table";
 import Multiselect from "@/components/shared/select/Multiselect";
+import Select from "@/components/shared/select/Select";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 
@@ -54,16 +55,41 @@ export default function test() {
   };
 
   const subjectOptions = [
-    {value: Math.random(), label:"Mathematics"},
-    {value: Math.random(), label:"English Language"},
-    {value: Math.random(), label:"Biology"},
-    {value: Math.random(), label:"Chemistry"},
-    {value: Math.random(), label:"Physics"},
-    {value: Math.random(), label:"Agricultural science"},
-    {value: Math.random(), label:"Literature"},
-    {value: Math.random(), label:"Information Technology"},
-    {value: Math.random(), label:"Civic Education"},
+    { value: Math.random(), label: "Mathematics" },
+    { value: Math.random(), label: "English Language" },
+    { value: Math.random(), label: "Biology" },
+    { value: Math.random(), label: "Chemistry" },
+    { value: Math.random(), label: "Physics" },
+    { value: Math.random(), label: "Agricultural science" },
+    { value: Math.random(), label: "Literature" },
+    { value: Math.random(), label: "Information Technology" },
+    { value: Math.random(), label: "Civic Education" },
   ];
+
+  
+const { data: classData } = useQuery({
+  queryKey: [queryKeys.getclass],
+  queryFn: async () => await getRequest({ url: HOMEROOMS(uid) }),
+});
+
+console.log(classData);
+
+const [classes, setclasses] = useState([]);
+useEffect(() => {
+  setclasses(classData?.data);
+}, [classData]);
+
+console.log(classes);
+
+const mappedClasses = classes?.map((cla) => {
+  return {
+    value: cla.id,
+    label: cla.name
+  };
+});
+
+console.log(mappedClasses);
+
 
   const [mock, setMock] = useState();
 
@@ -72,14 +98,18 @@ export default function test() {
   }, [mock]);
 
   return (
-    <Layout><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false} isAttendance={undefined} hasAction={true} actionHandle={handleAction} nameUrls={`/best-college/admin/student`}></Table></Layout>
-    // <div>
-    //   <Multiselect
-    //     options={subjectOptions}
-    //     placeholder={"dummy"}
-    //     state={mock}
-    //     setState={setMock}
-    //   />
-    // </div>
+    // <Layout><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false} isAttendance={undefined} hasAction={true} actionHandle={handleAction} nameUrls={`/best-college/admin/student`}></Table></Layout>
+    <div>
+      { classes &&  <Select
+        options={mappedClasses}
+        placeholder={"dummy"}
+        state={mock}
+        setState={setMock}
+        text={""}
+        change={undefined}
+        name={""}
+      />
+      }
+    </div>
   );
 }

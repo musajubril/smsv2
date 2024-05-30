@@ -14,18 +14,43 @@ import Layout from "../shared/dashboardLayout/Layout";
 import statesInNigeria from "../stateInNigeria";
 
 export const dateFormat = (dt) => {
- let date = new Date(dt);
- console.log(dt, date)
- const returnDate =  date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate()
- console.log(returnDate)
- return returnDate
+  let date = new Date(dt);
+  console.log(dt, date);
+  const returnDate =
+    date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+  console.log(returnDate);
+  return returnDate;
 };
-export default function Addstudent1({ next, change, state, setState, open:showCSVPreview, setOpen:setShowCSVPreview}:{next:any, change:any, state:SignUpState, setState:any, open: boolean, setOpen: any}) {
-  const Gender = ["Male", "Female"];
-  const Religion = ["Christian", "Muslim", "Others"];
-  const States = statesInNigeria.map((stateName) => stateName);
+export default function Addstudent1({
+  next,
+  change,
+  state,
+  setState,
+  open: showCSVPreview,
+  setOpen: setShowCSVPreview,
+}: {
+  next: any;
+  change: any;
+  state: SignUpState;
+  setState: any;
+  open: boolean;
+  setOpen: any;
+}) {
+  // const Gender = ["Male", "Female"];
+  // const Religion = ["Christianity", "Islam"];
+  const States = statesInNigeria;
 
+  const  Gender = [
+    { value: "Male", label: "Male" },
+    { value: "Female", label: "Female" }
+  ];
 
+  const  Religion = [
+    { value: "Christianity", label: "Christianity" },
+    { value: "Islam", label: "Islam" }
+  ];
+
+  
 
   const [open, setOpen] = useState(Boolean);
   const action = () => {
@@ -69,7 +94,7 @@ export default function Addstudent1({ next, change, state, setState, open:showCS
             </div>
           </div>
           <div>
-          <Imagelogic />
+            <Imagelogic />
           </div>
           <form className="flex flex-col gap-3 pt-3">
             <div className=" flex flex-col gap-1">
@@ -83,6 +108,19 @@ export default function Addstudent1({ next, change, state, setState, open:showCS
                 error={null}
                 change={change}
                 value={state.first_name}
+              />
+            </div>
+            <div className=" flex flex-col gap-1">
+              <h1 className=" font-medium">Middle Name</h1>
+              <Input
+                size="large"
+                text="Enter middle name"
+                name="middle_name"
+                disabled={false}
+                success={null}
+                error={null}
+                change={change}
+                value={state.middle_name}
               />
             </div>
             <div className=" flex flex-col gap-1">
@@ -101,24 +139,52 @@ export default function Addstudent1({ next, change, state, setState, open:showCS
             <div className=" grid grid-cols-2 gap-2">
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Gender</h1>
-                <Select options={Gender} placeholder="Select Gender" change={change} text="gender" state={state} setState={setState} name="gender" />
+                <Select
+                  options={Gender}
+                  placeholder="Select Gender"
+                  change={change}
+                  text="gender"
+                  state={state}
+                  setState={setState}
+                  name="gender"
+                />
               </div>
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Date Of Birth</h1>
                 <input
                   type="date"
                   name="date_of_birth"
-                  className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 " value={state.date_of_birth} onChange={(e: any)=>setState({...state, date_of_birth: e.target.value})}
+                  className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
+                  value={state.date_of_birth}
+                  onChange={(e: any) =>
+                    setState({ ...state, date_of_birth: e.target.value })
+                  }
                 />
               </div>
             </div>
             <div className=" flex flex-col gap-1">
               <h1 className=" font-medium">Religion</h1>
-              <Select options={Religion} placeholder="Select a Religion" change={change} text="religion" state={state} setState={setState} name="religion"/>
+              <Select
+                options={Religion}
+                placeholder="Select a Religion"
+                change={change}
+                text="religion"
+                state={state}
+                setState={setState}
+                name="religion"
+              />
             </div>
             <div className=" flex flex-col gap-1">
               <h1 className=" font-medium">State Of Origin</h1>
-              <Select options={States} placeholder="Select a State" change={change} text="state_of_origin"state={state} setState={setState} name="state_of_origin"  />
+              <Select
+                options={States}
+                placeholder="Select a State"
+                change={change}
+                text="state_of_origin"
+                state={state}
+                setState={setState}
+                name="state_of_origin"
+              />
             </div>
             <div>
               <Button
@@ -132,13 +198,8 @@ export default function Addstudent1({ next, change, state, setState, open:showCS
           </form>
         </div>
 
-
-        <div className=" border border-gray-500 rounded-lg">
-         <div className=" flex gap-2 items-center"> 
-
-        <div className=" col-span-1 bg-white-100 rounded-lg p-3 flex flex-col gap-4">
+        <div className=" rounded-lg col-span-1  bg-white-100  p-3 flex flex-col gap-4">
           <div className=" flex gap-2 items-center">
-
             <div className=" h-10 w-10 bg-blue-100 rounded-full flex justify-center items-center text-lg text-white-100 font-semibold">
               1
             </div>
@@ -174,11 +235,9 @@ export default function Addstudent1({ next, change, state, setState, open:showCS
                 Fill out academic details
               </h1>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
-    </div>
-    </div>
     </div>
   );
 }
