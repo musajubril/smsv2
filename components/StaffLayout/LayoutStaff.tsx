@@ -32,38 +32,38 @@ const LayoutStaff = ({ children }) => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="w-1/4">
+      <div className="md:w-1/4">
         <HamburgerStaff logout={() => setOpen(true)} />
       </div>
 
-      <div className="w-3/4 overflow-y-scroll p-4">
-        <div className="flex justify-between mb-2">
+      <div className="w-full overflow-y-scroll  bg-white-300 ">
+        <div className="flex justify-between mb-2 bg-white-100 py-3 px-9">
           {/* Render search bar and icons only on larger screens */}
           <div className="hidden  relative items-center md:flex">
             <CiSearch className="h-5 w-5 text-gray-500 absolute left-4 items-center" />
             <input
               type="text"
               placeholder="Search..."
-              className="py-1 pl-10 pr-2 border  border-gray-400 rounded-sm focus:outline-none w-[605px] focus:border-blue-500"
+              className="py-2 pl-10 pr-2 text-sm bg-[#F9FAFB]  rounded-sm focus:outline-none w-[629px] focus:border-blue-500 focus:border"
             />
           </div>
           <div className="flex justify-between items-center gap-2">
             {/* Render icons only on larger screens */}
-            <div className="hidden md:flex w-10 h-10 items-center bg-[#F0F2F5] rounded-[50%] justify-center">
+            <div className="hidden md:flex w-10 h-10 items-center justify-center bg-[#F0F2F5] rounded-[50%] ">
               <IoMdNotificationsOutline className="h-6 w-6 text-gray-500" />
             </div>
 
             {/* Render profile picture only on larger screens */}
             <div className="hidden md:block">
               <img
-                src="Avatars.png"
+                src="/Avatars.png"
                 alt=""
                 className="w-10 h-10 rounded-full"
               />
             </div>
           </div>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
+        <div className="bg-white p-4 ">
           <div className="">
             <Modal action={action} open={open}>
               <div className="flex flex-col gap-6 p-4">

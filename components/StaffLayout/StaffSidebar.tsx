@@ -32,12 +32,22 @@ export default function ({ logout, slug }: { logout: any, slug : string }) {
       path: `/${isAuthenticated ? router.query.school :slug}/staffs/subject/`,
     },
     {
+      icon: <MdMenuBook />,
+      name: "Result",
+      path: `/${isAuthenticated ? router.query.school :slug}/staffs/result/`,
+    },
+    {
+      icon: <MdMenuBook />,
+      name: "Subjects",
+      path: `/${isAuthenticated ? router.query.school :slug}/staffs/subjects/`,
+    },
+    {
       icon: <IoSettingsOutline />,
       name: "Settings",
       path: `/${isAuthenticated ? router.query.school : slug}/staffs/staff_settings`,
     },
   ];
-    console.log(router.asPath)
+    // console.log(router.asPath)
   return (
     <div className="bg-[#0065C2] w-full md:w-1/5 text-[white] p-6 h-screen fixed bg-opacity-70 md:bg-opacity-90 flex flex-col gap-6 ">
       <p className="text-white font-bold text-xl hidden md:block">SMS</p>

@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
             <input
               type="text"
               placeholder=" Search here..."
-              className=" py-2 pl-10 pr-2 text-sm bg-[#F9FAFB]  rounded-sm focus:outline-none w-[629px] focus:border-blue-500"
+              className=" py-2 pl-10 pr-2 text-sm bg-[#F9FAFB]  rounded-sm focus:outline-none w-[629px] focus:border-blue-500 focus:border"
             />
           </div>
           <div className="flex justify-between items-center gap-2">
@@ -54,7 +54,7 @@ const Layout = ({ children }) => {
 
             <div className="hidden md:block">
               <img
-                src="Avatars.png"
+                src="/Avatars.png"
                 alt="Image"
                 className="w-10 h-10 rounded-full"
               />
