@@ -9,7 +9,7 @@ export default function Fetchstudents() {
   const [students, setStudents] = React.useState([])
   const {data:studentData} = useQuery({
    queryKey:[queryKeys.getStudents], 
-   queryFn: async()=> await getRequest({url: STUDENTS(uid)})
+   queryFn: async()=> await getRequest({url: STUDENTS(uid, 1)})
   }) 
   
   

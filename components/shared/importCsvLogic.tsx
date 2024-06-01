@@ -36,7 +36,7 @@ const mappedStudents = cols.slice(1).map((row) => {
        accept='.csv' 
        onChange={handleFile} style={{margin: "10px auto"}}></input>
 
-<Table students={mappedStudents} imageUrls={mappedStudents} IDs={mappedStudents} hasCheckBox={true} hasImage={false}></Table> 
+<Table students={mappedStudents} imageUrls={mappedStudents} IDs={mappedStudents} hasCheckBox={true} hasImage={false} hasAction={undefined} isAttendance={undefined} actionHandle={undefined} nameUrls={undefined}></Table> 
       
     </div>
   );

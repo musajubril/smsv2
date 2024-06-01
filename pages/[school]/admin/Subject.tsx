@@ -8,8 +8,10 @@ import { useState } from "react";
 import Table from "@/components/shared/reusableTable/Table";
 import Layout from "@/components/shared/dashboardLayout/Layout";
 import Button from "@/components/shared/button/Button";
-import Courseadded from "@/components/subjectModals/addSubjectmodal2";
-import Addnewcourse from "@/components/subjectModals/AddSubjectmodal";
+import Addnewcourse from "@/components/subjectModals/AddSubjectModal";
+import Courseadded from "@/components/subjectModals/addSubjectModal2";
+// import Courseadded from "@/components/subjectModals/addSubjectmodal2";
+// import Addnewcourse from "@/components/subjectModals/AddSubjectmodal";
 
 
 export default function Subject({ course }) {
@@ -138,7 +140,7 @@ export default function Subject({ course }) {
                 hasImage={false}
                 hasAction={true}
                 isAttendance={undefined}
-                actionHandle={undefined}>
+                actionHandle={undefined} nameUrls={undefined}>
               </Table>
             </div>
           </div>

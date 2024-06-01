@@ -87,7 +87,7 @@ export default function Sidebar ({ logout, slug }: { logout: any, slug: string }
       <div className="flex flex-col gap-5 pt-10 md:pt-0">
         {nav.map((item, index) => (
           <div key={index}>
-            {item.subNav ? (
+            {/* {item.subNav ? (
               <div className="">
                 <button
                   className={`${
@@ -133,7 +133,7 @@ export default function Sidebar ({ logout, slug }: { logout: any, slug: string }
                   <p className="text-xs">{item.name}</p>
                 </button>
               </Link>
-            )}
+            )} */}
           </div>
         ))}
       </div>

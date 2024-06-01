@@ -130,10 +130,10 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
         <div className="">
           <Modal action={action} open={open}>
             <ImportCSV
-              showCSVPreview={showCSVPreview}
-              setFiles={setFiles}
-              setOpen={setOpen}
-              setShowCSVPreview={setShowCSVPreview}
+              // showCSVPreview={showCSVPreview}
+              // setFiles={setFiles}
+              // setOpen={setOpen}
+              // setShowCSVPreview={setShowCSVPreview}
             />
           </Modal>
         </div>

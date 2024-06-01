@@ -148,18 +148,16 @@ export default function Studentpreview() {
               intent="secondary"
               size="base"
               text="Edit"
-              disabled={false}
-            />
+              disabled={false} onClick={undefined}            />
           </div>
           <div
           >
             <Link href='/student_list'>
             <Button
-              intent="primary"
-              size="base"
-              text="Confirm"
-              disabled={false}
-              />
+                intent="primary"
+                size="base"
+                text="Confirm"
+                disabled={false} onClick={undefined}              />
               </Link>
           </div>
         </div>

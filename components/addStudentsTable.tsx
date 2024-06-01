@@ -3,7 +3,7 @@ import Table from './shared/reusableTable/Table'
 import ImportCSV from './addStudents/ImportCSV'
 import Layout from "@/components/shared/dashboardLayout/Layout";
 import Barchart from './shared/Charts/Barchart_class';
-// import {outTable, ExcelRenderer} from 'react-excel-renderer'
+import {outTable, ExcelRenderer} from 'react-excel-renderer'
 import Button from './shared/button/Button';
 
 export default function AddStudentsTable({ files }) {
@@ -51,7 +51,7 @@ export default function AddStudentsTable({ files }) {
             student[key] = row[index];
           });
           return student;
-        })} imageUrls={cols} IDs={cols} hasCheckBox={true} hasImage={false}></Table>
+        })} imageUrls={cols} IDs={cols} hasCheckBox={true} hasImage={false} hasAction={undefined} isAttendance={undefined} actionHandle={undefined} nameUrls={undefined}></Table>
       </div>
     </div>
   );

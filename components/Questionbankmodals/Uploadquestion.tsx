@@ -43,15 +43,15 @@ export default function Uploadquestion () {
         <div className='flex flex-col  gap-3'>
           <div className='flex flex-col w-full '>
             <h1 className='font-bold text-lg flex justify-start'>Class</h1>
-            <Select options={classOptions} placeholder="Select Class" change={handleChange} text="class" setState={setState} name="class" state={state} />
+            {/* <Select options={classOptions} placeholder="Select Class" change={handleChange} text="class" setState={setState} name="class" state={state} /> */}
           </div>
           <div className='flex flex-col w-full '>
             <h1 className='font-bold text-lg flex justify-start'>Subject</h1>
-            <Select options={subjectOptions} placeholder="Select Subject" change={handleChange} text="subject" setState={setState} name="subject" state={state} />
+            {/* <Select options={subjectOptions} placeholder="Select Subject" change={handleChange} text="subject" setState={setState} name="subject" state={state} /> */}
           </div>
           <div className='flex flex-col w-full '>
             <h1 className='font-bold text-lg flex justify-start'>Term</h1>
-            <Select options={termOptions} placeholder="Select Term" change={handleChange} text="term" setState={setState} name="term" state={state} />
+            {/* <Select options={termOptions} placeholder="Select Term" change={handleChange} text="term" setState={setState} name="term" state={state} /> */}
           </div>
           <div className='flex flex-col w-full '>
             <h1 className='font-bold text-lg flex justify-start'>Topic</h1>
