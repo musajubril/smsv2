@@ -78,7 +78,7 @@ export default function Classes() {
   });
 
   const mutation = useMutation({
-    mutationFn: async (newClass) => {
+    mutationFn: async (newClass: any) => {
       await postRequest({ url: HOMEROOMS(uid), data: newClass });
      
       setNewClassData({ name: "", fee: "" }); 
@@ -116,15 +116,14 @@ export default function Classes() {
         </div>
         <div>
           <Table 
-            students={mappedClasses} 
-            imageUrls={mappedClasses} 
-            IDs={mappedIds} 
-            hasCheckBox={true} 
-            hasImage={false} 
-            actionHandle={handleAction} 
-            isAttendance={undefined} 
-            hasAction={true} 
-          />
+            students={mappedClasses}
+            imageUrls={mappedClasses}
+            IDs={mappedIds}
+            hasCheckBox={true}
+            hasImage={false}
+            actionHandle={handleAction}
+            isAttendance={undefined}
+            hasAction={true} nameUrls={undefined}          />
         </div>
       </Layout>
       <Classadded
