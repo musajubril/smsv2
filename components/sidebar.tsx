@@ -7,11 +7,17 @@ import { HiOutlineUsers } from "react-icons/hi";
 import { MdMenuBook } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CiLogout } from "react-icons/ci";
-import { IoChevronDown} from "react-icons/io5";
+import { IoChevronDown } from "react-icons/io5";
 import { IoIosArrowUp } from "react-icons/io";
 import { GiFamilyHouse } from "react-icons/gi";
 
-export default function Sidebar ({ logout, slug }: { logout: any, slug: string }) {
+export default function Sidebar({
+  logout,
+  slug,
+}: {
+  logout: any;
+  slug: string;
+}) {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isCBTMenuOpen, setIsCBTMenuOpen] = useState(false);
@@ -35,7 +41,7 @@ export default function Sidebar ({ logout, slug }: { logout: any, slug: string }
       name: "Home",
       path: `/${isAuthenticated ? router.query.school : slug}/admin`,
     },
-    
+
     {
       icon: <PiGraduationCapThin />,
       name: "Students",
@@ -47,7 +53,7 @@ export default function Sidebar ({ logout, slug }: { logout: any, slug: string }
       path: `/${isAuthenticated ? router.query.school : slug}/admin/staffs`,
     },
     {
-      icon: <MdMenuBook/>,
+      icon: <MdMenuBook />,
       name: "Subject",
       path: `/${isAuthenticated ? router.query.school : slug}/admin/Subject`,
     },
@@ -69,10 +75,9 @@ export default function Sidebar ({ logout, slug }: { logout: any, slug: string }
     //   ],
     // },
     {
-
-      icon:<GiFamilyHouse />,
-      name:"Classes",
-      path:`/${isAuthenticated ? router.query.school : slug}/admin/Classes`
+      icon: <GiFamilyHouse />,
+      name: "Classes",
+      path: `/${isAuthenticated ? router.query.school : slug}/admin/Classes`,
     },
     {
       icon: <IoSettingsOutline />,
@@ -87,58 +92,26 @@ export default function Sidebar ({ logout, slug }: { logout: any, slug: string }
       <div className="flex flex-col gap-5 pt-10 md:pt-0">
         {nav.map((item, index) => (
           <div key={index}>
-            {/* {item.subNav ? (
-              <div className="">
-                <button
-                  className={`${
-                    router.asPath.includes(item.path) ? 'bg-white-200 text-[#0065C2]' : ''
-                  } flex gap-2 text-white w-full font-medium items-center hover:bg-white hover:text-[#0065C2] p-3 rounded-lg hover:bg-white-100 `}
-                  onClick={toggleCBTMenu}
-                >
-                  <p className="text-xl">{item.icon}</p>
-                  <p className=" text-xs">{item.name}</p>
-                  <p className="text-base">
-                    {isCBTMenuOpen ? <IoIosArrowUp /> : <IoChevronDown />}
-                  </p>
-                </button>
-
-                {isCBTMenuOpen && (
-                  <div
-                    style={{
-                      padding: "10px",
-                    }}
-                  >
-                    {item.subNav.map((subRoute, subIndex) => (
-                      <Link key={subIndex} href={subRoute.path}>
-                        <button
-                          className={`${
-                            router.asPath === subRoute.path ? ' bg-white-200 text-[#0065C2]' : ''
-                          } flex gap-2 text-white w-full font-medium items-center hover:bg-white hover:text-[#0065C2] p-3 rounded-lg hover:bg-white-100 `}
-                        >
-                          <p className="text-[14px]">{subRoute.name}</p>
-                        </button>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Link href={item.path} key={index}>
-                <button
-                  className={`${
-                    router.asPath === item.path ? 'bg-white-200 text-[#0065C2]' : ''
-                  } flex gap-2 text-white w-full font-medium items-center hover:bg-white hover:text-[#0065C2] p-3 rounded-lg hover:bg-white-100 `}
-                >
-                  <p className="text-xl">{item.icon}</p>
-                  <p className="text-xs">{item.name}</p>
-                </button>
-              </Link>
-            )} */}
+            <Link href={item.path} key={index}>
+              <button
+                className={`${
+                  router.asPath === item.path
+                    ? "bg-white-200 text-[#0065C2]"
+                    : ""
+                } flex gap-2 text-white w-full font-medium items-center hover:bg-white hover:text-[#0065C2] p-3 rounded-lg hover:bg-white-100 `}
+              >
+                <p className="text-xl">{item.icon}</p>
+                <p className="text-xs">{item.name}</p>
+              </button>
+            </Link>
           </div>
         ))}
       </div>
       <div>
-        <button className="flex gap-2 text-white w-full font-medium items-center hover:bg-white hover:text-[#0065C2] p-3 rounded-lg hover:bg-white-100 " onClick={logout}>
+        <button
+          className="flex gap-2 text-white w-full font-medium items-center hover:bg-white hover:text-[#0065C2] p-3 rounded-lg hover:bg-white-100 "
+          onClick={logout}
+        >
           <p className="text-2xl">
             <CiLogout />
           </p>
