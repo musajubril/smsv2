@@ -143,7 +143,7 @@ export default function Addstudent1({
                   type="date"
                   name="date_of_birth"
                   className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
-                  value={state.date_of_birth}
+                  value={state.date_of_birth?.toDateString()}
                   onChange={(e: any) =>
                     setState({ ...state, date_of_birth: e.target.value })
                   }
