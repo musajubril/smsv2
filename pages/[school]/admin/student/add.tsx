@@ -16,41 +16,8 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { AiOutlineImport } from "react-icons/ai";
 import Link from "next/link";
 
-// <option>Islam</option>
-//               <option>Christianity</option>
-//  {
-//   first_name: "",
-//   last_name: "",
-//   religion: "",
-//   phone_number: "",
-//   address: "",
-//   date_of_birth: new Date(),
-//   email: "",
-//   gender: "",
-//   image: "",
-//   role: "",
-// }
 
 
-// {
-//   first_name: "",
-//   last_name: "",
-//   religion: "",
-//   middle_name: "",
-//   guardian_full_name: "",
-//   phone_number: "",
-//   phone_number2: "",
-//   address: "",
-//   state_of_origin: "",
-//   date_of_birth: new Date(),
-//   email: "",
-//   lga: "",
-//   outstanding_debt: 0,
-//   class_id: null,
-//   gender: null,
-//   guardian_name: "",
-//   image: ""
-// }
 
 export type SignUpState = {
   first_name: string;
@@ -126,7 +93,7 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
     religion: "",
     state_of_origin: "",
     outstanding_debt: "200",
-    class_id: "1",
+    class_id: "",
     image: ""
   });
   const mutation = useMutation({

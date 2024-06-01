@@ -8,7 +8,7 @@ import { AddStaffState } from '@/pages/[school]/admin/staff/add';
 
 interface SelectProps {
   text: string;
-    options: any;
+    options:  {label:string, value:string | number }[];
     placeholder:string
     change: React.ChangeEventHandler<HTMLInputElement> | undefined | null;
     state: SignUpState | AddStaffState;
@@ -19,7 +19,7 @@ interface SelectProps {
 export default function Select({options,placeholder, name, change, text, state, setState} : SelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState();;
   const [filteredOptions, setFilteredOptions] = useState(options);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -45,7 +45,7 @@ export default function Select({options,placeholder, name, change, text, state, 
 
   useEffect(() => {
     const filtered = options.filter(option =>
-      option.toLowerCase().includes(searchTerm.toLowerCase())
+      option.label.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredOptions(filtered);
   }, [searchTerm]);
@@ -54,17 +54,14 @@ export default function Select({options,placeholder, name, change, text, state, 
     setIsOpen(!isOpen);
   };
 
- React.useEffect(()=>{state && state[name] && setSearchTerm(state[name])}, [state]) 
 
   const handleSelectOption = (option:any) => {
     console.log("Selected Option is:",option)
-    setSelectedOption(option)
+    setSelectedOption(option.label)
     setState({
-      ...state, 
-      [name]: option
-    })
+      ...state,
+      [name]: option.value})
     setIsOpen(false)
-    setSearchTerm(option);
     change
   };
 
@@ -76,7 +73,7 @@ export default function Select({options,placeholder, name, change, text, state, 
     <div className="relative text-left" ref={dropdownRef}>
       <input
         type="text"
-        name={text}
+        name={name}
         onClick={handleToggleDropdown}
         value={searchTerm}
         placeholder={selectedOption ? selectedOption : placeholder}
@@ -96,7 +93,7 @@ export default function Select({options,placeholder, name, change, text, state, 
                 // name={text}
                 // value={option}
               >
-                <div>{option}</div>
+                <div>{option.label}</div>
               </div>
             ))}
           </div>

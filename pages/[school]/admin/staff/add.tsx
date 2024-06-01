@@ -96,7 +96,9 @@ const handleChange = (e:any) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
     console.log(state);
-    mutation.mutate({...state});
+
+    mutation.mutate({ ...state});
+
   }
 
 

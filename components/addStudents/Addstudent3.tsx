@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { AiOutlineImport } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa6";
@@ -10,33 +10,71 @@ import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
 import Studentpreview from "./Studentpreview";
+import { useQuery } from "@tanstack/react-query";
+import { queryKeys } from "@/api/queryKey";
+import { getRequest } from "@/api/apiCall";
+import { HOMEROOMS } from "@/api/apiUrl";
 
-export default function Addstudent3({ prev, change, state, setState, submit, open: showCSVPreview, setOpen: setShowCSVPreview}:{prev: any, submit: any, change: any, state:SignUpState, setState: any,  open: boolean, setOpen: any}) {
+export default function Addstudent3({
+  prev,
+  change,
+  state,
+  setState,
+  submit,
+  open: showCSVPreview,
+  setOpen: setShowCSVPreview,
+}: {
+  prev: any;
+  submit: any;
+  change: any;
+  state: SignUpState;
+  setState: any;
+  open: boolean;
+  setOpen: any;
+}) {
+  const uid: any =
+    typeof window !== "undefined" && localStorage.getItem("schoolId");
+  const { data: classData } = useQuery({
+    queryKey: [queryKeys.getclass],
+    queryFn: async () => await getRequest({ url: HOMEROOMS(uid) }),
+  });
 
+  console.log(classData);
 
-  const mock = ["JSS1", "JSS2", "JSS3", "SSS1", "SSS2", "SSS3"];
+  const [classes, setclasses] = useState([]);
+  useEffect(() => {
+    setclasses(classData?.data);
+  }, [classData]);
+
+  console.log(classes);
+
+  const mappedClasses = classes?.map((cla) => {
+    return {
+      value: cla.id,
+      label: cla.name,
+    };
+  });
+
+  console.log(mappedClasses);
 
   const status = ["Admitted", "Pending"];
 
   const [open, setOpen] = useState(Boolean);
   const action = () => {
-    setOpen(false)
+    setOpen(false);
   };
 
   const [open1, setOpen1] = useState(Boolean);
   const action1 = () => {
-    setOpen1(false)
+    setOpen1(false);
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
-  }
-  console.log(showCSVPreview)
+  };
+  console.log(showCSVPreview);
   return (
-
-
     <div className="">
-        
       <div className="">
         <Modal action={action} open={open}>
           <Studentpreview />
@@ -111,7 +149,7 @@ export default function Addstudent3({ prev, change, state, setState, submit, ope
               />
             </div>
           </form> */}
-{/* 
+          {/* 
           <div
           className=" flex p-2 border items-center gap-1 border-[#E4E7EC] bg-white-100 rounded-md cursor-pointer"
           onClick={() => {
@@ -121,7 +159,6 @@ export default function Addstudent3({ prev, change, state, setState, submit, ope
           <AiOutlineImport />
           <div>Import CSV</div>
         </div> */}
-
         </div>
 
         <div className=" grid grid-cols-3 gap-4 ">
@@ -137,7 +174,17 @@ export default function Addstudent3({ prev, change, state, setState, submit, ope
             <form className="flex flex-col gap-4 pt-3" onSubmit={handleSubmit}>
               <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Class</h1>
-                <Select options={mock} placeholder="Select Class" state={state} setState={setState} text="class" name="class_id" change={change} />
+                {classes && (
+                  <Select
+                    options={mappedClasses}
+                    placeholder="Select Class"
+                    state={state}
+                    setState={setState}
+                    text="class"
+                    name="class_id"
+                    change={change}
+                  />
+                )}
               </div>
               {/* <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Enrollment Date</h1>
@@ -147,21 +194,24 @@ export default function Addstudent3({ prev, change, state, setState, submit, ope
                   className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
                 />
               </div> */}
-              
+
               <div className=" flex flex-col gap-1">
                 <div className="flex gap-1">
                   <h1 className=" font-medium">Students Email address</h1>
                   <h1 className=" font-normal text-gray-500">(optional)</h1>
                 </div>
                 <Input
-                    size="large"
-                    text="Enter Email address"
-                    name="email"
-                    disabled={false}
-                    success={null}
-                    error={null}
-                    change={change} 
-                    value={state.email}                />
+
+                  size="large"
+                  text="Enter Email address"
+                  name="email"
+                  disabled={false}
+                  success={null}
+                  error={null}
+                  change={change}
+                  value={state.email}
+                />
+
               </div>
               <div className=" grid grid-cols-2 gap-2">
                 <div>
@@ -173,11 +223,11 @@ export default function Addstudent3({ prev, change, state, setState, submit, ope
                     onClick={prev}
                   />
                 </div>
-                <div 
-                  // onClick={() => {
-                  //   setOpen(true);
-                  // }}
-                  >
+                <div
+                // onClick={() => {
+                //   setOpen(true);
+                // }}
+                >
                   <Button
                     intent="primary"
                     size="base"

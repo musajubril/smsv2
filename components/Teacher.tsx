@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "./shared/input/Input";
 import Select from "./shared/select/Select";
 import Table from "./shared/reusableTable/Table";
 import { getRequest } from "@/api/apiCall";
-import { STUDENTS } from "@/api/apiUrl";
+import { HOMEROOMS, STUDENTS } from "@/api/apiUrl";
 import { queryKeys } from "@/api/queryKey";
 import ClassCard from "@/components/shared/classCard/ClassCard";
 import { useQuery } from "@tanstack/react-query";
@@ -59,6 +59,30 @@ export default function Teacher() {
 
   console.log(mappedIds);
 
+  const { data: classData } = useQuery({
+    queryKey: [queryKeys.getclass],
+    queryFn: async () => await getRequest({ url: HOMEROOMS(uid) }),
+  });
+
+  console.log(classData);
+
+  const [classes, setclasses] = useState([]);
+  useEffect(() => {
+    setclasses(classData?.data);
+  }, [classData]);
+
+  console.log(classes);
+
+  const mappedClasses = classes?.map((cla) => {
+    return {
+      value: cla.id,
+      label: cla.name,
+    };
+  });
+
+  console.log(mappedClasses);
+
+
   return (
     <div className=" p-3">
       {/* top */}
@@ -86,9 +110,10 @@ export default function Teacher() {
           </div>
         </div>
         <div>
-          {" "}
+          {
+            classes && 
           <Select
-            options={Class}
+            options={mappedClasses}
             placeholder="Select class"
             change={undefined}
             text="class"
@@ -96,6 +121,7 @@ export default function Teacher() {
             setState={undefined}
             name="class"
           />
+          }
         </div>
       </div>
 

@@ -28,7 +28,12 @@ export default function AddStaff1({
     school = localStorage.getItem('schoolSlug');
   }
 
-  const Gender = ["Male", "Female"];
+
+  const  Gender = [
+    { value: "Male", label: "Male" },
+    { value: "Female", label: "Female" }
+  ];
+ 
   const States = statesInNigeria.map((stateName) => stateName);
 
   return (

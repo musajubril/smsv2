@@ -44,7 +44,7 @@ export default function Sidebar ({ logout, slug }: { logout: any, slug: string }
     {
       icon: <HiOutlineUsers />,
       name: "Staffs",
-      path: `/${isAuthenticated ? router.query.school : slug}/staffs`,
+      path: `/${isAuthenticated ? router.query.school : slug}/admin/staffs`,
     },
     {
       icon: <MdMenuBook/>,

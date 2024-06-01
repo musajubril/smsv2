@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
@@ -9,6 +9,10 @@ import ProfilePreview from "./ProfilePreview";
 import { AddStaffState } from "@/pages/[school]/admin/staff/add";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import { queryKeys } from "@/api/queryKey";
+import { getRequest } from "@/api/apiCall";
+import { GET_COURSES, HOMEROOMS } from "@/api/apiUrl";
 
 export default function AddStaff2({
   prev,
@@ -23,16 +27,72 @@ export default function AddStaff2({
   setState: any;
   change: any;
 }) {
-  const Qualification = ["BSC", "HND", "ND", "NCE"];
-  const Role = ["Teacher", "Cleaner", "Principal"];
-  const Department = ["Academics", "Cleaning"];
-  const Class = ["Jss1", "Jss2", "Jss3"];
+  const Qualification = [
+    { value: "BSC", label: "BSC" },
+    { value: "HND", label: "HND" },
+    { value: "ND", label: "ND" },
+    { value: "NCE", label: "NCE" },
+  ];
+
+  const Role = [
+    { value: "Teacher", label: "Teacher" },
+    { value: "Cleaner", label: "Cleaner" },
+    { value: "Principal", label: "Principal" },
+  ];
+
+  const Department = [
+    { value: "Academics", label: "Academics" },
+    { value: "Cleaning", label: "Cleaning" },
+  ];
+
+  const uid: any =
+    typeof window !== "undefined" && localStorage.getItem("schoolId");
+  const { data: classData } = useQuery({
+    queryKey: [queryKeys.getclass],
+    queryFn: async () => await getRequest({ url: HOMEROOMS(uid) }),
+  });
+
+  console.log(classData);
+
+  const [classes, setclasses] = useState([]);
+  useEffect(() => {
+    setclasses(classData?.data);
+  }, [classData]);
+
+  console.log(classes);
+
+  const mappedClasses = classes?.map((cla) => {
+    return {
+      value: cla.id,
+      label: cla.name,
+    };
+  });
+
+  const [courses, setCourses] = React.useState([]);
+  const { data: courseData } = useQuery({
+    queryKey: [queryKeys.getcourse],
+    queryFn: async () => await getRequest({ url: GET_COURSES(uid) }),
+  });
+
+  React.useEffect(() => {
+    setCourses(courseData?.data);
+  }, [courseData]);
+
+  console.log(courses);
+
+  const mappedSubjects = courses?.map((cou) => {
+    return {
+      value: cou.id,
+      label: cou.name,
+    };
+  });
+
   const Subject = ["Maths", "English", "Yoruba", "Physics"];
 
   const router = useRouter();
   let school;
-  if (typeof window !== 'undefined') {
-    school = localStorage.getItem('schoolSlug');
+  if (typeof window !== "undefined") {
+    school = localStorage.getItem("schoolSlug");
   }
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
@@ -66,8 +126,18 @@ export default function AddStaff2({
               </div>
               <div>Go Back</div>
             </div>
-            <Link href={`/${school}/`} className="text-gray-400 hover:text-black">DashBoard /</Link>
-            <div className="text-gray-400 hover:text-black" onClick={router.back}>Staff /</div>
+            <Link
+              href={`/${school}/`}
+              className="text-gray-400 hover:text-black"
+            >
+              DashBoard /
+            </Link>
+            <div
+              className="text-gray-400 hover:text-black"
+              onClick={router.back}
+            >
+              Staff /
+            </div>
             <div className="">Add New Staff</div>
           </div>
 
@@ -121,27 +191,31 @@ export default function AddStaff2({
                 </div>
                 <div className=" flex flex-col gap-1">
                   <h1 className=" font-medium">Class</h1>
-                  <Select
-                    options={Class}
-                    placeholder="Select class"
-                    change={change}
-                    text="class"
-                    state={state}
-                    setState={setState}
-                    name="class"
-                  />
+                  {classes && (
+                    <Select
+                      options={mappedClasses}
+                      placeholder="Select class"
+                      change={change}
+                      text="class"
+                      state={state}
+                      setState={setState}
+                      name="class"
+                    />
+                  )}
                 </div>
                 <div className=" flex flex-col gap-1">
                   <h1 className=" font-medium">Subject</h1>
-                  <Select
-                    options={Subject}
-                    placeholder="Select subject"
-                    change={change}
-                    text="subject"
-                    state={state}
-                    setState={setState}
-                    name="subject"
-                  />
+                  {courses && (
+                    <Select
+                      options={mappedSubjects}
+                      placeholder="Select subject"
+                      change={change}
+                      text="subject"
+                      state={state}
+                      setState={setState}
+                      name="subject"
+                    />
+                  )}
                 </div>
                 <div className=" grid grid-cols-2 gap-2">
                   <Button
