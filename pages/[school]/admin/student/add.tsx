@@ -97,9 +97,7 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
     image: ""
   });
   const mutation = useMutation({
-    mutationFn: async (newLogin: any) => {
-      postRequest({ url: STUDENTS(schoolData?.uid, 1), data: newLogin });
-    },
+    mutationFn: async (newLogin: any) => await postRequest({ url: STUDENTS(schoolData?.uid, 1), data: newLogin }),
     onSuccess:()=>{
       router.push(`/${school}/admin/students`)
     }

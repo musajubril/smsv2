@@ -46,17 +46,19 @@ export default function Login() {
   };
 
   const mutation = useMutation({
-    mutationFn: async (newLogin: any) => {
-      login({ url: LOGIN_URL(schoolData?.uid), data: newLogin });
-    },
-    onSuccess:(data)=> {
+    mutationFn: async (newLogin: any) =>
+      await login({ url: LOGIN_URL(schoolData?.uid), data: newLogin }),
+    onSuccess:(data: {access: string, refresh: string})=> {
+      console.log(data)
+      const loginToken = data.access
+      localStorage.setItem('easysch_token', data.access)
       localStorage.setItem("schoolSlug", schoolData?.slug);
       localStorage.setItem("schoolId", schoolData?.uid);
       localStorage.setItem("schoolName", schoolData?.name);
       localStorage.setItem("schoolLogo", schoolData?.logo);
 
-      if (token) {
-        const decodedToken: { groups: Array<string> } = jwtDecode(token);
+      if (loginToken) {
+        const decodedToken: { groups: Array<string> } = jwtDecode(loginToken);
         console.log(decodedToken);
 
         if (Array.isArray(decodedToken.groups)) {

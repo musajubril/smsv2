@@ -46,11 +46,10 @@ export default function resultLogin() {
   };
 
   const mutation = useMutation({
-    mutationFn: async (newLogin: any) => {
-      login({ url: LOGIN_URL(schoolData?.uid), data: newLogin });
-    },
+    mutationFn: async (newLogin: any) =>
+      await login({ url: LOGIN_URL(schoolData?.uid), data: newLogin }),
     onSuccess: (data) => {
-     console.log(data);
+      console.log(data);
     },
   });
 
@@ -59,7 +58,7 @@ export default function resultLogin() {
     console.log(state);
     mutation.mutate({
       surname: state.surname,
-      pin: state.pin
+      pin: state.pin,
     });
   };
   return (

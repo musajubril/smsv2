@@ -78,12 +78,12 @@ export default function Classes() {
   });
 
   const mutation = useMutation({
-    mutationFn: async (newClass: any) => {
-      await postRequest({ url: HOMEROOMS(uid), data: newClass });
-     
-      setNewClassData({ name: "", fee: "" }); 
-      setIsClassaddedOpen(true); 
-    },
+    mutationFn: async (newClass: any) => 
+      await postRequest({ url: HOMEROOMS(uid), data: newClass }),
+     onSuccess:()=>{
+       setNewClassData({ name: "", fee: "" }); 
+       setIsClassaddedOpen(true); 
+      }
   });
 
   const handleAddClass = () => { 

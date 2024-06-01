@@ -76,9 +76,8 @@ const [state, setState] = React.useState<AddStaffState>({
 
 
 const mutation = useMutation({
-  mutationFn: async (newLogin: any) => {
-    postRequest({ url: TEACHERS(schoolData?.uid), data: newLogin });
-  },
+  mutationFn: async (newLogin: any) => 
+    await postRequest({ url: TEACHERS(schoolData?.uid), data: newLogin }),
   onSuccess:()=>{
     router.push(`/${school}/admin/staffs`)
   }
