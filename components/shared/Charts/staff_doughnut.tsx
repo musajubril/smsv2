@@ -8,7 +8,7 @@ export default function StaffDoughnut() {
   const data = {
     labels: ["Male", "Female"],
     datasets: [{
-      data: [5, 6],
+      data: [500, 900],
       backgroundColor: ['#00C7B4', '#0080F5'],
       borderColor: 'rgba(75, 192, 192, 0)',
       borderWidth: 1
@@ -26,12 +26,12 @@ export default function StaffDoughnut() {
 
   return (
     <>
-    <div className=" ">
+    <div className="bg-white-100 ">
       <div className="text-xl font-semibold px-6 pt-6 items-center">
-        Staff
+        Staffs
       </div>
       <div className="  pt-4  ">
-        <div className=" w-[80%] h-[50%] justify-center flex ">
+        <div className=" w-[80%] h-[50%] justify-center flex pl-1 ">
           <Doughnut data={data} options={options} />
         </div>
         <div className="flex items-center pt-4 ">
@@ -43,8 +43,8 @@ export default function StaffDoughnut() {
           ))}
         </div>
         <div className="flex px-8 gap-16">
-          <div className="text-xs font-normal text-[#BABABA]">300</div>
-          <div className="text-xs font-normal text-[#BABABA]">900</div>
+          <div className="text-xs font-normal text-[#BABABA]">{data.datasets[0].data[0]}</div>
+          <div className="text-xs font-normal text-[#BABABA]">{data.datasets[0].data[1]}</div>
         </div>
       </div>
       </div>

@@ -26,7 +26,7 @@ export default function StudentDonut() {
 
   return (
     <>
-    <div className=''>
+    <div className='bg-white-100'>
       <div className="text-xl font-semibold px-6 pt-6 items-center  bg-white-100">
         Students
       </div>
