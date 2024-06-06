@@ -33,7 +33,7 @@ export default function staffPage() {
     queryKey: [queryKeys.getstaff,schoolData, staff_id],
     queryFn: async () => await getRequest({ url: TEACHER(schoolData?.uid, staff_id)}),
   });
-  console.log (getstaff)
+  console.log(getstaff)
   const [staff, setStaff] = useState<any>({});
   
   useEffect(() => {
@@ -44,140 +44,159 @@ export default function staffPage() {
  
   return (
     <Layout>
-      <div className=" flex flex-col p-6">
-        <div className=" flex justify-between items-center pb-5">
-          <div className=" flex items-center gap-3 cursor-pointer">
-          <div
-                onClick={router.back}
-                className=" flex items-center gap-3 cursor-pointer"
-              >
-                <div className="border py-1 px-2 border-[#E4E7EC] bg-white-100 rounded-lg">
-                  <FaArrowLeftLong />
-                </div>
-                <div>Go Back</div>
+      <div className="flex flex-col p-6">
+        <div className="flex justify-between items-center pb-5 max-sm:hidden">
+          <div className="flex items-center gap-3 cursor-pointer">
+            <div onClick={router.back} className="flex items-center gap-3 cursor-pointer">
+              <div className="border py-1 px-2 border-[#E4E7EC] bg-white-100 rounded-lg">
+                <FaArrowLeftLong />
               </div>
-              <Link href={`/${school}/admin`} className=" text-gray-400 hover:text-black">Dashboard /</Link>
-            <div className=" text-gray-400 hover:text-black" onClick={router.back}>Staff /</div>
+              <div>Go Back</div>
+            </div>
+            <Link href={`/${school}/admin`} className="text-gray-400 hover:text-black">Dashboard /</Link>
+            <div className="text-gray-400 hover:text-black" onClick={router.back}>Staff /</div>
             <div>Musa Kalamu</div>
           </div>
         </div>
 
-        <div className=" grid grid-cols-3 gap-4  ">
-          <div className=" col-span-1 border border-[#EDEDED] rounded-lg p-4 flex flex-col gap-3 shadow-lg  h-fit w-auto">
-            <div className=" flex justify-end pr-4">
-              <div className="flex border items-center gap-2 px-2 py-1 border-teal-200 rounded-lg">
-                <h1>Edit</h1>
-                <PiPencilLine />
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex-1 flex flex-col gap-4 md:w-1/3 w-full">
+            <div className="border border-[#EDEDED] rounded-lg p-4 flex flex-col gap-3 shadow-lg">
+              <div className="flex justify-end pr-4">
+                <div className="flex border items-center gap-2 px-2 py-1 border-teal-200 rounded-lg">
+                  <h1>Edit</h1>
+                  <PiPencilLine />
+                </div>
+              </div>
+
+              <div className="flex flex-col justify-center items-center">
+                <div className="cursor-pointer">
+                  <img src="/Avatar.png" alt="" className="cursor-pointer pb-3" />
+                </div>
+                <div className="text-center">
+                  <h1 className="text-base font-semibold">{staff.full_name}</h1>
+                  <h1 className="text-sm font-normal text-[#878787]">
+                    ID:{staff.id}
+                  </h1>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 pl-6">
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-normal text-[#878787]">Gender</h1>
+                  <h1 className="text-base font-semibold">{staff.gender}</h1>
+                </div>
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-normal text-[#878787]">
+                    Qualification
+                  </h1>
+                  <h1 className="text-base font-semibold">{staff.Qualification}</h1>
+                </div>
               </div>
             </div>
 
-            <div className=" flex flex-col justify-center items-center">
-              <div className=" cursor-pointer">
-                <img src="/Avatar.png" alt="" className="cursor-pointer pb-3" />
+            <div className="border border-[#EDEDED] rounded-lg p-3 shadow-lg md:hidden">
+              <div className="text-lg pl-4 font-normal text-[#878787]">
+                Contact Information
               </div>
-              <div className=" text-center">
-                <h1 className=" text-base  font-semibold">{staff.full_name}</h1>
-                <h1 className=" text-sm  font-normal text-[#878787]">
-                  ID:{staff.id}
-                </h1>
+              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-semibold text-[#878787]">
+                    Phone Number
+                  </h1>
+                  <h1 className="text-base font-semibold">{staff.phone_number}</h1>
+                </div>
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-semibold text-[#878787]">
+                    Email Address
+                  </h1>
+                  <h1 className="text-base font-semibold">{staff.email}</h1>
+                </div>
               </div>
-            </div>
-
-            <div className=" grid grid-cols-2 pl-6">
-              <div className=" flex flex-col justify-center ">
-                <h1 className=" text-sm  font-normal text-[#878787]">Gender</h1>
-                <h1 className=" text-base  font-semibold">{staff.gender}</h1>
-              </div>
-              <div className=" flex flex-col justify-center ">
-                <h1 className=" text-sm  font-normal text-[#878787]">
-                  Qualification
-                </h1>
-                <h1 className=" text-base  font-semibold">{staff.Qualification}</h1>
+              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-semibold text-[#878787]">
+                    Home address
+                  </h1>
+                  <h1 className="text-base font-semibold">{staff.address}</h1>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className=" col-span-2 flex flex-col gap-5 px-4">
-            <div className="flex flex-col gap-4 p-3 border border-[#EDEDED] rounded-lg ">
-              <div className=" text-lg pl-4 font-normal text-[#878787]">
-                Contact Information
+          <div className="flex-1 flex flex-col gap-4">
+            <div className="flex flex-col p-3 gap-4 border border-[#EDEDED] rounded-lg shadow-lg">
+              <div className="text-lg pl-4 font-semibold text-[#878787]">
+                Role Information
               </div>
-              <div className=" grid grid-cols-2 pl-4">
-                <div className=" flex flex-col justify-center ">
-                  <h1 className=" text-sm  font-semibold text-[#878787]">
-                    Phone Number
+              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-semibold text-[#878787]">
+                    Department
                   </h1>
-                  <h1 className=" text-base  font-semibold">{staff.phone_number}</h1>
+                  <h1 className="text-base font-semibold">Null</h1>
                 </div>
-                <div className=" flex flex-col justify-center ">
-                  <h1 className=" text-sm  font-semibold text-[#878787]">
-                    Email Address
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-semibold text-[#878787]">
+                    Class[es]
                   </h1>
-                  <h1 className=" text-base  font-semibold">
-                    {staff.email}
-                  </h1>
+                  <h1 className="text-base font-semibold">Null</h1>
                 </div>
               </div>
-              <div className=" grid grid-cols-2 pl-4">
-                <div className=" flex flex-col justify-center ">
-                  <h1 className=" text-sm  font-semibold text-[#878787]">
-                    Home address
+              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-semibold text-[#878787]">
+                    Qualification
                   </h1>
-                  <h1 className=" text-base  font-semibold">
-                   {staff.address}
+                  <h1 className="text-base font-semibold">Null</h1>
+                </div>
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-semibold text-[#878787]">
+                    Subjects
                   </h1>
+                  <h1 className="text-base font-semibold">Null</h1>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-semibold text-[#878787]">
+                    Role
+                  </h1>
+                  <h1 className="text-base font-semibold">Null</h1>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col p-3 gap-4 border border-[#EDEDED] rounded-lg ">
-              <div className=" text-lg pl-4 font-semibold text-[#878787]">
-                Role Information
+            <div className="border border-[#EDEDED] rounded-lg p-3 shadow-lg hidden md:block">
+              <div className="text-lg pl-4 font-normal text-[#878787]">
+                Contact Information
               </div>
-              <div className=" grid grid-cols-2 pl-4">
-                <div className=" flex flex-col justify-center ">
-                  <h1 className=" text-sm  font-semibold text-[#878787]">
-                    Deparment
+              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-semibold text-[#878787]">
+                    Phone Number
                   </h1>
-                  <h1 className=" text-base  font-semibold">Null</h1>
+                  <h1 className="text-base font-semibold">{staff.phone_number}</h1>
                 </div>
-                <div className=" flex flex-col justify-center ">
-                  <h1 className=" text-sm  font-semibold text-[#878787]">
-                    Class[es]
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-semibold text-[#878787]">
+                    Email Address
                   </h1>
-                  <h1 className=" text-base  font-semibold">
-                    Null
-                  </h1>
+                  <h1 className="text-base font-semibold">{staff.email}</h1>
                 </div>
               </div>
-              <div className=" grid grid-cols-2 pl-4">
-                <div className=" flex flex-col justify-center ">
-                  <h1 className=" text-sm  font-semibold text-[#878787]">
-                    Qualification
+              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
+                <div className="flex flex-col justify-center">
+                  <h1 className="text-sm font-semibold text-[#878787]">
+                    Home address
                   </h1>
-                  <h1 className=" text-base  font-semibold">Null</h1>
-                </div>
-                <div className=" flex flex-col justify-center ">
-                  <h1 className=" text-sm  font-semibold text-[#878787]">
-                    Subjects
-                  </h1>
-                  <h1 className=" text-base  font-semibold">
-                    Null
-                  </h1>
-                </div>
-              </div>
-              <div className=" grid grid-cols-2 pl-4">
-                <div className=" flex flex-col justify-center ">
-                  <h1 className=" text-sm  font-semibold text-[#878787]">
-                    Role
-                  </h1>
-                  <h1 className=" text-base  font-semibold">Null</h1>
+                  <h1 className="text-base font-semibold">{staff.address}</h1>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      </Layout>
+    </Layout>
   );
 }
