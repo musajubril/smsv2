@@ -56,7 +56,7 @@ export default function Classes() {
 
   const mappedClasses = classes?.map((cls) => {
     return {
-      "Class": cls.name,
+      "Name": cls.name,
       "Teacher": cls.name,
     };
   }) || []; 
@@ -119,7 +119,7 @@ export default function Classes() {
             students={mappedClasses}
             imageUrls={mappedClasses}
             IDs={mappedIds}
-            hasCheckBox={true}
+            hasCheckBox={false}
             hasImage={false}
             actionHandle={handleAction}
             isAttendance={undefined}
