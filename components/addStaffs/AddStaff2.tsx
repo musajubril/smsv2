@@ -106,7 +106,7 @@ export default function AddStaff2({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    openProfilePreview(); // Open the modal on form submission
+    openProfilePreview(); 
   };
 
   return (
@@ -116,7 +116,7 @@ export default function AddStaff2({
           <ProfilePreview />
         </Modal>
         <div className="flex flex-col pt-6 ">
-          <div className="flex pb-5 gap-2 cursor-pointer p-0">
+          <div className="flex pb-5 gap-2 cursor-pointer p-0 max-sm:hidden">
             <div
               onClick={router.back}
               className=" flex items-center gap-3 cursor-pointer"
@@ -141,7 +141,7 @@ export default function AddStaff2({
             <div className="">Add New Staff</div>
           </div>
 
-          <div className=" grid grid-cols-3 gap-4 ">
+          <div className=" grid md:grid-cols-3 gap-4 ">
             <div className=" col-span-2 border border-[#E4E7EC] bg-white-100 rounded-lg p-4">
               <div className=" pb-4">
                 <div className=" text-xl  font-semibold">Add New Staff</div>
@@ -236,7 +236,7 @@ export default function AddStaff2({
               </form>
             </div>
 
-            <div className=" col-span-1 border border-[#E4E7EC] bg-white-100 rounded-lg p-3 flex flex-col gap-4">
+            <div className=" col-span-1 border border-[#E4E7EC] bg-white-100 rounded-lg p-3 flex flex-col gap-4 max-sm:hidden">
               <div className=" flex gap-2 items-center">
                 <div className=" h-10 w-10 bg-blue-100 rounded-full flex justify-center items-center text-lg text-white-100 font-semibold">
                   <FaCheck />
