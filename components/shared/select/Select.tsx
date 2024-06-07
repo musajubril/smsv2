@@ -58,9 +58,7 @@ export default function Select({options,placeholder, name, change, text, state, 
   const handleSelectOption = (option:any) => {
     console.log("Selected Option is:",option)
     setSelectedOption(option.label)
-    setState({
-      ...state,
-      [name]: option.value})
+    setState( option.value )
     setIsOpen(false)
     change
   };
@@ -77,13 +75,13 @@ export default function Select({options,placeholder, name, change, text, state, 
         onClick={handleToggleDropdown}
         value={searchTerm}
         placeholder={selectedOption ? selectedOption : placeholder}
-        className="  px-4 py-3 text-sm font-medium  bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
+        className=" w-full px-4 py-3 text-sm font-medium  bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
         // onChange={(e) => setSearchTerm(e.target.value)}
         onChange={handleInput}
       />
 
       {isOpen && (
-        <div className="absolute z-50 mt-2 pt-2 w-full rounded-md shadow-lg bg-gray-700">
+        <div className="absolute z-50 mt-2 pt-2 w-full rounded-md shadow-lg bg-gray-700 overflow-y-scroll max-h-60">
           <div className="  bg-white   rounded-md">
             {filteredOptions.map((option, index) => (
               <div

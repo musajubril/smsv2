@@ -48,7 +48,7 @@ export default function test() {
     };
   });
 
-  console.log(mappedIds);
+  // console.log(mappedIds);
 
   const handleAction = () => {
     console.log("clicked");
@@ -66,30 +66,28 @@ export default function test() {
     { value: Math.random(), label: "Civic Education" },
   ];
 
-  
-const { data: classData } = useQuery({
-  queryKey: [queryKeys.getclass],
-  queryFn: async () => await getRequest({ url: HOMEROOMS(uid) }),
-});
+  const { data: classData } = useQuery({
+    queryKey: [queryKeys.getclass],
+    queryFn: async () => await getRequest({ url: HOMEROOMS(uid) }),
+  });
 
-console.log(classData);
+  // console.log(classData);
 
-const [classes, setclasses] = useState([]);
-useEffect(() => {
-  setclasses(classData?.data);
-}, [classData]);
+  const [classes, setclasses] = useState([]);
+  useEffect(() => {
+    setclasses(classData?.data);
+  }, [classData]);
 
-console.log(classes);
+  // console.log(classes);
 
-const mappedClasses = classes?.map((cla) => {
-  return {
-    value: cla.id,
-    label: cla.name
-  };
-});
+  const mappedClasses = classes?.map((cla) => {
+    return {
+      value: cla.id,
+      label: cla.name,
+    };
+  });
 
-console.log(mappedClasses);
-
+  // console.log(mappedClasses);
 
   const [mock, setMock] = useState();
 
@@ -99,17 +97,18 @@ console.log(mappedClasses);
 
   return (
     // <Layout><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false} isAttendance={undefined} hasAction={true} actionHandle={handleAction} nameUrls={`/best-college/admin/student`}></Table></Layout>
-    <div>
-      { classes &&  <Select
-        options={mappedClasses}
-        placeholder={"dummy"}
-        state={mock}
-        setState={setMock}
-        text={""}
-        change={undefined}
-        name={""}
-      />
-      }
+    <div className=" p-5">
+      {classes && (
+        <Multiselect
+          options={mappedClasses}
+          placeholder={"dummy"}
+          state={mock}
+          setState={setMock}
+          // text={""}
+          // change={undefined}
+          // name={""}
+        />
+      )}
     </div>
   );
 }
