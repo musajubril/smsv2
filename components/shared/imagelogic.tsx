@@ -17,7 +17,7 @@ export default function Imagelogic() {
                 <input
                     className='hidden'
                     type='file'
-                    accept='.csv'
+                    accept='.jpg,.jpeg,.png,.tif,.bmp,.svg'
                     id='input-img'
                     onChange={handleImage}
                 />

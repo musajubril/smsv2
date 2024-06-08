@@ -26,7 +26,7 @@ const Modal: React.FC<ModalProps> = ({ action, children, open }) => {
               onClick={() => action(false)}
               className="flex justify-end hover:cursor-pointer absolute top-4 right-4"
             >
-              <img src="cancel.svg" alt="cancel button" className="h-8 w-8 pb-[8px]" />
+              <img src="/cancel.svg" alt="cancel button" className="h-8 w-8 pb-[8px]" />
             </div>
             <div className="p-12">{children}</div>
           </div>

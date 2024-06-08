@@ -115,7 +115,7 @@ export default function Pagination({ paginate, count }) {
                 <li
                   className={` flex justify-center items-center  w-8
                 h-8 rounded-full text-base font-semibold cursor-pointer gap-2 ${
-                  number?.active === true ? " bg-purple-500 text-white-100 w-10  " : "bg-white-100"
+                  number?.active === true ? " bg-[#0065C2] text-white-100 w-10  " : "bg-white-100"
                 }
                  `}
                   key={number?.num}
@@ -131,7 +131,7 @@ export default function Pagination({ paginate, count }) {
                 <li
                   className={` flex justify-center items-center w-8 
                 h-8 rounded-full text-base font-semibold cursor-pointer gap-2 ${
-                  number?.active === true ? " bg-purple-500 text-white-100 w-10 " : "bg-gray-700"
+                  number?.active === true ? " bg-[#0065C2] text-white-100 w-10 " : "bg-gray-700"
                 }
                  `}
                   key={number?.num}
@@ -158,7 +158,7 @@ export default function Pagination({ paginate, count }) {
             } 
               ${
                 pagenumbers[pagenumbers.length - 1]?.active === true
-                  ? " bg-purple-500 text-white-100 w-10 h-10"
+                  ? " bg-[#0065C2] text-white-100 w-10 h-10"
                   : "bg-gray-700"
               }
                  `}
