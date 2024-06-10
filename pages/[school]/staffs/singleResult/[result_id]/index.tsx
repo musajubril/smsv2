@@ -13,6 +13,7 @@ import { useQuery } from '@tanstack/react-query';
 import { queryKeys } from '@/api/queryKey';
 import { STUDENT } from '@/api/apiUrl';
 import { getRequest } from '@/api/apiCall';
+import LayoutStaff from '@/components/StaffLayout/LayoutStaff';
 
 
 
@@ -147,7 +148,7 @@ console.log(student)
 
   return (
     <div>
-      <Layout>
+      <LayoutStaff>
         {
         <div className='py-3 '>
           <div className=' flex gap-3 items-center pb-3'>
@@ -290,7 +291,7 @@ console.log(student)
         </div>
         }
 
-      </Layout>
+      </LayoutStaff>
     </div>
   )
 }

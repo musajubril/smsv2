@@ -83,8 +83,8 @@ export default function Addstudent1({
         </div>
       </div> */}
 
-      <div className=" grid grid-cols-3 gap-4 ">
-        <div className=" col-span-2 border border-[#E4E7EC] bg-white-100 rounded-lg p-4">
+      <div className="  grid md:grid-cols-3 gap-4 ">
+        <div className=" col-span-2 border border-[#E4E7EC] bg-white-100 rounded-lg p-4 w-full">
           <div className=" pb-4">
             <div className=" text-xl  font-semibold">Add New Student</div>
             <div className=" text-gray-400 text-sm">
@@ -196,7 +196,7 @@ export default function Addstudent1({
           </form>
         </div>
 
-        <div className=" rounded-lg col-span-1  bg-white-100  p-3 flex flex-col gap-4">
+        <div className=" rounded-lg col-span-1  bg-white-100  p-3 hidden sm:flex flex-col gap-4">
           <div className=" flex gap-2 items-center">
             <div className=" h-10 w-10 bg-blue-100 rounded-full flex justify-center items-center text-lg text-white-100 font-semibold">
               1

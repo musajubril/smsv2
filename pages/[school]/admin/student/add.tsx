@@ -138,8 +138,8 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
 
         {!showCSVPreview ? (
           <>
-            <div className=" px-6">
-              <div className=" flex justify-between items-center">
+            <div className=" px-6 ">
+              <div className=" flex justify-between items-center max-sm:hidden">
                 <div className=" flex items-center gap-3 cursor-pointer">
                   <div
                     onClick={router.back}
