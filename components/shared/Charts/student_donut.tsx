@@ -16,7 +16,8 @@ export default function StudentDonut() {
   };
 
   const options = {
-    cutoutPercentage: 100,
+    cutout: '70%',
+    radius: '70%',
     plugins: {
       legend: {
         display: false,
@@ -26,23 +27,23 @@ export default function StudentDonut() {
 
   return (
     <>
-    <div className='bg-white-100'>
-      <div className="text-xl font-semibold px-6 pt-6 items-center  bg-white-100">
+    <div className='bg-white-100 rounded-lg py-4 px-4'>
+      <div className="text-xl font-semibold  items-center  ">
         Students
       </div>
-      <div className=" pt-4  ">
-        <div className=" w-[80%] h-[50%] justify-center flex" >
+      <div className="   ">
+        <div className="  justify-center flex " >
           <Doughnut data={data} options={options} />
         </div>
-        <div className="flex items-center pt-4">
+        <div className="flex items-center  justify-center">
           {data.labels.map((label, index) => (
-            <div key={index} className="flex gap-2 items-center px-4">
+            <div key={index} className="flex gap-2 items-center px-4 ">
               <div className={`w-2 h-2 rounded-full ${index === 0 ? 'bg-[#00C7B4]' : 'bg-[#0080F5]'}`}></div>
-              <div className="text-base font-medium items-center">{label}</div>
+              <div className="text-base font-medium items-center ">{label}</div>
             </div>
           ))}
         </div>
-        <div className="flex px-8 gap-16">
+        <div className="flex gap-16 justify-center">
           <div className="text-xs font-normal text-[#BABABA]">{data.datasets[0].data[0]}</div>
           <div className="text-xs font-normal text-[#BABABA]">{data.datasets[0].data[1]}</div>
         </div>

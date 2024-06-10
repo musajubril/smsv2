@@ -1,5 +1,6 @@
 import Button from '@/components/shared/button/Button'
 import PasswordInput from '@/components/shared/input/Passwordinput'
+import Link from 'next/link'
 import React from 'react'
 
 export default function Onboarding2() {
@@ -18,13 +19,13 @@ export default function Onboarding2() {
                  <span className='inline md:hidden'>Guardian ID</span> 
                 </p>
                 <div className=''>
-                <PasswordInput text={'Enter Subject'} name={''} size='large' change={undefined} value={undefined} disabled={false} error={false} success={false} />
+                <PasswordInput text={'Enter Username'} name={''} size='large' change={undefined} value={undefined} disabled={false} error={false} success={false} />
               
                 </div>
                </div>
-               <div className=' w-full'>
-               <Button text={'Forgot Password'} disabled={false} onClick={undefined} intent='primary' size='base' />
-               </div>
+               <Link href={'/parental_access/profile'} className=' w-full'>
+               <Button text={'Forgot Password'} disabled={false} onClick={undefined} intent='primary' size='base' /></Link>
+          
 
             </div>
             

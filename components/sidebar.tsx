@@ -87,7 +87,7 @@ export default function Sidebar({
   ];
 
   return (
-    <div className="bg-[#0065C2] w-full md:w-1/5 text-[white] p-6 h-screen fixed bg-opacity-70 md:bg-opacity-90 flex flex-col gap-6 ">
+    <div className="bg-[#0065C2] w-full md:w-1/5 text-[white] p-6 h-screen  fixed z-30 md:z-0 md:bg-opacity-90 flex flex-col gap-6 ">
       <p className="text-white font-bold text-xl hidden md:block">SMS</p>
       <div className="flex flex-col gap-5 pt-10 md:pt-0">
         {nav.map((item, index) => (

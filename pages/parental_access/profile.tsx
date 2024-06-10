@@ -54,14 +54,13 @@ export default function Onboarding() {
         </div>
 
         <div className='sm:block md:flex justify-center items-center h-[70%]'>
-          <div className='flex flex-col gap-5 items-center px-3'>
+          <div className='flex flex-col gap-4 items-center px-3'>
             <div className='h-16 w-16'>
-              {' '}
               <img src="/emoji.png" alt="" />
             </div>
             <div className='flex flex-col gap-2 items-center text-center'>
               <div className='text-[#000D19] md:text-3xl text-xl font-semibold'>Welcome Mr Adam</div>
-              <div className='text-gray-100 text-base '> Thank you for bringing your wards/children to our school</div>
+              <div className='text-gray-100 text-sm md:text-lg'> Thank you for bringing your wards/children to our school</div>
             </div>
             <div className='flex flex-col gap-3 w-full px-3 '>
               {Cards.map((info, index) => (

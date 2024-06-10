@@ -29,15 +29,15 @@ const Layout = ({ children }) => {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      <div className="md:w-1/4">
-        <Hamburger logout={() => setOpen(true)} />
+    <div className="flex h-screen overflow-hidden ">
+      <div className="md:w-1/4  ">
+        <Hamburger logout={() => setOpen(true)}  />
       </div>
 
       <div className="w-full overflow-y-scroll bg-white-300">
-        <div className="flex justify-between mb-2 bg-white-100 py-3 px-9">
+        <div className="flex justify-between mb-2 bg-white-100 py-3 px-4  md:px-9 relative">
           {/* Render search bar and icons only on larger screens */}
-          <div className="hidden md:flex relative items-center ">
+          <div className=" w-1/3 md:w-full flex relative items-center ">
             <CiSearch className="h-5 w-5 text-[#475367] absolute left-4" />
             <input
               type="text"
@@ -45,7 +45,7 @@ const Layout = ({ children }) => {
               className=" py-2 pl-10 pr-2 text-sm bg-[#F9FAFB]  rounded-sm focus:outline-none w-[629px] focus:border-blue-500 focus:border"
             />
           </div>
-          <div className="flex justify-between items-center gap-2">
+          <div className="md:flex  hidden justify-between items-center gap-2">
             {/* Render icons only on larger screens */}
             <div className="hidden md:flex w-10 h-10 items-center justify-center bg-[#F0F2F5] rounded-[50%] ">
               <IoMdNotificationsOutline className="h-6 w-6 text-[#475367]" />
@@ -59,12 +59,15 @@ const Layout = ({ children }) => {
               />
             </div>
           </div>
+          {/* <div className=" f">
+            <Hamburger logout={undefined} />
+            </div>     */}
         </div>
         <div className="bg-white p-4 rounded-lg">
           <div className="">
             <Modal action={action} open={open}>
-              <div className="flex flex-col gap-6 p-4">
-                <div className=" font-semibold text-3xl text-[#0065C2]">
+              <div className="flex flex-col gap-6  md:p-4">
+                <div className=" font-semibold text-xl md:text-3xl text-[#0065C2]">
                   Do You Want to Log out?
                 </div>
                 <div className=" grid grid-cols-2 gap-2">
