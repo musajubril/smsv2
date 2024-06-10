@@ -11,9 +11,15 @@ const options = {
     legend: {
         display: false,
     }
- 
   },
+  scales: {
+    x: {
+      grid: {
+        display: false,
+      },
+    },
   
+  },
 };
 
 const labels = ['Jss1', 'Jss2', 'Jss3', 'SSS1', 'SSS2', 'SSS3'];
@@ -25,6 +31,8 @@ const data = {
       data: [800, 600, 1800, 1000, 400, 500],
       backgroundColor: 'rgba(0, 0, 255, 80)',
       borderRadius: 10,
+      barThickness: 35,
+
     },
   ],
  

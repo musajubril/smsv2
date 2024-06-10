@@ -166,20 +166,21 @@ console.log(student)
               <div className=' flex gap-2 font-semibold text-2xl items-center'>
                 <div>{student.full_name}</div>
                 <div className=' text-[#009688]'><GoDotFill /></div>
-                <div className=' text-[#009688]'>85%</div>
+                <div className=' text-[#009688] text-sm md:text-lg'>85%</div>
               </div>
               <div className=' flex gap-3'>
+                  <div className=' hidden md:flex'>
                 <div className=' border px-2 py-1 border-[#8FC9FF] flex  rounded items-center'>
                   <div className='text-black text-base font-medium'><StaffDropdown options={yearOptions} onSelect={undefined} placeholder={'2023/2024'} /></div>
-                  {/* <div><IoIosArrowDown /></div> */}
+                  </div>
                 </div>
                 <div>
-                  <Button text={'Upload Question'} disabled={false} onClick={undefined} intent='primary' size='base' /> </div>
+                  <Button text={'Upload Question'} disabled={false} onClick={undefined} intent='primary' size='small' /> </div>
               </div>
             </div>
 
             <div className=' flex justify-between w-full items-center '>
-              <div className=' w-[35%]'>
+              <div className=' md:w-[40%] w-[50%]'>
                 <input
                   type="text"
                   name=""
@@ -188,7 +189,7 @@ console.log(student)
                   placeholder="Search..."
                 />
               </div>
-              <div className=' flex gap-4 text-base items-center  '>
+              <div className=' hidden md:flex gap-4 text-base items-center  '>
                 <div className='  text-black font-semibold'>Filters: </div>
                 <StaffDropdown
                   options={termOptions}
@@ -202,12 +203,12 @@ console.log(student)
               </div>
 
             </div>
-            <div className=' grid grid-cols-4 gap-5 '>
+            <div className=' grid md:grid-cols-4 grid-cols-2 gap-5 '>
               {
                 subjects.map((sub, index) => (
                   <div key={index} >
                     <div className={`flex flex-col bg-white-100 pb-3 border rounded-lg shadow border-[#C2E2FF] }`}>
-                      <div className=' bg-[#F5FAFF] p-3 text-xl font-medium'>{sub}</div>
+                      <div className=' bg-[#F5FAFF] p-3 md:text-xl text-sm font-medium'>{sub}</div>
                       <div className=' flex flex-col gap-4 px-3 pt-3'>
                         <div className=' flex gap-4'>
                           <div className=' flex flex-col gap-2'>

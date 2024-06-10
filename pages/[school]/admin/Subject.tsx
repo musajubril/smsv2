@@ -100,8 +100,9 @@ export default function Subject({ course }) {
         <div >
           <div className=' flex gap-5 flex-col '>
             <div className=' flex justify-between w-full pt-4'>
-              <div className=" font-semibold text-2xl">Subjects</div>
+              <div className=" font-semibold text-lg md:text-2xl">Subjects</div>
               <div>
+                <div>
                 <Button
                   intent="primary"
                   size="small"
@@ -109,6 +110,7 @@ export default function Subject({ course }) {
                   disabled={false}
                   onClick={handleAddNewCourse}
                 />
+                </div>
                 <Addnewcourse
                   isModalOpen={isAddNewCourseModalOpen}
                   handleCloseModal={handleCloseAddNewCourse}
@@ -120,7 +122,7 @@ export default function Subject({ course }) {
               </div>
             </div>
 
-            <div className=' w-[35%]'>
+            <div className=' w-[40%]'>
               <input
                 type="text"
                 name=""
@@ -128,7 +130,6 @@ export default function Subject({ course }) {
                 className="w-full border border-[#E4E7EC] py-2 rounded-md outline-none text-sm text-[#667185] pl-2"
                 placeholder="Search..."
               />
-
             </div>
 
             <div className=" ">

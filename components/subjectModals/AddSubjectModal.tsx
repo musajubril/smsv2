@@ -45,17 +45,17 @@ const Addnewcourse = ({ isModalOpen, handleCloseModal, handleAddCourse, handlech
     <div className=''>
       <button onClick={isModalOpen} ></button>
       <Modal action={handleCloseModal} open={isModalOpen}  >
-        <div className={`flex flex-col gap-5 w-[400px]   max-h-[400px] `}>
-          <div className='font-bold text-black text-xl flex justify-start'>Add subject</div>
+        <div className={`flex flex-col gap-5 w-full   `}>
+          <div className='font-semibold text-black text-xl flex justify-start'>Add New subject</div>
           <div className='flex flex-col gap-3'>
             <div className=' flex flex-col w-full '>
-              <h1 className=' font-bold text-lg justify-start flex'>SubjectName</h1>
-              <Input text={'Enter Subjectname'} name={'name'} error={false} size='large' success={false} disabled={false} change={handlechange} value={undefined} />
+              <h1 className=' font-medium text-base justify-start flex'>subject name</h1>
+              <Input text={'Enter subject name'} name={'name'} error={false} size='large' success={false} disabled={false} change={handlechange} value={undefined} />
             </div>
             <div className=' flex flex-col w-full '>
-              <h1 className=' font-bold text-lg justify-start flex'>Classes</h1>
+              <h1 className=' font-medium text-base justify-start flex'>Classes</h1>
               {classes &&
-                <div><Multiselect options={mappedClasses} placeholder={'Enter Subject'} state={state} setState={setState} /></div>
+                <div><Multiselect options={mappedClasses} placeholder={'select classes'} state={state} setState={setState}  /></div>
               }
             </div>
             <Button text='Upload Subject' disabled={false} onClick={handleAddCourse} size='small' intent='primary' />
