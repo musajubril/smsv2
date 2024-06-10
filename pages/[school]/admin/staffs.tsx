@@ -92,8 +92,7 @@ export default function staff_list() {
                 size="base"
                 text="+ Add New Staff"
                 disabled={false}
-                onClick={undefined}
-              />
+                onClick={undefined} className={''}              />
             </Link>
           </div>
           <div>
