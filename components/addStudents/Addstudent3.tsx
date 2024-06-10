@@ -161,7 +161,7 @@ export default function Addstudent3({
         </div> */}
         </div>
 
-        <div className=" grid grid-cols-3 gap-4 ">
+        <div className=" grid md:grid-cols-3 gap-4 ">
           <div className=" col-span-2 border border-[#E4E7EC] bg-white-100 rounded-lg p-4">
             <div className=" pb-4">
               <div className=" text-xl  font-semibold">
@@ -240,7 +240,7 @@ export default function Addstudent3({
             </form>
           </div>
 
-          <div className=" col-span-1 border border-[#E4E7EC] bg-white-100 rounded-lg p-3 flex flex-col gap-4">
+          <div className=" col-span-1 border border-[#E4E7EC] bg-white-100 rounded-lg p-3 hidden sm:flex flex-col gap-4">
             <div className=" flex gap-2 items-center">
               <div className=" h-10 w-10 bg-blue-100 rounded-full flex justify-center items-center text-lg text-white-100 font-semibold">
                 <FaCheck />
