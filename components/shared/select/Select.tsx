@@ -58,6 +58,7 @@ export default function Select({options,placeholder, name, change, text, state, 
   const handleSelectOption = (option:any) => {
     console.log("Selected Option is:",option)
     setSelectedOption(option.label)
+    setSearchTerm(option.label);
     setState( option.value )
     setIsOpen(false)
     change
