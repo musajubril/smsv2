@@ -124,8 +124,7 @@ export default function student_list() {
                     size="base"
                     text="Add New Student"
                     disabled={false}
-                    onClick={undefined}
-                  />
+                    onClick={undefined} className={" "}                  />
                 </Link>
               </div>
             </div>
