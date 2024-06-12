@@ -48,10 +48,10 @@ export default function Login() {
   const mutation = useMutation({
     mutationFn: async (newLogin: any) =>
       await login({ url: LOGIN_URL(schoolData?.uid), data: newLogin }),
-    onSuccess:(data: {access: string, refresh: string})=> {
-      console.log(data)
-      const loginToken = data.access
-      localStorage.setItem('easysch_token', data.access)
+    onSuccess: (data: { access: string; refresh: string }) => {
+      console.log(data);
+      const loginToken = data.access;
+      localStorage.setItem("easysch_token", data.access);
       localStorage.setItem("schoolSlug", schoolData?.slug);
       localStorage.setItem("schoolId", schoolData?.uid);
       localStorage.setItem("schoolName", schoolData?.name);
@@ -65,7 +65,6 @@ export default function Login() {
           if (decodedToken.groups.includes("Teacher")) {
             router.push(`/${school}/staffs/`);
             console.log("teacher");
-
           } else if (decodedToken.groups.includes("Owner")) {
             router.push(`/${school}/admin/`);
             console.log("owner");
@@ -86,28 +85,29 @@ export default function Login() {
   };
   return (
     <div>
-      <div className="h-screen px-5 lg:grid grid-cols-2 gap-6 ">
+      <div className="h-screen  flex flex-col px-7 lg:grid grid-cols-2 gap-6 bg-gray-50 lg:bg-white-100 ">
         {/* image  */}
-        <div className="hidden  lg:block  col-span-1">
-          <div className="  h-full flex items-center justify-center">
+        <div className="py-5 col-span-1">
+          <div className=" transition-all transform hover:scale-105 hover:-translate-y-3 h-full flex items-center justify-center">
             <div className=" flex items-center justify-center ">
               <img src={schoolData?.logo} alt="" />
             </div>
           </div>
         </div>
 
-        <div className=" px-5 pt-5  col-span-1 flex flex-col justify-center  ">
-          <div className="text-3xl font flex justify-center font-bold">
-            {schoolData?.name}
-          </div>
-          <form onSubmit={handleSubmit} className="p-8 ">
-            <div className=" pb-3">
-              <div className="flex justify-start  ">
-                <h1 className="  text-2xl font-bold text-center justify-start">
-                  Sign In
-                </h1>
+        <div className=" px-5 lg:py-8  bg-gray-50 col-span-1 flex flex-col lg:justify-center">
+          <div className=" flex flex-col gap-6 h-2/3">
+            <div className="flex flex-col gap-2 justify-center  ">
+              <div className="text-4xl text-center font flex  justify-center font-bold">
+                {schoolData?.name}
               </div>
-              <div className=" flex py-4 text-start ">
+              <h1 className="  text-3xl font-bold text-center justify-start">
+                Sign In
+              </h1>
+            </div>
+            <form onSubmit={handleSubmit} className="px-8 ">
+              <div className=" pb-3">
+                {/* <div className=" flex py-4 text-start ">
                 <p>
                   If you don't have an account, you can
                   <Link
@@ -117,58 +117,55 @@ export default function Login() {
                     Register Here
                   </Link>
                 </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-6">
-              <Input
-                size="large"
-                disabled={false}
-                error={null}
-                success={null}
-                change={handleChange}
-                name="email"
-                text={"Email address"}
-                value={undefined}
-              />
-              <Input
-                size="large"
-                disabled={false}
-                error={null}
-                success={null}
-                change={handleChange}
-                name="password"
-                text={"Password"}
-                value={undefined}
-              />
-            </div>
-            <div className="">
-              <div className=" flex justify-between text-sm my-5">
-                <div className="flex items-center justify-start my-4">
-                  <input
-                    type="checkbox"
-                    id="myCheckbox"
-                    className="w-5 h-4 border-black rounded "
-                  />
-                  <label htmlFor="myCheckbox" className="ml-2">
-                    {" "}
-                    Remember Me
-                  </label>
-                </div>
-                <button>Forgot Password?</button>
+              </div> */}
               </div>
 
-              <div className="">
-                <Button
-                  size="base"
-                  intent="primary"
-                  text={"Log in"}
+              <div className="flex flex-col gap-6">
+                <Input
+                  size="large"
                   disabled={false}
-                  onClick={undefined}
+                  error={null}
+                  success={null}
+                  change={handleChange}
+                  name="email"
+                  text={"Mobile Number Or Email Address"}
+                  value={undefined}
+                />
+                <Input
+                  size="large"
+                  disabled={false}
+                  error={null}
+                  success={null}
+                  change={handleChange}
+                  name="password"
+                  text={"Password"}
+                  value={undefined}
                 />
               </div>
+              <div className="">
+                <div className=" flex justify-between text-sm my-5">
+                  <div className="flex items-center justify-start my-4">
+                    <Link
+                      href={`/${school}/admin`}
+                      className="text-blue-200 text-xl"
+                    >
+                      Verify New Account
+                    </Link>
+                  </div>
+                  <button>Forgot Password?</button>
+                </div>
 
-              <div className="text-center pt-9">OR Continue with</div>
+                <div className="">
+                  <Button
+                    size="base"
+                    intent="primary"
+                    text={"Log in"}
+                    disabled={false}
+                    onClick={undefined}
+                  />
+                </div>
+
+                {/* <div className="text-center pt-9">OR Continue with</div>
               <div className="flex justify-center pt-3 ">
                 <a href="#" className="p-6 ">
                   <img src="/Twitter.jpg" alt="Twitter icon" />
@@ -179,9 +176,10 @@ export default function Login() {
                 <a href="#" className="p-6 ">
                   <img src="/Facebook.png" alt="Facebook icon" />
                 </a>
+              </div> */}
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
