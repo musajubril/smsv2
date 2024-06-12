@@ -34,7 +34,7 @@ const AddNewclass = ({ isModalOpen, handleCloseModal, handleAddClass, setNewClas
 
   return (
     <Modal action={handleCloseModal} open={isModalOpen}>
-      <div className={`flex flex-col gap-5 w-[400px] overflow-y-scroll max-h-[400px] scrollbar-hidden`}>
+      <div className={`flex flex-col gap-5 w-full `}>
         <div className='font-bold text-black text-xl flex justify-start'>Add New Class</div>
         <div className='flex flex-col gap-3'>
           <div className='flex flex-col w-full'>
