@@ -236,7 +236,7 @@ export default function AddStaff2({
               </form>
             </div>
 
-            <div className=" col-span-1 border border-[#E4E7EC] bg-white-100 rounded-lg p-3 flex flex-col gap-4 max-sm:hidden">
+            <div className=" col-span-1 border border-[#E4E7EC] bg-white-100 rounded-lg p-3  flex-col gap-4 hidden sm:flex">
               <div className=" flex gap-2 items-center">
                 <div className=" h-10 w-10 bg-blue-100 rounded-full flex justify-center items-center text-lg text-white-100 font-semibold">
                   <FaCheck />

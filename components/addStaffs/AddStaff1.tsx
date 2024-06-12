@@ -162,7 +162,7 @@ export default function AddStaff1({
             </form>
           </div>
 
-          <div className=" col-span-1 border border-[#E4E7EC] bg-white-100 rounded-lg p-3 flex flex-col gap-4 max-sm:hidden">
+          <div className=" rounded-lg col-span-1 bg-white-100 p-3 hidden sm:flex flex-col gap-4">
             <div className=" flex gap-2 items-center">
               <div className=" h-10 w-10 bg-blue-100 rounded-full flex justify-center items-center text-lg text-white-100 font-semibold">
                 1
