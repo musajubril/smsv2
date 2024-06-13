@@ -7,6 +7,7 @@ import Table from "@/components/shared/reusableTable/Table";
 import Multiselect from "@/components/shared/select/Multiselect";
 import Select from "@/components/shared/select/Select";
 import { useQuery } from "@tanstack/react-query";
+import router from "next/router";
 import React, { useEffect, useState } from "react";
 
 export default function test() {
@@ -50,9 +51,13 @@ export default function test() {
 
   // console.log(mappedIds);
 
-  const handleAction = () => {
-    console.log("clicked");
+  const handleAction = (ID) => {
+   return `/best-college/admin/student/${ID}`
   };
+
+  const actions = [
+    { actionUrl: handleAction, label: "Edit" }
+  ];
 
   const subjectOptions = [
     { value: Math.random(), label: "Mathematics" },
@@ -96,19 +101,19 @@ export default function test() {
   }, [mock]);
 
   return (
-    // <Layout><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false} isAttendance={undefined} hasAction={true} actionHandle={handleAction} nameUrls={`/best-college/admin/student`}></Table></Layout>
-    <div className=" p-5">
-      {classes && (
-        <Multiselect
-          options={mappedClasses}
-          placeholder={"dummy"}
-          state={mock}
-          setState={setMock}
-          // text={""}
-          // change={undefined}
-          // name={""}
-        />
-      )}
-    </div>
+    <Layout><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false} isAttendance={undefined} hasAction={true} actionHandle={actions} nameUrls={`/best-college/admin/student`}></Table></Layout>
+    // <div className=" p-5">
+    //   {classes && (
+    //     <Multiselect
+    //       options={mappedClasses}
+    //       placeholder={"dummy"}
+    //       state={mock}
+    //       setState={setMock}
+    //       // text={""}
+    //       // change={undefined}
+    //       // name={""}
+    //     />
+    //   )}
+    // </div>
   );
 }
