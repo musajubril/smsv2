@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Router, { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { HiDotsVertical } from "react-icons/hi";
 
 export default function Table({
@@ -23,6 +23,14 @@ export default function Table({
   const key_length = keys.includes("Name") ? keys.length + 1 : keys.length;
   //   console.log(keys);
   //   console.log(key_length);
+
+
+  const [open, setOpen] = useState(Array(students.length).fill(false));
+console.log(open)
+  const handleAction = (index) => {
+    setOpen(open.map((item, i) => (i === index ? !item : item)));
+  };
+
 
   return (
     <div>
@@ -61,7 +69,9 @@ export default function Table({
               {students.map((pupil, pupilIndex) => (
                 <div
                   key={pupilIndex}
-                  className={`grid grid-cols-3  md:grid-cols-${key_length + 2} gap-3`}
+                  className={`grid grid-cols-3  md:grid-cols-${
+                    key_length + 2
+                  } gap-3`}
                 >
                   {keys.map((key, keyIndex) => (
                     <div
@@ -234,8 +244,21 @@ export default function Table({
                   ))}
 
                   {hasAction ? (
-                    <div onClick={actionHandle}>
-                      <HiDotsVertical />
+                    <div className="relative">
+                      <div onClick={() => handleAction(pupilIndex)}>
+                        <HiDotsVertical />
+                      </div>
+                      {open[pupilIndex] ? (
+                        <div className="absolute z-50 mt-2 py-2 rounded-md shadow bg-white-100 ">
+                          {actionHandle &&
+                            actionHandle.map((act, actIndex) => (     
+                          <Link href={act.actionUrl(IDs[pupilIndex].ID)} className="block px-4 py-2 text-gray-800 hover:bg-gray-600 hover:text-white-100" key={actIndex}>
+                            {act.label}
+                          </Link>
+                            ))
+                          }
+                        </div>
+                      ) : null}
                     </div>
                   ) : (
                     ""
