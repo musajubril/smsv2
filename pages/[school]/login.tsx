@@ -146,7 +146,7 @@ export default function Login() {
                 <div className=" flex justify-between text-sm my-5">
                   <div className="flex items-center justify-start my-4">
                     <Link
-                      href={`/${school}/admin`}
+                      href={`/${school}/otp`}
                       className="text-blue-200 text-xl"
                     >
                       Verify New Account
@@ -161,8 +161,7 @@ export default function Login() {
                     intent="primary"
                     text={"Log in"}
                     disabled={false}
-                    onClick={undefined}
-                  />
+                    onClick={undefined} className={""}                  />
                 </div>
 
                 {/* <div className="text-center pt-9">OR Continue with</div>

@@ -18,14 +18,14 @@ export const TEACHERCOURSES = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${
 export const HOMEROOMS = (schoolId) =>`${LOGGEDIN(schoolId)}/classes`; // get and classes
 export const COURSE = (schoolId, courseId) => `${GET_COURSES(schoolId)}/${courseId}`;
 
+export const VERIFY_OTP = (schoolId) => `${API_URL}/schools/${schoolId}/otp`
 // export const HOMEROOMS = (schoolId) =>`${LOGGEDIN(schoolId)}/classes`; // get and classes
+export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/user-activate/${uid}`
 
 // export const HOMEROOM = (schoolId, classId) => `${HOMEROOMS(schoolId)}/${classId}`; //get single class
 // export const CLASSSTUDENTS = (schoolId, classId) => `${HOMEROOM(schoolId, classId)}/students` // get a single course
 
 // export const STUDENTS = (schoolId) =>`${LOGGED_IN(schoolId)}/students`; //Add and get students
-// export const VERIFY_OTP = (schoolId) => `${API_URL}/schools/${schoolId}/otp`
-// export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/user-activate/${uid}`
 // export const REGISTER_URL = `${API_URL}/register`;
 // export const STUDENTSCOUNT = (schoolId) =>`${LOGGED_IN(schoolId)}/metadata`; //Add and get students
 // export const SENDMESSAGE = (schoolId) =>`${LOGGED_IN(schoolId)}/send-message`; //Add and get students
