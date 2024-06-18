@@ -51,14 +51,7 @@ export default function test() {
 
   // console.log(mappedIds);
 
-  const handleAction = (ID) => {
-   return `/best-college/admin/student/${ID}`
-  };
-
-  const actions = [
-    { actionUrl: handleAction, label: "Edit" }
-  ];
-
+  
   const subjectOptions = [
     { value: Math.random(), label: "Mathematics" },
     { value: Math.random(), label: "English Language" },
@@ -91,15 +84,28 @@ export default function test() {
       label: cla.name,
     };
   });
-
+  
   // console.log(mappedClasses);
-
+  
   const [mock, setMock] = useState();
-
+  
   useEffect(() => {
     console.log(mock);
   }, [mock]);
+  
+  const handleActionUrl = (ID) => {
+   return `/best-college/admin/student/${ID}`
+  };
 
+  const handleAction = () => {
+    console.log('Click selected')
+   };
+
+  const actions = [
+    { actionUrl: handleActionUrl, label: "Edit", type:"url"},
+    { actionClick: handleAction, label: "Click", type:"click"}
+  ];
+    
   return (
     <Layout><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false} isAttendance={undefined} hasAction={true} actionHandle={actions} nameUrls={`/best-college/admin/student`}></Table></Layout>
     // <div className=" p-5">

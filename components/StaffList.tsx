@@ -18,6 +18,7 @@ export default function StaffList({ staffs }) {
   const mappedStaffs = staffs?.map((std) => {
     return {
       "Name": std.full_name,
+      "":"",
       "Department": "null",
       "Role": std.role,
       "Qualification": "null",

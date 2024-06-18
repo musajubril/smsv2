@@ -26,9 +26,9 @@ export default function Table({
 
 
   const [open, setOpen] = useState(Array(students.length).fill(false));
-console.log(open)
+// console.log(open)
   const handleAction = (index) => {
-    setOpen(open.map((item, i) => (i === index ? !item : item)));
+    setOpen(open.map((item, i) => (i === index ? !item : false)));
   };
 
 
@@ -251,10 +251,14 @@ console.log(open)
                       {open[pupilIndex] ? (
                         <div className="absolute z-50 mt-2 py-2 rounded-md shadow bg-white-100 ">
                           {actionHandle &&
-                            actionHandle.map((act, actIndex) => (     
-                          <Link href={act.actionUrl(IDs[pupilIndex].ID)} className="block px-4 py-2 text-gray-800 hover:bg-gray-600 hover:text-white-100" key={actIndex}>
+                            actionHandle.map((act, actIndex) => (  
+                            act.type === "url" ?   
+                          <Link href={act.actionUrl(IDs[pupilIndex].ID)} className="block px-4 py-2 text-gray-800 hover:bg-gray-600 hover:text-white-100 cursor-pointer" key={actIndex}>
                             {act.label}
                           </Link>
+                          : <div className="block px-4 py-2 text-gray-800 hover:bg-gray-600 hover:text-white-100 cursor-pointer" key={actIndex} onClick={act.actionClick}>
+                            {act.label}
+                          </div>
                             ))
                           }
                         </div>
