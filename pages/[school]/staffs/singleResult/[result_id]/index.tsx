@@ -176,12 +176,12 @@ console.log(student)
                   </div>
                 </div>
                 <div>
-                  <Button text={'Upload Question'} disabled={false} onClick={undefined} intent='primary' size='small' /> </div>
+                  <Button text={'Upload Question'} disabled={false} onClick={undefined} intent='primary' size='small' className={''} /> </div>
               </div>
             </div>
 
-            <div className=' flex justify-between w-full items-center '>
-              <div className=' md:w-[40%] w-[50%]'>
+            <div className=' flex  justify-between gap-5 w-full items-center '>
+              <div className=' md:w-[40%] w-full'>
                 <input
                   type="text"
                   name=""
@@ -190,8 +190,8 @@ console.log(student)
                   placeholder="Search..."
                 />
               </div>
-              <div className=' hidden md:flex gap-4 text-base items-center  '>
-                <div className='  text-black font-semibold'>Filters: </div>
+              <div className=' flex gap-4 text-base items-center  '>
+                <div className='  text-black font-semibold hidden md:flex'>Filters: </div>
                 <StaffDropdown
                   options={termOptions}
                   placeholder="Term"
@@ -216,28 +216,28 @@ console.log(student)
                             <div className=' text-black font-medium text-sm'>C.A</div>
                             <div >
                               <Input text={"0.0"}
-                                name=""
-                                error={false}
-                                success={false}
-                                disabled={false}
-                                change={(e) => {
-                                  handleInputChange(index, "ca", e.target.value)
-                                }}
-                                value={values[index]?.values.ca}
-                                size='large' />
+                              name=""
+                              error={false}
+                              success={false}
+                              disabled={false}
+                              change={(e) => {
+                                handleInputChange(index, "ca", e.target.value);
+                              } }
+                              value={values[index]?.values.ca}
+                              size='large' className={''} />
                             </div>
                           </div>
                           <div className=' flex flex-col gap-2'>
                             <div className=' text-black font-medium text-sm'>Exams</div>
                             <div >
                               <Input text={'0.0'}
-                                name={''}
-                                error={false}
-                                success={false}
-                                disabled={false}
-                                change={(e) => handleInputChange(index, "exam", e.target.value)}
-                                value={values[index]?.values.exam}
-                                size='large' />
+                              name={''}
+                              error={false}
+                              success={false}
+                              disabled={false}
+                              change={(e) => handleInputChange(index, "exam", e.target.value)}
+                              value={values[index]?.values.exam}
+                              size='large' className={''} />
                             </div>
                           </div>
                         </div>
@@ -255,9 +255,9 @@ console.log(student)
                                     error={false}
                                     success={false}
                                     disabled={false}
-                                    change={() => { }}
+                                    change={() => { } }
                                     value={getTotal(index, values[index].values.ca, values[index].values.exam)}
-                                    size='large' />
+                                    size='large' className={''} />
                                 </div>
                               </div>
                               <div className=' flex flex-col gap-2'>
@@ -268,15 +268,15 @@ console.log(student)
                                     error={false}
                                     success={false}
                                     disabled={false}
-                                    change={() => {}}
+                                    change={() => { } }
                                     value={getGrade(Number(values[index].values.total))}
-                                    size='large' />
+                                    size='large' className={''} />
                                 </div>
                               </div>
                             </div>
                             <div>
 
-                              <Button text={'Done'} intent='primary' size='small' disabled={false} onClick={() => handleSubjectDone(index)} />
+                              <Button text={'Done'} intent='primary' size='small' disabled={false} onClick={() => handleSubjectDone(index)} className={''} />
                             </div>
                           </div>
                         }

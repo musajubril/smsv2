@@ -26,6 +26,8 @@ interface PasswordInputProps extends VariantProps<typeof passwordInputStyles> {
   success: boolean | null;
   change: React.ChangeEventHandler<HTMLInputElement> | undefined | null;
   value: any;
+  className: string;
+
 }
 
 const PasswordInput: React.FC<PasswordInputProps> = ({
@@ -36,13 +38,12 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
     error,
     success,
     change,
+    className,
     ...props
   }: PasswordInputProps) => {
     const [showPassword, setShowPassword] = useState(false);
   
-    const handleTogglePassword = () => {
-      setShowPassword(!showPassword);
-    };
+  
   
     return (
       <div className="relative">

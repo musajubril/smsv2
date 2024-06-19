@@ -84,32 +84,31 @@ export default function Subject({ course }) {
   )
 
   const handleAddCourse = () => {
-    console.log(subject)
         mutate(subject)
 
     setIsAddNewCourseModalOpen(false);
-
     setIsCourseaddedOpen(true);
 
   };
+  
 
+  
 
   return (
     <div>
       <Layout>
         <div >
-          <div className=' flex gap-5 flex-col '>
+          <div className=' flex gap-2 md:gap-5 flex-col '>
             <div className=' flex justify-between w-full pt-4'>
               <div className=" font-semibold text-lg md:text-2xl">Subjects</div>
               <div>
                 <div>
                 <Button
-                  intent="primary"
-                  size="small"
-                  text="+ Add New Subject"
-                  disabled={false}
-                  onClick={handleAddNewCourse}
-                />
+                    intent="primary"
+                    size="small"
+                    text="+ Add New Subject"
+                    disabled={false}
+                    onClick={handleAddNewCourse} className={""}                />
                 </div>
                 <Addnewcourse
                   isModalOpen={isAddNewCourseModalOpen}
@@ -122,15 +121,15 @@ export default function Subject({ course }) {
               </div>
             </div>
 
-            <div className=' w-[40%]'>
-              <input
-                type="text"
-                name=""
-                id=""
-                className="w-full border border-[#E4E7EC] py-2 rounded-md outline-none text-sm text-[#667185] pl-2"
-                placeholder="Search..."
-              />
-            </div>
+            {/* <div className='md:w-[40%]'>
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    className="w-full border border-[#E4E7EC] py-2 rounded-md outline-none text-sm text-[#667185] pl-2"
+                    placeholder="Search subjects..."
+                  />
+                </div> */}
 
             <div className=" ">
               <Table
