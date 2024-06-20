@@ -106,7 +106,7 @@ export default function ChatModal({ submit }) {
 
   return (
     <div
-      className={`flex flex-col gap-5 w-[700px] overflow-y-scroll max-h-[500px] scrollbar-hidden`}
+      className={`flex flex-col gap-5 md:w-[500px] md:max-w-[700px] overflow-y-scroll max-h-[500px] scrollbar-hidden`}
     >
       <div className="flex flex-col gap-2">
         <div className="flex text-base font-medium">Recipients</div>
