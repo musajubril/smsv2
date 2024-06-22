@@ -41,6 +41,9 @@ const config: Config = {
           200: "#FCFCFC",
           300: "#F7F7F7"
         },
+        theme: "#5465FF",
+        lightGray: "#3f3f3f",
+        navbar_active: "#EDEFFF",
       },
     },
   },

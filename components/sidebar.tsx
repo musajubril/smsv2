@@ -39,50 +39,50 @@ export default function Sidebar({
     {
       icon: <RiHome5Line />,
       name: "Home",
-      path: `/${isAuthenticated ? router.query.school : slug}/admin`,
+      path: `/${router.query.school}/admin`,
     },
 
     {
       icon: <PiGraduationCapThin />,
       name: "Students",
-      path: `/${isAuthenticated ? router.query.school : slug}/admin/students`,
+      path: `/${router.query.school}/admin/students`,
     },
     {
       icon: <HiOutlineUsers />,
       name: "Staffs",
-      path: `/${isAuthenticated ? router.query.school : slug}/admin/staffs`,
+      path: `/${router.query.school}/admin/staffs`,
     },
     {
       icon: <MdMenuBook />,
       name: "Subject",
-      path: `/${isAuthenticated ? router.query.school : slug}/admin/Subject`,
+      path: `/${router.query.school}/admin/subject`,
     },
     // {
     //   icon: <MdMenuBook />,
     //   name: "Computer Based Test",
-    //   path: `/${isAuthenticated ? router.query.school : slug}/cbt`,
+    //   path: `/${router.query.school}/cbt`,
     //   iconClosed: <IoChevronDown />,
     //   iconOpened: <IoIosArrowUp />,
     //   subNav: [
     //     {
     //       name: "Classes",
-    //       path: `/${isAuthenticated ? router.query.school : slug}/cbt/classes`,
+    //       path: `/${router.query.school}/cbt/classes`,
     //     },
     //     {
     //       name: "Question Bank",
-    //       path: `/${isAuthenticated ? router.query.school : slug}/cbt/questionBank`,
+    //       path: `/${router.query.school}/cbt/questionBank`,
     //     },
     //   ],
     // },
     {
       icon: <GiFamilyHouse />,
       name: "Classes",
-      path: `/${isAuthenticated ? router.query.school : slug}/admin/Classes`,
+      path: `/${router.query.school}/admin/classes`,
     },
     {
       icon: <IoSettingsOutline />,
       name: "Settings",
-      path: `/${isAuthenticated ? router.query.school : slug}/admin/settings`,
+      path: `/${router.query.school}/admin/settings`,
     },
   ];
 

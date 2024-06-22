@@ -84,103 +84,76 @@ export default function Login() {
     });
   };
   return (
-    <div>
-      <div className="h-screen  flex flex-col px-7 lg:grid grid-cols-2 gap-6 bg-gray-50 lg:bg-white-100 ">
-        {/* image  */}
-        <div className="py-5 col-span-1">
-          <div className=" transition-all transform hover:scale-105 hover:-translate-y-3 h-full flex items-center justify-center">
-            <div className=" flex items-center justify-center ">
-              <img src={schoolData?.logo} alt="" />
-            </div>
-          </div>
+    <div className="grid max-w-6xl max-h-screen grid-cols-1 gap-10 mx-auto sm:grid-cols-2">
+        <div
+          className="hidden col-span-1 sm:my-auto sm:mx-auto sm:block"
+        >
+          <img
+            src={schoolData?.logo}
+            alt=""
+            className="transition-all transform hover:scale-105 hover:-translate-y-3 h-52 w-52"
+          />
         </div>
+        <div className="flex flex-col justify-center min-h-screen col-span-1 px-4 sm:py-12 sm:px-6 lg:px-8">
+          <div className="sm:mx-auto sm:w-full sm:max-w-md">
+            <img
+              className="w-auto h-auto mx-auto sm:hidden"
+              src={schoolData?.logo}
+              alt="Workflow"
+            />
+            <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">
+              {schoolData?.name}
+            </h2>
+            <h2 className="mt-1 text-3xl font-extrabold text-center text-gray-900">
+              Sign in
+            </h2>
+          </div>
 
-        <div className=" px-5 lg:py-8  bg-gray-50 col-span-1 flex flex-col lg:justify-center">
-          <div className=" flex flex-col gap-6 h-2/3">
-            <div className="flex flex-col gap-2 justify-center  ">
-              <div className="text-4xl text-center font flex  justify-center font-bold">
-                {schoolData?.name}
-              </div>
-              <h1 className="  text-3xl font-bold text-center justify-start">
-                Sign In
-              </h1>
-            </div>
-            <form onSubmit={handleSubmit} className="px-8 ">
-              <div className=" pb-3">
-                {/* <div className=" flex py-4 text-start ">
-                <p>
-                  If you don't have an account, you can
-                  <Link
-                    href="register"
-                    className="pl-1 underline text-[#1466B8]"
+          <div className="sm:mx-auto sm:w-full sm:max-w-md">
+            <div className="px-4 py-8 sm:rounded-lg sm:px-5">
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-900"
                   >
-                    Register Here
-                  </Link>
-                </p>
-              </div> */}
-              </div>
-
-              <div className="flex flex-col gap-6">
-                <Input
-                  size="large"
-                  disabled={false}
-                  error={null}
-                  success={null}
-                  change={handleChange}
-                  name="email"
-                  text={"Mobile Number Or Email Address"}
-                  value={undefined}
-                />
-                <Input
-                  size="large"
-                  disabled={false}
-                  error={null}
-                  success={null}
-                  change={handleChange}
-                  name="password"
-                  text={"Password"}
-                  value={undefined}
-                />
-              </div>
-              <div className="">
-                <div className=" flex justify-between text-sm my-5">
-                  <div className="flex items-center justify-start my-4">
-                    <Link
-                      href={`/${school}/otp`}
-                      className="text-blue-200 text-xl"
-                    >
-                      Verify New Account
-                    </Link>
+                    Mobile Number
+                  </label>
+                  <div className="mt-1">
+                    <Input size="large" text={"Mobile Number"} name={"email"} error={false} success={false} disabled={false} change={handleChange} value={undefined} className={"block w-full px-3 py-2 placeholder-gray-400 rounded-md shadow-sm appearance-none sm:text-sm"} type={"text"} />
                   </div>
-                  <button>Forgot Password?</button>
                 </div>
 
-                <div className="">
-                  <Button
-                    size="base"
-                    intent="primary"
-                    text={"Log in"}
-                    disabled={false}
-                    onClick={undefined} className={""}                  />
+                <div>
+                  <label
+                    htmlFor="password"
+                    className="block text-sm font-medium text-gray-900"
+                  >
+                    Password
+                  </label>
+                  <div className="mt-1">
+                  <Input size="large" type='password' text={"Password"} name={"password"} error={false} success={false} disabled={false} change={handleChange} value={undefined} className={"block w-full px-3 py-2 placeholder-gray-400 rounded-md shadow-sm appearance-none sm:text-sm"} />
+                  </div>
                 </div>
 
-                {/* <div className="text-center pt-9">OR Continue with</div>
-              <div className="flex justify-center pt-3 ">
-                <a href="#" className="p-6 ">
-                  <img src="/Twitter.jpg" alt="Twitter icon" />
-                </a>
-                <a href="#" className="p-6 ">
-                  <img src="/Google.png" alt="Google icon" />
-                </a>
-                <a href="#" className="p-6 ">
-                  <img src="/Facebook.png" alt="Facebook icon" />
-                </a>
-              </div> */}
-              </div>
-            </form>
+                <div className="text-left">
+                  <Link href={`/${school}/otp`} className="text-blue-200">
+                      Verify New Account
+                  </Link>
+                </div>
+
+                <div>
+                <Button
+                  size="base"
+                  intent="primary"
+                  text={"Log in"}
+                  disabled={false}
+                  onClick={undefined} className={""}                  />
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
   );
 }

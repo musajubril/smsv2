@@ -34,8 +34,8 @@ const Layout = ({ children }) => {
         <Hamburger logout={() => setOpen(true)}  />
       </div>
 
-      <div className="w-full overflow-y-scroll bg-white-300">
-        <div className="flex justify-between mb-2 bg-white-100 py-3 px-4  md:px-9 relative">
+      <div className="w-full overflow-y-scroll bg-white-100">
+        <div className="flex justify-between mb-2 bg-white-100 py-3 px-4  md:px-9 relative border-b border-white-300">
           {/* Render search bar and icons only on larger screens */}
           <div className=" w-1/3 md:w-full flex relative items-center ">
             <CiSearch className="h-5 w-5 text-[#475367] absolute left-4" />
@@ -63,7 +63,7 @@ const Layout = ({ children }) => {
             <Hamburger logout={undefined} />
             </div>     */}
         </div>
-        <div className="bg-white p-4 rounded-lg">
+        <div className=" h-[calc(100vh-64px)] bg-white-100 p-4 rounded-lg overflow-y-scroll scrollbar-hidden">
           <div className="">
             <Modal action={action} open={open}>
               <div className="flex flex-col gap-6  md:p-4">
@@ -76,15 +76,13 @@ const Layout = ({ children }) => {
                     size="small"
                     text="Yes"
                     disabled={false}
-                    onClick={handleLogout}
-                  />
+                    onClick={handleLogout} className={""}                  />
                   <Button
                     intent="primary"
                     size="small"
                     text="No"
                     disabled={false}
-                    onClick={() => setOpen(false)}
-                  />
+                    onClick={() => setOpen(false)} className={""}                  />
                 </div>
               </div>
             </Modal>
