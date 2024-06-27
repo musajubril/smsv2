@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Fotter() {
+export default function Fotter({comments, pname,teacher_remark,overall_remark}) {
   return (
     <div> 
        <div className=' w-full gap-1 flex flex-col'>
@@ -10,7 +10,7 @@ export default function Fotter() {
       <div className=' flex gap-5'>
         <div className=' w-[70%] px-1'>
           <div className=' text-start'>Class Teachers comments</div>
-          <div className=' border py-12 rounded-lg '></div>
+          <div className=' border py-12 rounded-lg '>{teacher_remark}</div>
 
         </div>
         <div className=' flex flex-col justify-between'>
@@ -26,14 +26,14 @@ export default function Fotter() {
     <div className=' flex gap-5 w-full'>
       <div className=' w-[70%] '>
       <div className=' border p-2 flex items-center rounded-lg'>
-        <div className=' border bg-gray-300 py-3 px-8 text-xl'>PASSED</div>
+        <div className=' border bg-gray-300 py-3 px-8 text-xl'>{overall_remark}</div>
 
-        <div className=' text-xl pl-2 font-semibold'>Very good academic performance</div>
+        <div className=' text-xl pl-2 font-semibold'>{comments}</div>
 
       </div> 
       <div className=' flex gap-5'>
-        <div>parents Nsme</div>
-        <div>MR/Mrs Akinwande</div>
+        <div>Parents Name</div>
+        <div>{pname}</div>
 
       </div>
       </div>

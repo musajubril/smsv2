@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Student_data() {
+export default function Student_data({student,next_term_begin_date}) {
   return (
     <div>
          <div className=' grid grid-cols-2 gap-20 w-full '>
@@ -9,19 +9,19 @@ export default function Student_data() {
          <div className=' grid grid-cols-3 grid-rows-5 border '>
 
           <div className=' border-r border-b '>NAME</div>
-          <div className=' col-span-2 border-b  font-medium'>Jubril Musa</div>
+          <div className=' col-span-2 border-b  font-medium'>{student.full_name}</div>
 
           <div className=' border-r border-b '>OTHER NAME</div>
-          <div className=' col-span-2 border-b font-medium'></div>
+          <div className=' col-span-2 border-b font-medium'>{student.middle_name}</div>
 
           <div className=' border-r border-b '>ADMISSION NO</div>
-          <div className=' col-span-2 border-b font-medium'>1234567AB</div>
+          <div className=' col-span-2 border-b font-medium'>{student.admission_number}</div>
 
           <div className=' border-r border-b '>GENDER</div>
-          <div className=' col-span-2 border-b font-medium'>Male</div>
+          <div className=' col-span-2 border-b font-medium'>{student.gender}</div>
 
           <div className=' border-r border-b '>CLASS</div>
-          <div className=' col-span-2 border-b font-medium'>JSS 3</div>
+          <div className=' col-span-2 border-b font-medium'>{student.current_class.name}</div>
 
           <div className=' border-r  '>BARCODE</div>
           <div className=' col-span-2 font-medium '></div>
@@ -54,7 +54,7 @@ export default function Student_data() {
 
               <div className=' border-r '>28-07-2024</div>
               <div className=' border-r '>22-11-2024</div>
-              <div className='  '>NA</div>
+              <div className='  '>{next_term_begin_date}</div>
             </div>
                  </div>
         

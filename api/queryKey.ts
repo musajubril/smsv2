@@ -7,5 +7,6 @@ export const queryKeys = {
     getcourse: "getcourse",
     getclass: "getclass",
     getClass: "getClass",
-    getCourses: "getCourses"
+    getCourses: "getCourses",
+    getResults: "getResults"
 }

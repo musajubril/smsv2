@@ -43,9 +43,9 @@ export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/u
 // export const CLASSSTUDENTS = (schoolId, classId) => `${HOMEROOM(schoolId, classId)}/students` // get a single course
 // export const  COURSESTUDENTS = (schoolId, id) => `${GET_COURSES(schoolId)}/${id}/students`
 // export const GRADE = (schoolId, id) => `${STUDENT(schoolId, id)}/grade`
-// export const RESULTS = (schoolId, id) => `${STUDENT(schoolId, id)}/result`
-// export const VIEW_RESULT = (slug, id) => `${API_URL}/schools/${slug}/students/${id}/result-slug`
-// export const SENDRESULTS = (schoolId, classId) => `${API_URL}/schools/${schoolId}/classes/${classId}/send-result`
+export const RESULTS = (schoolId, id) => `${STUDENT(schoolId, id)}/result`
+export const VIEW_RESULT = (slug, id) => `${API_URL}/schools/${slug}/students/${id}/result-slug`
+export const SENDRESULTS = (schoolId, classId) => `${API_URL}/schools/${schoolId}/classes/${classId}/send-result`
 // export const ADDBILL = (schoolId, classId) => `${API_URL}/schools/${schoolId}/classes/${classId}/bills`
 // export const GETBILL = (schoolId) => `${API_URL}/schools/${schoolId}/bills`
 // export const GETSTUDENTBILL = (schoolId, studentId) => `${API_URL}/schools/${schoolId}/students/${studentId}/bills`
