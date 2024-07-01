@@ -66,10 +66,11 @@ export default function Multiselect({
     setState(filtered);
   };
 
-
   const handleSelectOption = (option: OptionProps) => {
     if (selectedOption.some((opt) => opt.value === option.value)) {
-      const filtered = selectedOption.filter((opt) => opt.value !== option.value);
+      const filtered = selectedOption.filter(
+        (opt) => opt.value !== option.value
+      );
       setSelectedOption(filtered);
       setState(filtered);
     } else {
@@ -80,19 +81,26 @@ export default function Multiselect({
     setAllClicked(false);
     setNoneClicked(false);
     // setIsOpen(!isOpen);
-
   };
-  
+
   const [allClicked, setAllClicked] = useState(false);
   const [noneClicked, setNoneClicked] = useState(false);
   const handleSelectAll = () => {
     setSelectedOption(options);
+
     setState(options);
     setAllClicked(true);
     setNoneClicked(false);
     setIsOpen(!isOpen);
-
   };
+
+  const [markedOptions, setMarkedOptions] = useState([]);
+
+  useEffect(() => {
+    // console.log(selectedOption);
+    setMarkedOptions(selectedOption)
+  }, [selectedOption]);
+  console.log(markedOptions);
 
   const handleSelectNone = () => {
     setSelectedOption([]);
@@ -100,11 +108,7 @@ export default function Multiselect({
     setNoneClicked(true);
     setAllClicked(false);
     setIsOpen(!isOpen);
-
   };
-
-
-
 
   return (
     <div className=" text-left" ref={dropdownRef}>
@@ -124,21 +128,23 @@ export default function Multiselect({
               className="flex justify-between items-center mx-1 mt-1 px-1 py-2 rounded-md cursor-pointer hover:bg-gray-600"
               onClick={handleSelectAll}
             >
-              Choose all {allClicked && (
-                  <div className=" text-blue-200">
-                    <IoMdCheckmark />
-                  </div>
-                )}
+              Choose all{" "}
+              {allClicked && (
+                <div className=" text-blue-200">
+                  <IoMdCheckmark />
+                </div>
+              )}
             </div>
             <div
               className="flex justify-between items-center mx-1 mt-1 px-1 py-2 rounded-md cursor-pointer hover:bg-gray-600"
               onClick={handleSelectNone}
             >
-             Choose none {noneClicked && (
-                  <div className=" text-blue-200">
-                    <IoMdCheckmark />
-                  </div>
-                )}
+              Choose none{" "}
+              {noneClicked && (
+                <div className=" text-blue-200">
+                  <IoMdCheckmark />
+                </div>
+              )}
             </div>
             {filteredOptions.map((option, index) => (
               <div
@@ -147,7 +153,7 @@ export default function Multiselect({
                 className=" flex justify-between items-center mx-1 mt-1 px-1 py-2 rounded-md cursor-pointer hover:bg-gray-600"
               >
                 <div>{option.label}</div>
-                {selectedOption.includes(option) && (
+                {markedOptions.some((opt) => opt.value === option.value) && (
                   <div className=" text-blue-200">
                     <IoMdCheckmark />
                   </div>

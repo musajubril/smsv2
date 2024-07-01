@@ -10,7 +10,7 @@ import Button from '../shared/button/Button';
 
 
 const Addnewcourse = ({ isModalOpen, handleCloseModal, handleAddCourse, handlechange, subject, setSubject }) => {
-
+  const [state, setState] = useState(null);
   const id: any = typeof window !== 'undefined' && localStorage.getItem("schoolId")
   const { data: classData } = useQuery({
     queryKey: [queryKeys.getstudent],
@@ -31,10 +31,11 @@ const Addnewcourse = ({ isModalOpen, handleCloseModal, handleAddCourse, handlech
     }
   })
 
-  const [state, setState] = React.useState([]);
+
   React.useEffect(() => {
     console.log(subject)
-    setSubject({
+    console.log(state)
+   state && setSubject({
       ...subject,
       class_ids: state.map(st => st.value)
     })
@@ -54,9 +55,10 @@ const Addnewcourse = ({ isModalOpen, handleCloseModal, handleAddCourse, handlech
             </div>
             <div className=' flex flex-col w-full '>
               <h1 className=' font-medium text-base justify-start flex'>Classes</h1>
-              {classes &&
+              {mappedClasses &&
                 <div><Multiselect options={mappedClasses} placeholder={'select classes'} state={state} setState={setState}  /></div>
               }
+              
             </div>
             <Button text='Upload Subject' disabled={false} onClick={handleAddCourse} size='small' intent='primary' />
 

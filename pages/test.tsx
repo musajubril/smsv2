@@ -87,7 +87,7 @@ export default function test() {
   
   // console.log(mappedClasses);
   
-  const [mock, setMock] = useState();
+  const [mock, setMock] = useState(null);
   
   useEffect(() => {
     console.log(mock);
@@ -107,19 +107,19 @@ export default function test() {
   ];
     
   return (
-    <Layout><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false} isAttendance={undefined} hasAction={true} actionHandle={actions} nameUrls={`/best-college/admin/student`}></Table></Layout>
-    // <div className=" p-5">
-    //   {classes && (
-    //     <Multiselect
-    //       options={mappedClasses}
-    //       placeholder={"dummy"}
-    //       state={mock}
-    //       setState={setMock}
-    //       // text={""}
-    //       // change={undefined}
-    //       // name={""}
-    //     />
-    //   )}
-    // </div>
+    // <Layout><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false} isAttendance={undefined} hasAction={true} actionHandle={actions} nameUrls={`/best-college/admin/student`}></Table></Layout>
+    <div className=" p-5">
+      {classes && (
+        <Multiselect
+          options={mappedClasses}
+          placeholder={"dummy"}
+          state={mock}
+          setState={setMock}
+          // text={""}
+          // change={undefined}
+          // name={""}
+        />
+      )}
+    </div>
   );
 }
