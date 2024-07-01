@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Grade() {
+export default function Grade({percentage,}) {
   return (
     <div>
         <div className=' grid grid-cols-2 gap-10 pt-5'>
@@ -8,7 +8,7 @@ export default function Grade() {
     <div className=' flex flex-col gap-4 '>
     <div className=' flex items-baseline gap-1'>
         <div className=''>PERCENTAGE</div>
-        <div className=' border-b w-24'></div>
+        <div className=' border-b w-24 text-center'>{percentage}%</div>
      </div>
      <div className=' border '>
      <div className='flex font-medium'>

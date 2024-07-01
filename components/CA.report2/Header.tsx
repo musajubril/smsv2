@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Header() {
+export default function Header({student,next_term_begin_date}) {
  
   return (
     <div className='py-4'>
@@ -29,11 +29,12 @@ export default function Header() {
           <div className='border flex flex-col gap-2 py-3 px-2'>
             <div className='flex items-baseline gap-3'>
               <div>CLASS</div>
-              <div className='border-b flex-grow mx-2'></div>
+              <div className='border-b flex-grow mx-2'>{student?.current_class.name}</div>
             </div>
             <div className='flex items-baseline gap-3'>
               <div>NO IN CLASS</div>
-              <div className='border-b flex-grow mx-2'></div>
+              <div className='border-b flex-grow mx-2'>{student?.current_class.male_count +
+              student?.current_class.female_count}</div>
             </div>
             <div className='flex items-baseline gap-3'>
               <div>SCHOOL CLOSES</div>
@@ -41,7 +42,7 @@ export default function Header() {
             </div>
             <div className='flex items-baseline gap-3'>
               <div>NEXT TERM BEGINS</div>
-              <div className='border-b flex-grow mx-2'></div>
+              <div className='border-b flex-grow mx-2'>{next_term_begin_date}</div>
             </div>
           </div>
         </div>
