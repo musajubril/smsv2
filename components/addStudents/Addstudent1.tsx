@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { AiOutlineImport } from "react-icons/ai";
 import { IoPersonAdd } from "react-icons/io5";
@@ -13,14 +13,7 @@ import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
 import statesInNigeria from "../stateInNigeria";
 
-export const dateFormat = (dt) => {
-  let date = new Date(dt);
-  console.log(dt, date);
-  const returnDate =
-    date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
-  console.log(returnDate);
-  return returnDate;
-};
+
 export default function Addstudent1({
   next,
   change,
@@ -36,8 +29,7 @@ export default function Addstudent1({
   open: boolean;
   setOpen: any;
 }) {
-  // const Gender = ["Male", "Female"];
-  // const Religion = ["Christianity", "Islam"];
+  
   const States = statesInNigeria;
 
   const Gender = [
@@ -55,6 +47,35 @@ export default function Addstudent1({
     setOpen(false);
   };
 
+  const [genderselect, setGenderSelect] = useState(null)
+  const [religionselect, setReligionSelect] = useState(null)
+  const [stateselect, setStateSelect] = useState(null)
+
+  useEffect(() => {
+    setState({
+      ...state,
+      gender: genderselect,
+    });
+    // console.log(genderselect);
+  }, [genderselect])
+
+
+  useEffect(() => {
+    setState({
+      ...state,
+      state_of_origin: stateselect,
+    });
+    // console.log(stateselect);
+  }, [stateselect])
+
+
+  useEffect(() => {
+    setState({
+      ...state,
+      religion: religionselect,
+    });
+    // console.log(religionselect);
+  }, [religionselect])
   return (
     <div className=" flex flex-col p-6">
       {/* <div className="">
@@ -105,8 +126,7 @@ export default function Addstudent1({
                 success={null}
                 error={null}
                 change={change}
-                value={state.first_name}
-              />
+                value={state.first_name} className={""} type={""}              />
             </div>
             <div className=" flex flex-col gap-1">
               <h1 className=" font-medium">Middle Name</h1>
@@ -118,8 +138,7 @@ export default function Addstudent1({
                 success={null}
                 error={null}
                 change={change}
-                value={state.middle_name}
-              />
+                value={state.middle_name} className={""} type={""}              />
             </div>
             <div className=" flex flex-col gap-1">
               <h1 className=" font-medium">Last Name</h1>
@@ -131,8 +150,7 @@ export default function Addstudent1({
                 success={null}
                 error={null}
                 change={change}
-                value={state.last_name}
-              />
+                value={state.last_name} className={""} type={""}              />
             </div>
             <div className=" grid grid-cols-2 gap-2">
               <div className=" flex flex-col gap-1">
@@ -140,10 +158,10 @@ export default function Addstudent1({
                 <Select
                   options={Gender}
                   placeholder="Select Gender"
-                  change={change}
+                  change={undefined}
                   text="gender"
                   state={state}
-                  setState={setState}
+                  setState={setGenderSelect}
                   name="gender"
                 />
               </div>
@@ -153,7 +171,7 @@ export default function Addstudent1({
                   type="date"
                   name="date_of_birth"
                   className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
-                  value={state.date_of_birth?.toDateString()}
+                  value={state.date_of_birth}
                   onChange={(e: any) =>
                     setState({ ...state, date_of_birth: e.target.value })
                   }
@@ -165,10 +183,10 @@ export default function Addstudent1({
               <Select
                 options={Religion}
                 placeholder="Select a Religion"
-                change={change}
+                change={undefined}
                 text="religion"
                 state={state}
-                setState={setState}
+                setState={setReligionSelect}
                 name="religion"
               />
             </div>
@@ -177,10 +195,10 @@ export default function Addstudent1({
               <Select
                 options={States}
                 placeholder="Select a State"
-                change={change}
+                change={undefined}
                 text="state_of_origin"
                 state={state}
-                setState={setState}
+                setState={setStateSelect}
                 name="state_of_origin"
               />
             </div>
@@ -190,8 +208,7 @@ export default function Addstudent1({
                 size="base"
                 text="Next"
                 disabled={false}
-                onClick={next}
-              />
+                onClick={next} className={""}              />
             </div>
           </form>
         </div>
