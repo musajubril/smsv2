@@ -9,8 +9,10 @@ import Select from "@/components/shared/select/Select";
 import { useQuery } from "@tanstack/react-query";
 import router from "next/router";
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function test() {
+ 
   const uid: any =
     typeof window !== "undefined" && localStorage.getItem("schoolId");
   const { data: studentData } = useQuery({
@@ -51,7 +53,6 @@ export default function test() {
 
   // console.log(mappedIds);
 
-  
   const subjectOptions = [
     { value: Math.random(), label: "Mathematics" },
     { value: Math.random(), label: "English Language" },
@@ -84,42 +85,57 @@ export default function test() {
       label: cla.name,
     };
   });
-  
+
   // console.log(mappedClasses);
-  
+
   const [mock, setMock] = useState(null);
-  
+
   useEffect(() => {
     console.log(mock);
   }, [mock]);
+
   
   const handleActionUrl = (ID) => {
-   return `/best-college/admin/student/${ID}`
+    return `/best-college/admin/student/${ID}`;
   };
 
   const handleAction = () => {
-    console.log('Click selected')
-   };
+    console.log("Click selected");
+  };
 
   const actions = [
-    { actionUrl: handleActionUrl, label: "Edit", type:"url"},
-    { actionClick: handleAction, label: "Click", type:"click"}
+    { actionUrl: handleActionUrl, label: "Edit", type: "url" },
+    { actionClick: handleAction, label: "Click", type: "click" },
   ];
-    
+
+
+  const notify = () => toast.success("Here is your toast.");
+  
+  useEffect(() => {
+    toast.loading("Here is your toast.");
+  }, []);
+  
+  // error: ToastHandler;
+  //   success: ToastHandler;
+  //   loading: ToastHandler;
   return (
-    // <Layout><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false} isAttendance={undefined} hasAction={true} actionHandle={actions} nameUrls={`/best-college/admin/student`}></Table></Layout>
+    // <Layout><Table students={mappedStudents} imageUrls={mappedImages} IDs={mappedIds} hasCheckBox={false} hasImage={false} isAttendance={undefined} hasAction={true} actionHandle={actions} nameUrls={`/best-college/admin/student`}></Table>
     <div className=" p-5">
-      {classes && (
+      {/* {classes && (
         <Multiselect
-          options={mappedClasses}
-          placeholder={"dummy"}
-          state={mock}
-          setState={setMock}
+        options={mappedClasses}
+        placeholder={"dummy"}
+        state={mock}
+        setState={setMock}
           // text={""}
           // change={undefined}
           // name={""}
         />
-      )}
+      )} */}
+      <div>
+        <button onClick={notify}>Make me a toast</button>
+      </div>
     </div>
+    // </Layout>
   );
 }
