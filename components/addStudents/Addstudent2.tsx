@@ -8,10 +8,10 @@ import Button from "../shared/button/Button";
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
-import { SignUpState } from "@/pages/[school]/admin/student/add";
+import { SignUpState, dateFormat } from "@/pages/[school]/admin/student/add";
 import Steps from "../shared/StepNavigation/Steps";
 
-export default function Addstudent2({next, change, prev, state, open:showCSVPreview, setOpen:setShowCSVPreview}: {next: any, change: any, prev: any, state:SignUpState, open: boolean, setOpen: any}) {
+export default function Addstudent2({next, change, prev, state,  setState,open:showCSVPreview, setOpen:setShowCSVPreview}: {next: any, change: any, prev: any, state:SignUpState, setState: any; open: boolean, setOpen: any}) {
 
   // const [open, setOpen] = useState(Boolean);
   // const action = () => {
@@ -64,9 +64,8 @@ export default function Addstudent2({next, change, prev, state, open:showCSVPrev
                 disabled={false}
                 success={null}
                 error={null}
-                change={change} 
-                value={state.guardian_full_name}
-              />
+                change={change}
+                value={state.guardian_full_name} className={""} type={""}              />
             </div>
             <div className=" flex flex-col gap-1">
               <h1 className=" font-medium">Home Address</h1>
@@ -77,9 +76,8 @@ export default function Addstudent2({next, change, prev, state, open:showCSVPrev
                 disabled={false}
                 success={null}
                 error={null}
-                change={change} 
-                value={state.address}
-              />
+                change={change}
+                value={state.address} className={""} type={""}              />
             </div>
             <div className=" flex flex-col gap-1">
               <h1 className=" font-medium">Guardian/Parent's Phone Number</h1>
@@ -90,23 +88,32 @@ export default function Addstudent2({next, change, prev, state, open:showCSVPrev
                 disabled={false}
                 success={null}
                 error={null}
-                change={change} 
-                value={state.phone_number}
-              />
+                change={change}
+                value={state.phone_number} className={""} type={""}              />
             </div>
+            <div className=" flex flex-col gap-1">
+                <h1 className=" font-medium">Guardian/Parent's Date Of Birth</h1>
+                <input
+                  type="date"
+                  name="guardian_date_of_birth"
+                  className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
+                  value={state.guardian_date_of_birth}
+                  onChange={(e: any) =>
+                    setState({ ...state, guardian_date_of_birth: e.target.value })
+                  }
+                />
+              </div>
             <div className=" grid grid-cols-2 gap-2">
               <Button
                 intent="secondary"
                 size="base"
                 text="Back"
-                disabled={false} onClick={prev}
-              />
+                disabled={false} onClick={prev} className={""}              />
               <Button
                 intent="primary"
                 size="base"
                 text="Next Step"
-                disabled={false} onClick={next}
-              />
+                disabled={false} onClick={next} className={""}              />
             </div>
           </form>
         </div>

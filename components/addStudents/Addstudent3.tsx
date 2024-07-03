@@ -5,7 +5,7 @@ import { FaCheck } from "react-icons/fa6";
 import Input from "../shared/input/Input";
 import Select from "../shared/select/Select";
 import Button from "../shared/button/Button";
-import { SignUpState } from "@/pages/[school]/admin/student/add";
+import { SignUpState, dateFormat } from "@/pages/[school]/admin/student/add";
 import Modal from "../shared/reusablemodal/Modal";
 import ImportCSV from "./ImportCSV";
 import Layout from "../shared/dashboardLayout/Layout";
@@ -39,14 +39,14 @@ export default function Addstudent3({
     queryFn: async () => await getRequest({ url: HOMEROOMS(uid) }),
   });
 
-  console.log(classData);
+  // console.log(classData);
 
   const [classes, setclasses] = useState([]);
   useEffect(() => {
     setclasses(classData?.data);
   }, [classData]);
 
-  console.log(classes);
+  // console.log(classes);
 
   const mappedClasses = classes?.map((cla) => {
     return {
@@ -55,9 +55,15 @@ export default function Addstudent3({
     };
   });
 
-  console.log(mappedClasses);
+  // console.log(mappedClasses);
 
   const status = ["Admitted", "Pending"];
+
+  const term = [
+    { value: "1", label: "1st Term" },
+    { value: "2", label: "2nd Term" },
+    { value: "3", label: "3rd Term" },
+  ];
 
   const [open, setOpen] = useState(Boolean);
   const action = () => {
@@ -72,7 +78,35 @@ export default function Addstudent3({
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-  console.log(showCSVPreview);
+  // console.log(showCSVPreview);
+
+  const [classselect, setclassSelect] = useState(null);
+  const [previousclassselect, setpreviousclassSelect] = useState(null);
+  const [termselect, settermSelect] = useState(null);
+
+  useEffect(() => {
+    setState({
+      ...state,
+      class_id: classselect,
+    });
+    // console.log(classselect);
+  }, [classselect]);
+
+  useEffect(() => {
+    setState({
+      ...state,
+      term: termselect,
+    });
+    // console.log(termselect);
+  }, [termselect]);
+
+  useEffect(() => {
+    setState({
+      ...state,
+      previous_class: previousclassselect,
+    });
+    // console.log(previousclassselect);
+  }, [previousclassselect]);
   return (
     <div className="">
       <div className="">
@@ -172,36 +206,100 @@ export default function Addstudent3({
               </div>
             </div>
             <form className="flex flex-col gap-4 pt-3" onSubmit={handleSubmit}>
-              <div className=" flex flex-col gap-1">
-                <h1 className=" font-medium">Class</h1>
-                {classes && (
-                  <Select
-                    options={mappedClasses}
-                    placeholder="Select Class"
-                    state={state}
-                    setState={setState}
-                    text="class"
-                    name="class_id"
-                    change={change}
-                  />
-                )}
+              <div className=" grid grid-cols-2 gap-2">
+                <div className=" flex flex-col gap-1">
+                  <h1 className=" font-medium">Last school attended if any</h1>
+                  <div>
+                    <Input
+                      size="large"
+                      text="Name of School"
+                      name="previous_school"
+                      disabled={false}
+                      success={null}
+                      error={null}
+                      change={change}
+                      value={state.previous_school}
+                      className={""}
+                      type={""}
+                    />
+                  </div>
+                </div>
+                <div className=" flex flex-col gap-1">
+                  <h1 className=" font-medium">Previous Class</h1>
+                  {classes && (
+                    <Select
+                      options={mappedClasses}
+                      placeholder="Select Class"
+                      state={state}
+                      setState={setpreviousclassSelect}
+                      text="previous_class"
+                      name="previous_class"
+                      change={undefined}
+                    />
+                  )}
+                </div>
               </div>
-              {/* <div className=" flex flex-col gap-1">
+              <div className=" flex flex-col gap-1">
+                <h1 className=" font-medium">Cause Of Leaving The School</h1>
+                <Input
+                  size="large"
+                  text="Type here..."
+                  name="cause_of_leaving"
+                  disabled={false}
+                  success={null}
+                  error={null}
+                  change={change}
+                  value={state.cause_of_leaving}
+                  className={""}
+                  type={""}
+                />
+              </div>
+              <div className=" flex flex-col gap-1">
                 <h1 className=" font-medium">Enrollment Date</h1>
                 <input
                   type="date"
-                  name="DOB"
-                  className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300 "
+                  name="date_admitted"
+                  className=" w-full px-4 py-3 text-sm font-medium text-gray-700 bg-white border border-gray-500 rounded-md focus:outline-none focus:border-blue-300"
+                  value={state.date_admitted}
+                  onChange={(e: any) =>
+                    setState({ ...state, date_admitted: e.target.value })
+                  }
                 />
-              </div> */}
-
+              </div>
+              <div className=" grid grid-cols-2 gap-2">
+                <div className=" flex flex-col gap-1">
+                  <h1 className=" font-medium">Term Admitted</h1>
+                  <Select
+                    options={term}
+                    placeholder="Select Term"
+                    state={state}
+                    setState={settermSelect}
+                    text="term"
+                    name="term"
+                    change={undefined}
+                  />
+                </div>
+                <div className=" flex flex-col gap-1">
+                  <h1 className=" font-medium">Class</h1>
+                  {classes && (
+                    <Select
+                      options={mappedClasses}
+                      placeholder="Select Class"
+                      state={state}
+                      setState={setclassSelect}
+                      text="class"
+                      name="class_id"
+                      change={undefined}
+                    />
+                  )}
+                </div>
+              </div>
               <div className=" flex flex-col gap-1">
                 <div className="flex gap-1">
                   <h1 className=" font-medium">Students Email address</h1>
                   <h1 className=" font-normal text-gray-500">(optional)</h1>
                 </div>
                 <Input
-
                   size="large"
                   text="Enter Email address"
                   name="email"
@@ -210,8 +308,9 @@ export default function Addstudent3({
                   error={null}
                   change={change}
                   value={state.email}
+                  className={""}
+                  type={""}
                 />
-
               </div>
               <div className=" grid grid-cols-2 gap-2">
                 <div>
@@ -221,6 +320,7 @@ export default function Addstudent3({
                     text="Back"
                     disabled={false}
                     onClick={prev}
+                    className={""}
                   />
                 </div>
                 <div
@@ -234,6 +334,7 @@ export default function Addstudent3({
                     text="Submit"
                     disabled={false}
                     onClick={submit}
+                    className={""}
                   />
                 </div>
               </div>

@@ -16,15 +16,13 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { AiOutlineImport } from "react-icons/ai";
 import Link from "next/link";
 
-
-
-
 export type SignUpState = {
   first_name: string;
   middle_name: string;
   last_name: string;
-  date_of_birth:  Date | null;
+  date_of_birth: Date | null;
   guardian_full_name: string;
+  guardian_date_of_birth: Date | null;
   address: string;
   email: string;
   gender: string;
@@ -34,7 +32,20 @@ export type SignUpState = {
   outstanding_debt: string;
   class_id: string;
   image: string;
+  date_admitted: Date | null;
+  term: string;
+  cause_of_leaving: string;
+  previous_class: string;
+  previous_school: string;
 };
+
+export const dateFormat = (dt) => {
+  let date = new Date(dt);
+  const returnDate =
+    date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+  return returnDate;
+};
+
 export default function AddStudent({}: { open: boolean; setOpen: any }) {
   const [open, setOpen] = useState(Boolean);
   const [showCSVPreview, setShowCSVPreview] = useState(Boolean);
@@ -44,7 +55,6 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
   // const[showCSVPreview, setShowCSVPreview] = useState()
   const router = useRouter();
   const params: { school: string } = useParams();
-  // console.log(params, router.query);
   const school = params?.school;
 
   if (school) {
@@ -86,6 +96,7 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
     date_of_birth: new Date(),
     last_name: "",
     guardian_full_name: "",
+    guardian_date_of_birth: new Date(),
     phone_number: "",
     address: "",
     email: "",
@@ -94,13 +105,19 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
     state_of_origin: "",
     outstanding_debt: "200",
     class_id: "",
-    image: ""
+    image: "",
+    date_admitted: new Date(),
+    term: "",
+    cause_of_leaving: "",
+    previous_class: "",
+    previous_school: "",
   });
   const mutation = useMutation({
-    mutationFn: async (newLogin: any) => await postRequest({ url: STUDENTS(schoolData?.uid, 1), data: newLogin }),
-    onSuccess:()=>{
-      router.push(`/${school}/admin/students`)
-    }
+    mutationFn: async (newLogin: any) =>
+      await postRequest({ url: STUDENTS(schoolData?.uid, 1), data: newLogin }),
+    onSuccess: () => {
+      router.push(`/${school}/admin/students`);
+    },
   });
 
   const handleChange = (e: any) => {
@@ -108,9 +125,14 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
       ...state,
       [e.target.name]: e.target.value,
     });
-    console.log(state);
   };
 
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
+
+ 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(state);
@@ -119,19 +141,17 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
 
   const [files, setFiles] = useState<File | FileList>();
 
-  // const [open, setOpen] = useState(false)
-
-  console.log(showCSVPreview);
+  // console.log(showCSVPreview);
   return (
     <div>
       <Layout>
         <div className="">
           <Modal action={action} open={open}>
             <ImportCSV
-              // showCSVPreview={showCSVPreview}
-              // setFiles={setFiles}
-              // setOpen={setOpen}
-              // setShowCSVPreview={setShowCSVPreview}
+            // showCSVPreview={showCSVPreview}
+            // setFiles={setFiles}
+            // setOpen={setOpen}
+            // setShowCSVPreview={setShowCSVPreview}
             />
           </Modal>
         </div>
@@ -184,6 +204,8 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
                 state={state}
                 setState={setState}
                 next={handleNextStep}
+                // setSelect={setSelect}
+                // selectChange={handleSelectChange}
               />
             )}
 
@@ -192,6 +214,7 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
                 open={open}
                 setOpen={setOpen}
                 state={state}
+                setState={setState}
                 prev={handlePreviousStep}
                 next={handleNextStep}
                 change={handleChange}
@@ -206,6 +229,8 @@ export default function AddStudent({}: { open: boolean; setOpen: any }) {
                 setState={setState}
                 prev={handlePreviousStep}
                 submit={handleSubmit}
+                // selectChange={handleSelectChange}
+                // setSelect={setSelect}
               />
             )}
           </>
