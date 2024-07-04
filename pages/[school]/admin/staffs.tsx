@@ -137,8 +137,8 @@ export default function staff_list() {
             </div>
           </div>
           <StaffList staffs={searchTerm ? searchedStaffs : filteredStaffs} />
-        <Pagination
-            paginate={paginate} count={undefined}        ></Pagination>
+        {/* <Pagination
+            paginate={paginate} count={undefined}        ></Pagination> */}
         </div>
       </Layout>
     </div>
