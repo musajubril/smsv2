@@ -173,11 +173,11 @@ export default function student_list() {
               students={searchTerm ? searchedStudents : filteredStudents}
             />
           </div>
-          <div className={``}>
+          {/* <div className={``}>
             {length !== undefined && 
               <Pagination paginate={paginate} count={length}></Pagination>
              } 
-          </div>
+          </div> */}
         </div>
       </Layout>
     </div>

@@ -6,7 +6,7 @@ export const SIGNUP = `${API_URL}/signup`
 export const TEACHERS = (schoolId) =>`${LOGGEDIN(schoolId)}/staffs`; //Add and get teachers
 export const GETSCHOOL = (school) => `${API_URL}/schools/${school}`
 export const LOGIN_URL =(schoolId)=> `${API_URL}/schools/${schoolId}/token`;
-export const STUDENTS = (schoolId: any, off: any) => `${LOGGEDIN(schoolId)}/students?limit=10&offset=${off}`; //Add and get students
+export const STUDENTS = (schoolId: any, off: any) => `${LOGGEDIN(schoolId)}/students?limit=1000&offset=${off}`; //Add and get students
 export const STUDENT = (schoolId, studentId) => `${LOGGEDIN(schoolId)}/students/${studentId}`; // get single student
 export const TEACHER = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}`; //get singe teacher
 export const GET_COURSES = (schoolId) =>`${LOGGEDIN(schoolId)}/courses`; // get and courses
