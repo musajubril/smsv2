@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { AddStaffState } from "../../staff/add";
 import { SignUpState } from "../add";
-
+import toast from "react-hot-toast";
 
 export default function Profilepage() {
   const Gender = [
@@ -68,6 +68,8 @@ export default function Profilepage() {
       }),
     onSuccess: (data, variables) => {
       setStudent((prev) => ({ ...prev, ...variables }));
+      toast.success(data?.message);
+      
     },
   });
 
@@ -78,28 +80,6 @@ export default function Profilepage() {
     mutation.mutate({ [name]: value });
   };
 
-  // const handleClassChange = (value) => {
-  //   setClassState(value);
-  //   setStudent((prev) => ({
-  //     ...prev,
-  //     current_class: { ...prev.current_class, name: value },
-  //   }));
-  //   mutation.mutate({
-  //     current_class: { ...student.current_class, name: value },
-  //   });
-  // };
-
-  // const handleSelectChange = () => {
-  //   console.log(state);
-  //   console.log("name");
-  //   setStudent((prev) => ({ ...prev, state_of_origin: state }));
-  //   mutation.mutate({ state_of_origin: state });
-  // };
-
-  // const handleGenderSelectChange = (name) => {
-  //   setStudent((prev) => ({ ...prev, [name]: genderState }));
-  //   mutation.mutate({ [name]: genderState });
-  // };
 
   useEffect(() => {
     console.log(classState);
@@ -118,13 +98,11 @@ export default function Profilepage() {
     mutation.mutate({ state_of_origin: state });
   }, [state]);
 
-
   useEffect(() => {
     console.log(genderState);
     setStudent((prev) => ({ ...prev, gender: genderState }));
     mutation.mutate({ gender: genderState });
   }, [genderState]);
-
 
   const uid = typeof window !== "undefined" && localStorage.getItem("schoolId");
 
@@ -149,289 +127,263 @@ export default function Profilepage() {
 
   return (
     <Studentlayout>
-    <div>
-      {
-        <div className=" flex flex-col w-full p-5 gap-5 max-w-5xl">
-          <div className="flex justify-between items-center ">
-            <div>
-            <img src="/bestcollegelogo.png" alt="" className="w-16 h-16" />              
-            </div>
-            <div>{student.full_name}</div>
-            <div>
-            <div>
-              <Imagelogic />
-            </div>
-            </div>
-          </div>
-          <div className=" flex flex-col gap-3">
-            <div className="  grid grid-cols-3 gap-5 w-full">
+      <div className=" justify-center flex ">
+        {
+          <div className=" flex flex-col w-full p-4 gap-5 max-w-3xl ">
+            <div className=" md:grid grid-cols-3 items-center text-center gap-5  w-full ">
               <div>
-              <div className="pb-2 "> First Name:</div>
-              <div>
-              <Input
-                text={""}
-                name={"first_name"}
-                error={false}
-                success={false}
-                disabled={false}
-                change={handleInputChange}
-                value={student.first_name}
-                className={" py-3 bg-white-200 text-center "}
-                type={""}
-              />
+                <img src="/bestcollegelogo.png" alt="" className=" hidden md:flex w-20 h-20" />
               </div>
-              </div>
-
-              <div>
-              <div className="pb-2 "> Middle Name:</div>
-              <div>
-              <Input
-                text={""}
-                name={"middle_name"}
-                error={false}
-                success={false}
-                disabled={false}
-                change={handleInputChange}
-                value={student.middle_name}
-                className={" py-3 bg-white-200 text-center "}
-                type={""}
-            
-              />
-              </div>
-              </div>
-              <div>
-              <div className="pb-2 "> Last Name:</div>
-              <div>
-              <Input
-                text={""}
-                name={"last_name"}
-                error={false}
-                success={false}
-                disabled={false}
-                change={handleInputChange}
-                value={student.last_name}
-                className={" py-3 bg-white-200 text-center "}
-                type={""}
-              />
-              </div>
+              <div className=" font-medium text-base md:text-xl">{student.full_name}</div>
+                <div className=" hidden md:flex justify-end">
+                  <Imagelogic />
               </div>
             </div>
-            <div className=" grid grid-cols-3 gap-10 items-center">
-              <div>
-                <div className=" pb-2">Gender:</div>
-                <Select
-                  options={Gender}
-                  placeholder={student.gender}
-                  change={undefined}
-                  text="gender"
-                  state={genderState}
-                  setState={setGenderState}
-                  name="gender"
-                />
-              </div>
-
-              <div>
-                <div className=" pb-2">Date Of Birth</div>
+            <div className=" md:grid grid-cols-2 gap-6 py-3">
                 <div>
-                  <input
-                    id="date_of_birth"
-                    value={student.date_of_birth}
-                    name="date_of_birth"
-                    type="date"
-                    autoComplete="date_of_birth"
-                    className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none "
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <div className=" pb-2"> State Of Origin:</div>
-                <div>
-                  <Select
-                    options={States}
-                    placeholder={student.state_of_origin}
-                    change={undefined}
-                    text="state_of_origin"
-                    state={state}
-                    setState={setState}
-                    name="state_of_origin"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-10">
-              <div>
-                <div className=" pb-2">Phone Number:</div>
-                <div>
-                  <input
-                    id="Phone Number"
-                    value={student.phone_number}
-                    name="phone_number"
-                    type="number"
-                    className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none"
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-              <div>
-                <div className=" pb-2">Email Address: </div>
-                <div>
-                  <input
-                    id="Email Adress"
-                    value={student.email}
-                    name="email"
-                    type="email"
-                    className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none"
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <div className=" pb-2"> Home Address</div>
-              <Input
-                text={""}
-                name={"address"}
-                error={false}
-                success={false}
-                disabled={false}
-                change={handleInputChange}
-                value={student.address}
-                className={" py-3 bg-white-200 text-center "}
-                type={""}
-              />
-            </div>
-
-            <div className=" grid grid-cols-3 gap-10">
-              <div>
-                <div className=" pb-2">Class:</div>
-                <div>
-                  {/* <Input
-                    text={""}
-                    name={"current_class"}
-                    error={false}
-                    success={false}
-                    disabled={false}
-                    change={handleClassChange}
-                    value={
-                       student.current_class?.name
-                    }
-                    className={" py-3 bg-white-200 text-center "}
-                    type={""}
-                  /> */}
-                  {classes && (
-                    <Select
+                  <div className="pb-2 "> First Name</div>
+                  <div>
+                    <Input
                       text={""}
-                      options={mappedClasses}
-                      placeholder={student.current_class?.name}
-                      change={undefined}
-                      state={classState}
-                      setState={setClassState}
-                      name={"current_class"}
+                      name={"first_name"}
+                      error={false}
+                      success={false}
+                      disabled={false}
+                      change={handleInputChange}
+                      value={student.first_name}
+                      className={" py-3 bg-white-200 text-center "}
+                      type={""}
                     />
-                  )}
+                  </div>
                 </div>
-              </div>
-              <div>
-                <div className=" pb-2">Admission Status:</div>
                 <div>
-                  <Input
-                    text={""}
-                    name={"null"}
-                    error={false}
-                    success={false}
-                    disabled={false}
-                    change={handleInputChange}
-                    value={null}
-                    className={" py-3 bg-white-200 text-center "}
-                    type={""}
-                  />
+                  <div className="pb-2 "> Middle Name</div>
+                  <div>
+                    <Input
+                      text={""}
+                      name={"middle_name"}
+                      error={false}
+                      success={false}
+                      disabled={false}
+                      change={handleInputChange}
+                      value={student.middle_name}
+                      className={" py-3 bg-white-200 text-center "}
+                      type={""}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div>
-                <div className=" pb-2">Enrollment Date:</div>
                 <div>
-                  <Input
-                    text={""}
-                    name={"null"}
-                    error={false}
-                    success={false}
-                    disabled={false}
-                    change={handleInputChange}
-                    value={null}
-                    className={" py-3 bg-white-200 text-center"}
-                    type={""}
-                  />
+                  <div className="pb-2 "> Last Name</div>
+                  <div>
+                    <Input
+                      text={""}
+                      name={"last_name"}
+                      error={false}
+                      success={false}
+                      disabled={false}
+                      change={handleInputChange}
+                      value={student.last_name}
+                      className={" py-3 bg-white-200 text-center "}
+                      type={""}
+                    />
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div>
-              <div className=" pb-2">Parent/Guardian Full Name:</div>
+                
               <div>
-                <Input
-                  text={""}
-                  name={"guardian_full_name"}
-                  error={false}
-                  success={false}
-                  disabled={false}
-                  change={handleInputChange}
-                  value={student.guardian_full_name}
-                  className={" py-3 bg-white-200 text-center"}
-                  type={"text"}
-                />
-              </div>
-            </div>
-
-            <div className=" grid grid-cols-2 gap-10">
-              <div>
-                <div className=" pb-2">Parent/Guardian Phone Number:</div>
-                <div>
-                  <input
-                    id="Phone Number"
-                    value={student.phone_number2}
-                    name="phone_number2"
-                    type="number"
-                    className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none"
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-              <div>
-                <div className=" pb-2">Parent/Guardian Email Address: </div>
-                <div>
-                  <input
-                    id="Email Adress"
-                    value={null}
-                    name="email"
-                    type="email"
-                    className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none"
-                    onChange={handleInputChange}
-                  />
-                </div>
-              </div>
-            </div>
-            <div>
-              <div className=" pb-2">Parent/Guardian Home Address:</div>
-              <Input
-                text={""}
-                name={"address"}
-                error={false}
-                success={false}
-                disabled={false}
-                change={handleInputChange}
-                value={student.address}
-                className={" py-3 bg-white-200 text-center "}
-                type={""}
-              />
-            </div>
-          </div>
-        </div>
-      }
+       <div className=" pb-2">Email Address </div>
+    <div>
+      <input
+        id="Email Adress"
+        value={student.email}
+        name="email"
+        type="email"
+        className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none"
+        onChange={handleInputChange}
+      />
     </div>
-    </ Studentlayout >
+  </div>
+  <div>
+    <div className=" pb-2">Phone Number</div>
+    <div>
+      <input
+        id="Phone Number"
+        value={student.phone_number}
+        name="phone_number"
+        type="number"
+        className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none"
+        onChange={handleInputChange}
+      />
+    </div>
+  </div>
+  <div>
+    <div className=" pb-2">Gender</div>
+    <Select
+      options={Gender}
+      placeholder={student.gender}
+      change={undefined}
+      text="gender"
+      state={genderState}
+      setState={setGenderState}
+      name="gender"
+    />
+  </div>
+
+  <div>
+    <div className=" pb-2">Date Of Birth</div>
+    <div>
+      <input
+        id="date_of_birth"
+        value={student.date_of_birth}
+        name="date_of_birth"
+        type="date"
+        autoComplete="date_of_birth"
+        className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none "
+        onChange={handleInputChange}
+      />
+    </div>
+  </div>      
+  <div>
+    <div className=" pb-2"> State Of Origin</div>
+    <div>
+      <Select
+        options={States}
+        placeholder={student.state_of_origin}
+        change={undefined}
+        text="state_of_origin"
+        state={state}
+        setState={setState}
+        name="state_of_origin"
+      />
+    </div>
+  </div>
+  <div>
+  <div className=" pb-2"> Home Address</div>
+  <div>
+  <Input
+    text={""}
+    name={"address"}
+    error={false}
+    success={false}
+    disabled={false}
+    change={handleInputChange}
+    value={student.address}
+    className={" py-3 bg-white-200 text-center "}
+    type={""}
+  />
+  </div>
+</div>
+<div>
+    <div className=" pb-2">Class</div>
+    <div>  
+      {classes && (
+        <Select
+          text={""}
+          options={mappedClasses}
+          placeholder={student.current_class?.name}
+          change={undefined}
+          state={classState}
+          setState={setClassState}
+          name={"current_class"}
+        />
+      )}
+    </div>
+  </div>
+
+  <div>
+    <div className=" pb-2">Admission Status</div>
+    <div>
+      <Input
+        text={""}
+        name={"null"}
+        error={false}
+        success={false}
+        disabled={false}
+        change={handleInputChange}
+        value={null}
+        className={" py-3 bg-white-200 text-center "}
+        type={""}
+      />
+    </div>
+  </div>
+  <div>
+    <div className=" pb-2">Enrollment Date</div>
+    <div>
+      <Input
+        text={""}
+        name={"null"}
+        error={false}
+        success={false}
+        disabled={false}
+        change={handleInputChange}
+        value={null}
+        className={" py-3 bg-white-200 text-center"}
+        type={""}
+      />
+    </div>
+  </div>
+  <div>
+                  <div className=" pb-2">Parent/Guardian Full Name</div>
+                  <div>
+                    <Input
+                      text={""}
+                      name={"guardian_full_name"}
+                      error={false}
+                      success={false}
+                      disabled={false}
+                      change={handleInputChange}
+                      value={student.guardian_full_name}
+                      className={" py-3 bg-white-200 text-center"}
+                      type={"text"}
+                    />
+                  </div>
+                </div>
+<div>
+    <div className=" pb-2">Parent/Guardian Phone Number</div>
+    <div>
+      <input
+        id="Phone Number"
+        value={student.phone_number2}
+        name="phone_number2"
+        type="number"
+        className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none"
+        onChange={handleInputChange}
+      />
+    </div>
+  </div>
+  <div>
+    <div className=" pb-2">Parent/Guardian Email Address </div>
+    <div>
+      <input
+        id="Email Adress"
+        value={null}
+        name="email"
+        type="email"
+        className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none"
+        onChange={handleInputChange}
+      />
+    </div>
+  </div>
+<div>
+  <div className=" pb-2">Parent/Guardian Home Address</div>
+  <div>
+  <Input
+    text={""}
+    name={"address"}
+    error={false}
+    success={false}
+    disabled={false}
+    change={handleInputChange}
+    value={student.address}
+    className={" py-3 bg-white-200 text-center "}
+    type={""}
+  />
+  </div>
+</div>
+
+  </div>
+      </div>
+        }
+      </div>
+    </Studentlayout>
   );
 }

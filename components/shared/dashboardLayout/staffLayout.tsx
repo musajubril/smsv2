@@ -36,7 +36,7 @@ export default function Index({ children }) {
                 page === item
                   ? "bg-blue-600 text-blue-100"
                   : item === "Archive"
-                  ? "bg-red-600  text-white-100 hover:bg-red-600 hover:text-white-100"
+                  ? "bg-red-600 text-white-100 hover:bg-red-600 hover:text-white-100"
                   : ""
               }`}
               onClick={() =>
@@ -52,7 +52,7 @@ export default function Index({ children }) {
           {pages.map((item) => (
             <div
               key={item}
-              className={`py-2 rounded-lg gap-4 text-center cursor-pointer  font-semibold hover:bg-blue-600 hover:text-blue-100 ${
+              className={`py-2 rounded-lg gap-4 text-center cursor-pointer text-[8px] font-semibold hover:bg-blue-600 hover:text-blue-100 ${
                 page === item
                   ? "bg-blue-600 text-blue-100"
                   : item === "Archive"
@@ -73,10 +73,10 @@ export default function Index({ children }) {
         </div>
       </div>
       <Modal action={action} open={open}>
-        <div className=" max-w-xs">
+        <div className=" max-w-sm">
           <div className="flex flex-col gap-6 p-5">
             <div className="font-semibold text-base  text-[#0065C2]">
-              Are you sure you want to archive this student
+              Are you sure you want to archive this staff
             </div>
             <div className="grid grid-cols-2 gap-2">
               <Button
