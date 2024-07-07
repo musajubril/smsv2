@@ -59,7 +59,7 @@ export default function Profilepage() {
       }),
     onSuccess: (data, variables) => {
       setStaff((prev) => ({ ...prev, ...variables }));
-      toast.success(data?.message);
+      toast.success("staff successfully updated");
     },
   });
 
@@ -71,10 +71,14 @@ export default function Profilepage() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setStaff((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
     mutation.mutate({ [name]: value });
   };
+
   return (
     <StaffLayout>
       <div className=" justify-center flex ">
@@ -109,6 +113,7 @@ export default function Profilepage() {
                     value={staff.full_name}
                     className={" py-3 bg-white-200 text-center "}
                     type={""}
+                    blur={handleBlur}
                   />
                 </div>
               </div>
@@ -123,6 +128,7 @@ export default function Profilepage() {
                     type="email"
                     className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none"
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
                   />
                 </div>
               </div>
@@ -136,6 +142,7 @@ export default function Profilepage() {
                     type="number"
                     className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none"
                     onChange={handleInputChange}
+                    onBlur={handleBlur}
                   />
                 </div>
               </div>
@@ -179,6 +186,7 @@ export default function Profilepage() {
                     value={staff.Qualification}
                     className={" py-3 bg-white-200 text-center "}
                     type={""}
+                    blur={handleBlur}
                   />
                 </div>
               </div>
@@ -195,6 +203,7 @@ export default function Profilepage() {
                     value={staff.address}
                     className={" py-3 bg-white-200 text-center "}
                     type={""}
+                    blur={handleBlur}
                   />
                 </div>
               </div>
@@ -212,6 +221,7 @@ export default function Profilepage() {
                     value={null}
                     className={" py-3 bg-white-200 text-center "}
                     type={""}
+                    blur={handleBlur}
                   />
                 </div>
               </div>
@@ -228,6 +238,7 @@ export default function Profilepage() {
                     value={null}
                     className={" py-3 bg-white-200 text-center"}
                     type={""}
+                    blur={handleBlur}
                   />
                 </div>
               </div>
@@ -244,6 +255,7 @@ export default function Profilepage() {
                     value={null}
                     className={" py-3 bg-white-200 text-center"}
                     type={"text"}
+                    blur={handleBlur}
                   />
                 </div>
               </div>
@@ -260,6 +272,7 @@ export default function Profilepage() {
                     value={null}
                     className={" py-3 bg-white-200 text-center"}
                     type={"text"}
+                    blur={handleBlur}
                   />
                 </div>
               </div>
@@ -276,6 +289,7 @@ export default function Profilepage() {
                     value={null}
                     className={" py-3 bg-white-200 text-center "}
                     type={""}
+                    blur={handleBlur}
                   />
                 </div>
               </div>
