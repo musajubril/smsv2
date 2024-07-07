@@ -10,6 +10,7 @@ import { CiLogout } from "react-icons/ci";
 import { IoChevronDown } from "react-icons/io5";
 import { IoIosArrowUp } from "react-icons/io";
 import { GiFamilyHouse } from "react-icons/gi";
+import { FaAsterisk } from "react-icons/fa6";
 
 export default function Sidebar({
   logout,
@@ -83,6 +84,11 @@ export default function Sidebar({
       icon: <IoSettingsOutline />,
       name: "Settings",
       path: `/${router.query.school}/admin/settings`,
+    },
+    {
+      icon: <FaAsterisk />,
+      name: "Result Pins",
+      path: `/${router.query.school}/admin/resultPins/class_results`,
     },
   ];
 
