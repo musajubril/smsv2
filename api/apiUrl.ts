@@ -42,7 +42,7 @@ export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/u
 // export const PAYMENT = (schoolId, paymentId) => `${PAYMENTS(schoolId)}/${paymentId}`; //get a single payment
 // export const CLASSSTUDENTS = (schoolId, classId) => `${HOMEROOM(schoolId, classId)}/students` // get a single course
 // export const  COURSESTUDENTS = (schoolId, id) => `${GET_COURSES(schoolId)}/${id}/students`
-// export const GRADE = (schoolId, id) => `${STUDENT(schoolId, id)}/grade`
+export const GRADE = (schoolId, id) => `${STUDENT(schoolId, id)}/grade`
 export const RESULTS = (schoolId, id) => `${STUDENT(schoolId, id)}/result`
 export const VIEW_RESULT = (slug, id) => `${API_URL}/schools/${slug}/students/${id}/result-slug`
 export const SENDRESULTS = (schoolId, classId) => `${API_URL}/schools/${schoolId}/classes/${classId}/send-result`

@@ -9,33 +9,33 @@ import Input from '@/components/shared/input/Input';
 import Link from 'next/link';
 import { Router, useRouter } from 'next/router';
 import { useParams } from 'next/navigation';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { queryKeys } from '@/api/queryKey';
-import { CLASSSTUDENTS, COURSE, STUDENT } from '@/api/apiUrl';
-import { getRequest } from '@/api/apiCall';
+import { CLASSSTUDENTS, COURSE, GRADE, SENDRESULTS, STUDENT } from '@/api/apiUrl';
+import { getRequest, postRequest } from '@/api/apiCall';
 import LayoutStaff from '@/components/StaffLayout/LayoutStaff';
 
 
 
 interface subjectParam {
-  subject: string
+  name: string
   values?: {
-    exam: string, ca: string, grade: string, total: string
+    t_third_exam: string, t_third_ca1: string, t_third_ca2: string, grade: string, total: string
   }
 }
 
-const subjects = [
-  "Mathematics",
-  "English",
-  "Chemistry",
-//   "Physics",
-//   "Economics",
-//   "Biology",
-//   "Further Mathematics",
-//   "Agriculture",
-//   "Civic Education",
-//   "German",
-];
+// const subjects = [
+//   "Mathematics",
+//   "English",
+//   "Chemistry",
+// //   "Physics",
+// //   "Economics",
+// //   "Biology",
+// //   "Further Mathematics",
+// //   "Agriculture",
+// //   "Civic Education",
+// //   "German",
+// ];
 
 
 
@@ -76,35 +76,63 @@ export default function index({slug}:{slug: string}) {
     }
   }, [getStudents]);
 
-  console.log("student=",students);
+  // console.log("student=",students);
 
-  const [values, setValues] = useState<subjectParam[]>(subjects.map(sub => ({
-    subject: sub,
-    values: {
-      ca: "",
-      exam: "",
-      total: "",
-      grade: "",
+  const [values, setValues] = useState<subjectParam[]>([]); // Initialize with an empty array
+
+  useEffect(() => {
+    if (students.length > 0) {
+      setValues(students.map(sub => ({
+        name: sub.full_name,
+        values: {
+          t_third_ca1: "",
+          t_third_ca2: "",
+          t_third_exam: "",
+          total: "",
+          grade: "",
+        }
+      })));
     }
-  })))
+  }, [students]);
 
-  const caVal = (sub: string) => {
-    return values.find((val) => {
-      if (val.subject === sub) {
-        return val
-      }
-    })
-  }
+  // const caVal = (sub: string) => {
+  //   return values.find((val) => {
+  //     if (val.subject === sub) {
+  //       return val
+  //     }
+  //   })
+  // }
+  const [state, setState] = useState({
+    CA1: "",
+    CA2: "",
+    exam: "",
+    total: "",
+    grade: ""
 
-  const handleInputChange = (index: number, field: keyof subjectParam["values"], value: string) => {
+  });
+
+  const handleChange = (e) => {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+    // console.log(state);
+  };
+  const handleInputChange = (index: number, field: keyof subjectParam["values"], value: string, name:string) => {
     const newValues = [...values];
-    if (field === "ca") {
-      if (Number(value) > 40) {
+    if ( field === "t_third_ca1") {
+      if (Number(value) > 20) {
         newValues[index].values[field] = "0";
       }else{
         newValues[index].values[field] = value;
       }
-    }else if(field === "exam") {
+    }else if ( field === "t_third_ca2") {
+      if (Number(value) > 20) {
+        newValues[index].values[field] = "0";
+      }else{
+        newValues[index].values[field] = value;
+      }
+    }else if(field === "t_third_exam") {
       if (Number(value) > 60) {
         newValues[index].values[field] = "0";
       }else{
@@ -114,42 +142,74 @@ export default function index({slug}:{slug: string}) {
       newValues[index].values[field] = value;
     }
     setValues(newValues)
+    setState({
+      ...state,
+      [name]: value,
+    });
   }
+
+  useEffect(() => {
+    // console.log(state)
+
+  }, [state]);
+
+  const mutation = useMutation({
+    mutationFn: async (newResult: any) =>
+      await postRequest({ url:SENDRESULTS(uid, subject_id) , data: newResult }),
+
+    onSuccess:  (data) =>  {
+      // console.log('Mutation successful', data);
+    },
+    
+  });
 
   const handleSubjectDone = (index: number) => {
-    console.log(values[index])
+    // console.log(values[index])
+    // e.preventDefault();
+    const resultToSend = {
+      ...values[index],
+      // Optionally add other fields needed for the POST request
+    };
+    // console.log(resultToSend)
+
+    mutation.mutate(resultToSend);
   }
 
-  const getTotal = (index: number, ca: string, exam: string) => {
+  const [total, setTotal] = useState()
+  const getTotal = (index: number, ca1: string, ca2:string, exam: string) => {
     return (values[index].values.total = (
-      Number(ca) + Number(exam)
+      Number(ca1) + Number(ca2) + Number(exam)
     ).toString());
   };
 
-  const getGrade = (total: number) => {
+  const getGrade = (total: number, index: number) => {
     if (total < 40) {
-      return "F"
+      return( values[index].values.grade = "F")
     }
     else if (total >= 40 && total < 50) {
-      return "E"
+      return ( values[index].values.grade = "E")
     }else  if (total >= 50 && total < 60) {
-      return "D"
+      return ( values[index].values.grade = "D")
     }else if (total >= 60 && total < 70) {
-      return "C"
+      return ( values[index].values.grade = "C")
     }else if (total >= 70 && total < 80) {
-      return "B"
+      return ( values[index].values.grade = "B")
     }else if (total >=80) {
-      return "A"
+      return ( values[index].values.grade = "A")
     }
+    // values[index].values.grade
   }
 
+//  useEffect(() => {
+//     console.log(values[1])
+//   }, [values]);
   
   return (
     <div>
       <LayoutStaff>
         {
         <div className='py-3 '>
-          <div className=' flex gap-3 items-center pb-3'>
+          <div className=' hidden md:flex gap-3 items-center pb-3'>
             <div className=' border border-[#E4E7EC] text-black text-base rounded shadow p-1 items-center'><div onClick={router.back}><FaArrowLeftLong /></div>
             </div>
             <div className=' text-[#667185] text-sm font-medium'>Go Back</div>
@@ -168,12 +228,14 @@ export default function index({slug}:{slug: string}) {
                 <div className=' text-[#009688]'>85%</div>
               </div>
               <div className=' flex gap-3'>
+                <div className="hidden md:flex">
                 <div className=' border px-2 py-1 border-[#8FC9FF] flex  rounded items-center'>
                   <div className='text-black text-base font-medium'><StaffDropdown options={yearOptions} onSelect={undefined} placeholder={'2023/2024'} /></div>
                   {/* <div><IoIosArrowDown /></div> */}
                 </div>
+                </div>
                 <div>
-                  <Button text={'Upload Question'} disabled={false} onClick={undefined} intent='primary' size='base' /> </div>
+                  <Button text={'Upload Question'} disabled={false} onClick={undefined} intent='primary' size='base' className={''} /> </div>
               </div>
             </div>
 
@@ -187,7 +249,7 @@ export default function index({slug}:{slug: string}) {
                   placeholder="Search..."
                 />
               </div>
-              <div className=' flex gap-4 text-base items-center  '>
+              <div className=' hidden md:flex gap-4 text-base items-center  '>
                 <div className='  text-black font-semibold'>Filters: </div>
                 <StaffDropdown
                   options={termOptions}
@@ -201,46 +263,62 @@ export default function index({slug}:{slug: string}) {
               </div>
 
             </div>
-            <div className=' grid grid-cols-4 gap-5 '>
+            <div className='  grid md:grid-cols-4 grid-cols-2 gap-5  '>
               {
                 students.map((stu, index) => (
-                  <div key={index} >
+                  <div key={index} className=''>
                     <div className={`flex flex-col bg-white-100 pb-3 border rounded-lg shadow border-[#C2E2FF] }`}>
                       <div className=' bg-[#F5FAFF] p-3 text-xl font-medium'>{stu?.full_name}</div>
                       
                       <div className=' flex flex-col gap-4 px-3 pt-3'>
                         <div className=' flex gap-4'>
                           <div className=' flex flex-col gap-2'>
-                            <div className=' text-black font-medium text-sm'>C.A</div>
+                            <div className=' text-black font-medium text-sm'>C.A 1</div>
                             <div >
                               <Input text={"0.0"}
-                                name=""
-                                error={false}
-                                success={false}
-                                disabled={false}
-                                change={(e) => {
-                                  handleInputChange(index, "ca", e.target.value)
-                                }}
-                                value={values[index]?.values.ca}
-                                size='large' />
+                              name="CA 1"
+                              error={false}
+                              success={false}
+                              disabled={false}
+                              change={(e) => {
+                                handleInputChange(index, "t_third_ca1", e.target.value, "CA1");
+                              } }
+                              value={values[index]?.values.t_third_ca1}
+                              size='large' className={''} type={''} />
                             </div>
                           </div>
+                         
+                          <div className=' flex flex-col gap-2'>
+                            <div className=' text-black font-medium text-sm'>C.A 2</div>
+                            <div >
+                              <Input text={"0.0"}
+                              name="CA 2"
+                              error={false}
+                              success={false}
+                              disabled={false}
+                              change={(e) => {
+                                handleInputChange(index, "t_third_ca2", e.target.value, "CA2");
+                              } }
+                              value={values[index]?.values.t_third_ca2}
+                              size='large' className={''} type={''} />
+                            </div>
+                          </div>                                                                                                                                                   
                           <div className=' flex flex-col gap-2'>
                             <div className=' text-black font-medium text-sm'>Exams</div>
                             <div >
                               <Input text={'0.0'}
-                                name={''}
-                                error={false}
-                                success={false}
-                                disabled={false}
-                                change={(e) => handleInputChange(index, "exam", e.target.value)}
-                                value={values[index]?.values.exam}
-                                size='large' />
+                              name={'exam'}
+                              error={false}
+                              success={false}
+                              disabled={false}
+                              change={(e) => handleInputChange(index, "t_third_exam", e.target.value, "exam")}
+                              value={values[index]?.values.t_third_exam}
+                              size='large' className={''} type={''} />
                             </div>
                           </div>
                         </div>
                         {
-                          values[index].values.ca && values[index].values.exam &&
+                         values[index]?.values.t_third_ca1 && values[index]?.values.t_third_exam &&
 
                           <div>
 
@@ -249,32 +327,32 @@ export default function index({slug}:{slug: string}) {
                                 <div className=' text-black font-medium text-sm'>Total</div>
                                 <div>
                                   <Input text={'0.0'}
-                                    name={''}
+                                    name={'total'}
                                     error={false}
                                     success={false}
                                     disabled={false}
-                                    change={() => { }}
-                                    value={getTotal(index, values[index].values.ca, values[index].values.exam)}
-                                    size='large' />
+                                    change={() => { handleChange; } }
+                                    value={getTotal(index, values[index].values.t_third_ca1, values[index].values.t_third_ca2, values[index].values.t_third_exam)}
+                                    size='large' className={''} type={''} />
                                 </div>
                               </div>
                               <div className=' flex flex-col gap-2'>
                                 <div className=' text-black font-medium text-sm'>grade</div>
                                 <div>
                                   <Input text={'0.0'}
-                                    name={''}
+                                    name={'grade'}
                                     error={false}
                                     success={false}
                                     disabled={false}
-                                    change={() => {}}
-                                    value={getGrade(Number(values[index].values.total))}
-                                    size='large' />
+                                    change={() => { handleChange; } }
+                                    value={getGrade(Number(values[index].values.total), index)}
+                                    size='large' className={''} type={''} />
                                 </div>
                               </div>
                             </div>
                             <div>
 
-                              <Button text={'Done'} intent='primary' size='small' disabled={false} onClick={() => handleSubjectDone(index)} />
+                              <Button text={'Done'} intent='primary' size='small' disabled={false} onClick={() => handleSubjectDone(index)} className={''} />
                             </div>
                           </div>
                         }
