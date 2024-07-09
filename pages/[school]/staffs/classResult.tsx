@@ -42,7 +42,8 @@ export default function classResult({slug}:{slug:string}) {
     return{
       Name: std.full_name,
       Percentage: std.id,
-      Position: std.id
+      Position: std.id, 
+      "": std.none
     }
    })
 
@@ -58,22 +59,7 @@ export default function classResult({slug}:{slug:string}) {
     };
   });
   
-  // const router = useRouter();
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
-  // useEffect(() => {
-  //   if(typeof window !== "undefined"){
-  //     const token = window.localStorage.getItem("schoolSlug")
-  //     if(token){
-  //       setIsAuthenticated(true)
-  //     }
-  //   }
-  // }, [])
 
-  // const handleAction = () => {
-  //   // console.log("clicked");
-  //   router.push(`/${isAuthenticated ? router.query.school :slug}/staffs/single_result/`)
-   
-  // };
   
   return (
 

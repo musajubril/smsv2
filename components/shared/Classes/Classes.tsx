@@ -111,8 +111,7 @@ export default function Classes() {
           </div>
 
           <div>
-            <ClassesTable
-            />
+            <ClassesTable/>
           </div>
           {/* <div className={``}>
             {length !== undefined && 

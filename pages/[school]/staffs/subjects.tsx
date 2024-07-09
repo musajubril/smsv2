@@ -18,7 +18,7 @@ export default function subjects() {
         setStaffs(staffData?.data);
       }, [staffData]);
 
-      console.log(staffs);
+      // console.log(staffs);
 
     const {data: courseList} = useQuery({
         queryKey: [queryKeys.getCourses],
@@ -31,13 +31,14 @@ export default function subjects() {
     useEffect(() => {
         setCourses(courseList?.data);
     }, [courseList]);
-    console.log(courses);
+    // console.log(courses);
 
     const mappedStudents = courses?.map((course) => {
         return{
           "Name": course.school_class.name,
           "Subject": course.subject.name,
           "Number of Students": course.id,
+          "": course.none
         }
        })
     
@@ -57,11 +58,7 @@ export default function subjects() {
       if (typeof window !== 'undefined') {
         school = localStorage.getItem('schoolSlug');
       }
-      // const handleAction = () => {
-      //   // console.log("clicked");
-      //   // router.push(`/${isAuthenticated ? router.query.school :slug}/staffs/single_result/`)
-       
-      // };
+   
 
   return (
     <div>
