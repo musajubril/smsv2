@@ -1,6 +1,7 @@
 import { getRequest } from "@/api/apiCall";
 import { HOMEROOMS, STUDENTS } from "@/api/apiUrl";
 import { queryKeys } from "@/api/queryKey";
+import Button from "@/components/shared/button/Button";
 import Layout from "@/components/shared/dashboardLayout/Layout";
 import Resultcard from "@/components/shared/resultCard/Resultcard";
 import { useQuery } from "@tanstack/react-query";
@@ -26,6 +27,23 @@ export default function class_results() {
   return (
     <Layout>
       <div className=" flex flex-col">
+        <div className=" flex justify-between items-center pb-3">
+          <p className=" font-semibold text-2xl">Class Pins</p>
+          <div className="flex gap-4">
+            <div>
+              {/* <Link href={``}> */}
+              <Button
+                intent="primary"
+                size="base"
+                text="Generate New Pin"
+                disabled={false}
+                onClick={undefined}
+                className={" "}
+              />
+              {/* </Link> */}
+            </div>
+          </div>
+        </div>
         <div className=" grid grid-cols-3 gap-6 py-3 ">
           {classes &&
             classes.map((cla, index) => (
