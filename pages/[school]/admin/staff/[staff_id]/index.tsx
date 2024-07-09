@@ -1,22 +1,31 @@
-import { getRequest, getSchool } from "@/api/apiCall";
-import { GETSCHOOL, TEACHER, TEACHERS } from "@/api/apiUrl";
+import { getRequest, getSchool, patchRequest } from "@/api/apiCall";
+import { GETSCHOOL, HOMEROOMS, STUDENT, STUDENTS, TEACHER } from "@/api/apiUrl";
 import { queryKeys } from "@/api/queryKey";
+import Button from "@/components/shared/button/Button";
 import Layout from "@/components/shared/dashboardLayout/Layout";
-import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
+import StaffLayout from "@/components/shared/dashboardLayout/staffLayout";
+import Imagelogic from "@/components/shared/imagelogic";
+import Input from "@/components/shared/input/Input";
+import Select from "@/components/shared/select/Select";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { FaArrowLeftLong } from "react-icons/fa6";
-import { PiPencilLine } from "react-icons/pi";
+import toast from "react-hot-toast";
 
-export default function staffPage() {
+export default function Profilepage() {
+  const Gender = [
+    { value: "Male", label: "Male" },
+    { value: "Female", label: "Female" },
+  ];
+
+  const [genderState, setGenderState] = useState();
 
   const router = useRouter();
-  const params: { school: string, staff_id: string } = useParams();
- 
+  const params: { school: string; staff_id: string } = useParams();
+
   const school = params?.school;
-  const staff_id = params?.staff_id
+  const staff_id = params?.staff_id;
 
   const { data } = useQuery({
     queryKey: [queryKeys.getSchool, school],
@@ -29,174 +38,265 @@ export default function staffPage() {
     setSchoolData(data?.data);
   }, [data?.data]);
 
-  const { data:getstaff } = useQuery({
-    queryKey: [queryKeys.getstaff,schoolData, staff_id],
-    queryFn: async () => await getRequest({ url: TEACHER(schoolData?.uid, staff_id)}),
+  const { data: getstaff } = useQuery({
+    queryKey: [queryKeys.getstaff, schoolData, staff_id],
+    queryFn: async () =>
+      await getRequest({ url: TEACHER(schoolData?.uid, staff_id) }),
   });
-  console.log(getstaff)
+  console.log(getstaff);
   const [staff, setStaff] = useState<any>({});
-  
+
   useEffect(() => {
     if (getstaff?.data) {
       setStaff(getstaff.data);
     }
   }, [getstaff]);
- 
+  const mutation = useMutation({
+    mutationFn: async (updateStaff: any) =>
+      await patchRequest({
+        url: TEACHER(schoolData?.uid, staff_id),
+        data: updateStaff,
+      }),
+    onSuccess: (data, variables) => {
+      setStaff((prev) => ({ ...prev, ...variables }));
+      toast.success("staff successfully updated");
+    },
+  });
+
+  useEffect(() => {
+    console.log(genderState);
+    setStaff((prev) => ({ ...prev, gender: genderState }));
+    mutation.mutate({ gender: genderState });
+  }, [genderState]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setStaff((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    mutation.mutate({ [name]: value });
+  };
+
   return (
-    <Layout>
-      <div className="flex flex-col p-6">
-        <div className="flex justify-between items-center pb-5 max-sm:hidden">
-          <div className="flex items-center gap-3 cursor-pointer">
-            <div onClick={router.back} className="flex items-center gap-3 cursor-pointer">
-              <div className="border py-1 px-2 border-[#E4E7EC] bg-white-100 rounded-lg">
-                <FaArrowLeftLong />
+    <StaffLayout>
+      <div className=" justify-center flex ">
+        {
+          <div className=" flex flex-col w-full p-4 gap-5 max-w-3xl ">
+            <div className=" md:grid grid-cols-3 items-center text-center gap-5  w-full ">
+              <div>
+                <img
+                  src="/bestcollegelogo.png"
+                  alt=""
+                  className=" hidden md:flex w-20 h-20"
+                />
               </div>
-              <div>Go Back</div>
+              <div className=" font-medium text-base md:text-xl">
+                {staff.full_name}
+              </div>
+              <div className=" hidden md:flex justify-end">
+                <Imagelogic />
+              </div>
             </div>
-            <Link href={`/${school}/admin`} className="text-gray-400 hover:text-black">Dashboard /</Link>
-            <div className="text-gray-400 hover:text-black" onClick={router.back}>Staff /</div>
-            <div>Musa Kalamu</div>
+            <div className=" md:grid grid-cols-2 gap-6 pb-3">
+              <div>
+                <div>Full name</div>
+                <div>
+                  <Input
+                    text={""}
+                    name={"full_name"}
+                    error={false}
+                    success={false}
+                    disabled={false}
+                    change={handleInputChange}
+                    value={staff.full_name}
+                    className={" py-3 bg-white-200 text-center "}
+                    type={""}
+                    blur={handleBlur}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className=" pb-2">Email Address </div>
+                <div>
+                  <input
+                    id="Email Adress"
+                    value={staff.email}
+                    name="email"
+                    type="email"
+                    className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none"
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
+                  />
+                </div>
+              </div>
+              <div>
+                <div className=" pb-2">Phone Number</div>
+                <div>
+                  <input
+                    id="Phone Number"
+                    value={staff.phone_number}
+                    name="phone_number"
+                    type="number"
+                    className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none"
+                    onChange={handleInputChange}
+                    onBlur={handleBlur}
+                  />
+                </div>
+              </div>
+              <div>
+                <div className=" pb-2">Gender</div>
+                <Select
+                  options={Gender}
+                  placeholder={staff.gender}
+                  change={undefined}
+                  text="gender"
+                  state={genderState}
+                  setState={setGenderState}
+                  name="gender"
+                />
+              </div>
+
+              <div>
+                <div className=" pb-2">Date Of Birth</div>
+                <div>
+                  <input
+                    id="date_of_birth"
+                    value={staff.date_of_birth}
+                    name="date_of_birth"
+                    type="date"
+                    autoComplete="date_of_birth"
+                    className=" p-3 bg-white-300 rounded-md font-medium h-full w-full border border-gray-500 text-gray-500 outline-none "
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+              <div>
+                <div className=" pb-2"> Staff Qualification</div>
+                <div>
+                  <Input
+                    text={""}
+                    name={"qualification"}
+                    error={false}
+                    success={false}
+                    disabled={false}
+                    change={handleInputChange}
+                    value={staff.Qualification}
+                    className={" py-3 bg-white-200 text-center "}
+                    type={""}
+                    blur={handleBlur}
+                  />
+                </div>
+              </div>
+              <div>
+                <div className=" pb-2"> Home Address</div>
+                <div>
+                  <Input
+                    text={""}
+                    name={"address"}
+                    error={false}
+                    success={false}
+                    disabled={false}
+                    change={handleInputChange}
+                    value={staff.address}
+                    className={" py-3 bg-white-200 text-center "}
+                    type={""}
+                    blur={handleBlur}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <div className=" pb-2">Department</div>
+                <div>
+                  <Input
+                    text={""}
+                    name={"null"}
+                    error={false}
+                    success={false}
+                    disabled={false}
+                    change={handleInputChange}
+                    value={null}
+                    className={" py-3 bg-white-200 text-center "}
+                    type={""}
+                    blur={handleBlur}
+                  />
+                </div>
+              </div>
+              <div>
+                <div className=" pb-2">Classes</div>
+                <div>
+                  <Input
+                    text={""}
+                    name={"null"}
+                    error={false}
+                    success={false}
+                    disabled={false}
+                    change={handleInputChange}
+                    value={null}
+                    className={" py-3 bg-white-200 text-center"}
+                    type={""}
+                    blur={handleBlur}
+                  />
+                </div>
+              </div>
+              <div>
+                <div className=" pb-2">Qualification</div>
+                <div>
+                  <Input
+                    text={""}
+                    name={"null"}
+                    error={false}
+                    success={false}
+                    disabled={false}
+                    change={handleInputChange}
+                    value={null}
+                    className={" py-3 bg-white-200 text-center"}
+                    type={"text"}
+                    blur={handleBlur}
+                  />
+                </div>
+              </div>
+              <div>
+                <div className=" pb-2">Subjects</div>
+                <div>
+                  <Input
+                    text={""}
+                    name={"null"}
+                    error={false}
+                    success={false}
+                    disabled={false}
+                    change={handleInputChange}
+                    value={null}
+                    className={" py-3 bg-white-200 text-center"}
+                    type={"text"}
+                    blur={handleBlur}
+                  />
+                </div>
+              </div>
+              <div>
+                <div className=" pb-2">Role</div>
+                <div>
+                  <Input
+                    text={""}
+                    name={"null"}
+                    error={false}
+                    success={false}
+                    disabled={false}
+                    change={handleInputChange}
+                    value={null}
+                    className={" py-3 bg-white-200 text-center "}
+                    type={""}
+                    blur={handleBlur}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div className="flex flex-col md:flex-row gap-4">
-          <div className="flex-1 flex flex-col gap-4 md:w-1/3 w-full">
-            <div className="border border-[#EDEDED] rounded-lg p-4 flex flex-col gap-3 shadow-lg">
-              <div className="flex justify-end pr-4">
-                <div className="flex border items-center gap-2 px-2 py-1 border-teal-200 rounded-lg">
-                  <h1>Edit</h1>
-                  <PiPencilLine />
-                </div>
-              </div>
-
-              <div className="flex flex-col justify-center items-center">
-                <div className="cursor-pointer">
-                  <img src="/Avatar.png" alt="" className="cursor-pointer pb-3" />
-                </div>
-                <div className="text-center">
-                  <h1 className="text-base font-semibold">{staff.full_name}</h1>
-                  <h1 className="text-sm font-normal text-[#878787]">
-                    ID:{staff.id}
-                  </h1>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 pl-6">
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-normal text-[#878787]">Gender</h1>
-                  <h1 className="text-base font-semibold">{staff.gender}</h1>
-                </div>
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-normal text-[#878787]">
-                    Qualification
-                  </h1>
-                  <h1 className="text-base font-semibold">{staff.Qualification}</h1>
-                </div>
-              </div>
-            </div>
-
-            <div className="border border-[#EDEDED] rounded-lg p-3 shadow-lg md:hidden">
-              <div className="text-lg pl-4 font-normal text-[#878787]">
-                Contact Information
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-semibold text-[#878787]">
-                    Phone Number
-                  </h1>
-                  <h1 className="text-base font-semibold">{staff.phone_number}</h1>
-                </div>
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-semibold text-[#878787]">
-                    Email Address
-                  </h1>
-                  <h1 className="text-base font-semibold">{staff.email}</h1>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-semibold text-[#878787]">
-                    Home address
-                  </h1>
-                  <h1 className="text-base font-semibold">{staff.address}</h1>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex-1 flex flex-col gap-4">
-            <div className="flex flex-col p-3 gap-4 border border-[#EDEDED] rounded-lg shadow-lg">
-              <div className="text-lg pl-4 font-semibold text-[#878787]">
-                Role Information
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-semibold text-[#878787]">
-                    Department
-                  </h1>
-                  <h1 className="text-base font-semibold">Null</h1>
-                </div>
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-semibold text-[#878787]">
-                    Class[es]
-                  </h1>
-                  <h1 className="text-base font-semibold">Null</h1>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-semibold text-[#878787]">
-                    Qualification
-                  </h1>
-                  <h1 className="text-base font-semibold">Null</h1>
-                </div>
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-semibold text-[#878787]">
-                    Subjects
-                  </h1>
-                  <h1 className="text-base font-semibold">Null</h1>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-semibold text-[#878787]">
-                    Role
-                  </h1>
-                  <h1 className="text-base font-semibold">Null</h1>
-                </div>
-              </div>
-            </div>
-
-            <div className="border border-[#EDEDED] rounded-lg p-3 shadow-lg hidden md:block">
-              <div className="text-lg pl-4 font-normal text-[#878787]">
-                Contact Information
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-semibold text-[#878787]">
-                    Phone Number
-                  </h1>
-                  <h1 className="text-base font-semibold">{staff.phone_number}</h1>
-                </div>
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-semibold text-[#878787]">
-                    Email Address
-                  </h1>
-                  <h1 className="text-base font-semibold">{staff.email}</h1>
-                </div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 pl-4">
-                <div className="flex flex-col justify-center">
-                  <h1 className="text-sm font-semibold text-[#878787]">
-                    Home address
-                  </h1>
-                  <h1 className="text-base font-semibold">{staff.address}</h1>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        }
       </div>
-    </Layout>
+    </StaffLayout>
   );
 }

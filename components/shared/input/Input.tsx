@@ -18,16 +18,19 @@ const inputStyles = cva("rounded-md font-medium h-full w-full border border-gray
     success:boolean|null;
     disabled:boolean;
     change: React.ChangeEventHandler<HTMLInputElement> | undefined | null;
+    blur: React.FocusEventHandler<HTMLInputElement> | undefined | null;
     value: any;
     className: string;
     type: string | 'text';
+    
 
   }
-  export default function Input({ size, text,name,disabled,error, value,success,change,className,type, ...props }: InputProps) {
+  export default function Input({ size, text,name,disabled,error, value,success,change,blur,className,type, ...props }: InputProps) {
  
     return (
       <input className={`${inputStyles({ size })} ${error ? "border-red-500" : null} ${success ? "border-green-500" : null} ${className} `}
-       {...props}  disabled={disabled} placeholder={text} onChange={change} name={name} value={value} type={type}/>    
+       {...props}  disabled={disabled} placeholder={text} onChange={change} name={name} value={value} type={type} onBlur={blur}/>   
+
       
     );
   }
