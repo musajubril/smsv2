@@ -109,6 +109,22 @@ export default function test() {
   ];
 
 
+  // const { data: getCourses } = useQuery({
+  //   queryKey: [queryKeys.getCourses, uid, 1],
+  //   queryFn: async () =>
+  //     await getRequest({ url: STUDENTCOURSES(uid, 1) }),
+  // });
+
+  // const [course, setCourses] = useState<any>({});
+
+  // useEffect(() => {
+  //   if (getCourses?.data) {
+  //     setCourses(getCourses.data);
+  //   }
+  // }, [getCourses]);
+  // console.log(course)
+
+
   const notify = () => toast.success("Here is your toast.");
   
   useEffect(() => {

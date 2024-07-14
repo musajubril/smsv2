@@ -175,7 +175,7 @@ export default function Table({
             </div>
 
             {/* TABLE BODY  */}
-            <div className="flex flex-col gap-5 py-3 px-3 bg-white-100 max-h-[60vh] overflow-y-scroll">
+            <div className="flex flex-col gap-5 py-3 px-3 bg-white-100 max-h-[60vh] overflow-y-scroll scrollbar-hidden">
               {students.map((pupil, pupilIndex) => (
                 <div
                   key={pupilIndex}
