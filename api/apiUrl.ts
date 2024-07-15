@@ -17,7 +17,7 @@ export const CLASSSTUDENTS = (schoolId, classId) => `${HOMEROOM(schoolId, classI
 export const TEACHERCOURSES = (schoolId, teacherId) => `${TEACHERS(schoolId)}/${teacherId}/courses`; //get singe teacher
 export const HOMEROOMS = (schoolId) =>`${LOGGEDIN(schoolId)}/classes`; // get and classes
 export const COURSE = (schoolId, courseId) => `${GET_COURSES(schoolId)}/${courseId}`;
-
+export const BROADSHEET = (schoolId, classId) => `${HOMEROOMS(schoolId)}/${classId}/result`
 export const VERIFY_OTP = (schoolId) => `${API_URL}/schools/${schoolId}/otp`
 // export const HOMEROOMS = (schoolId) =>`${LOGGEDIN(schoolId)}/classes`; // get and classes
 export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/user-activate/${uid}`
