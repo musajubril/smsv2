@@ -55,8 +55,7 @@ export default function subject() {
                   size="base"
                   text="Upload Question"
                   disabled={false}
-                  onClick={undefined}
-                />
+                  onClick={undefined} className={""}                />
               </Link>
             </div>
           </div>
