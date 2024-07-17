@@ -21,6 +21,7 @@ export const BROADSHEET = (schoolId, classId) => `${HOMEROOMS(schoolId)}/${class
 export const VERIFY_OTP = (schoolId) => `${API_URL}/schools/${schoolId}/otp`
 // export const HOMEROOMS = (schoolId) =>`${LOGGEDIN(schoolId)}/classes`; // get and classes
 export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/user-activate/${uid}`
+export const STUDENTCOURSES = (schoolId, studentId) => `${STUDENT(schoolId, studentId)}/courses`; //get singe teacher
 
 // export const HOMEROOM = (schoolId, classId) => `${HOMEROOMS(schoolId)}/${classId}`; //get single class
 // export const CLASSSTUDENTS = (schoolId, classId) => `${HOMEROOM(schoolId, classId)}/students` // get a single course
@@ -35,7 +36,6 @@ export const CHANGE_PASSWORD =(schoolId,uid)=> `${API_URL}/schools/${schoolId}/u
 // export const STUDENTPAYMENT = (schoolId, studentId) => `${STUDENT(schoolId, studentId)}/payments`
 // // export const TEACHERACCOUNT = `${TEACHER(teacher_id)}`; //get singe teacher
 // // export const TEACHER_COURSES = `${TEACHERCOURSES(teacher_id)}`
-// export const STUDENTCOURSES = (schoolId, studentId) => `${STUDENTS(schoolId)}/${studentId}/courses`; //get singe teacher
 // export const HOMEROOM = (schoolId, classId) => `${HOMEROOMS(schoolId)}/${classId}`; //get single class
 // export const HOMEROOMCOURSES = (schoolId, classId) => `${HOMEROOMS(schoolId)}/${classId}/courses`; //get singe teacher
 // export const PAYMENTS = (schoolId) =>`${LOGGED_IN(schoolId)}/payments`; // get and make payments

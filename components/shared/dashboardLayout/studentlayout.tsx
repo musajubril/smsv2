@@ -6,6 +6,7 @@ import Button from "@/components/shared/button/Button";
 import ProfilePage from "@/components/student/profilePage";
 import ClassSettings from "@/components/student/classSettings";
 import CourseSettings from "@/components/student/courseSettings";
+import ResultSettings from "@/components/student/resultSetting" 
 import { IoArrowBack } from "react-icons/io5";
 import { MdArrowBackIos } from "react-icons/md";
 
@@ -60,6 +61,8 @@ export default function StudentLayout() {
         return <ClassSettings />;
       case "Course Settings":
         return <CourseSettings />;
+        case "Result Settings":
+          return <ResultSettings />;
       default:
         return null;
     }

@@ -23,22 +23,6 @@ interface subjectParam {
     t_third_exam: string, t_third_ca1: string, t_third_ca2: string, grade: string, total: string
   }
 }
-
-// const subjects = [
-//   "Mathematics",
-//   "English",
-//   "Chemistry",
-// //   "Physics",
-// //   "Economics",
-// //   "Biology",
-// //   "Further Mathematics",
-// //   "Agriculture",
-// //   "Civic Education",
-// //   "German",
-// ];
-
-
-
 export default function index({slug}:{slug: string}) {
   const yearOptions = ['2021/2022', '2022/2023', '2023/2024',]
   const termOptions = ['first', 'second', 'third',]
@@ -78,20 +62,22 @@ export default function index({slug}:{slug: string}) {
 
   // console.log("student=",students);
 
-  const [values, setValues] = useState<subjectParam[]>([]); // Initialize with an empty array
+  const [values, setValues] = useState<subjectParam[]>([]); 
 
   useEffect(() => {
     if (students.length > 0) {
-      setValues(students.map(sub => ({
+      const savedValues = JSON.parse(localStorage.getItem('studentValues') || '{}');
+      const initialValues = students.map(sub => ({
         name: sub.full_name,
-        values: {
+        values: savedValues[sub.full_name] || {
           t_third_ca1: "",
           t_third_ca2: "",
           t_third_exam: "",
           total: "",
           grade: "",
         }
-      })));
+      }));
+      setValues(initialValues);
     }
   }, [students]);
 
@@ -146,6 +132,12 @@ export default function index({slug}:{slug: string}) {
       ...state,
       [name]: value,
     });
+    const savedValues = newValues.reduce((acc, val) => {
+      acc[val.name] = val.values;
+      return acc;
+    }, {});
+    localStorage.setItem('studentValues', JSON.stringify(savedValues));
+  
   }
 
   useEffect(() => {
@@ -168,7 +160,6 @@ export default function index({slug}:{slug: string}) {
     // e.preventDefault();
     const resultToSend = {
       ...values[index],
-      // Optionally add other fields needed for the POST request
     };
     // console.log(resultToSend)
 
@@ -200,10 +191,6 @@ export default function index({slug}:{slug: string}) {
     // values[index].values.grade
   }
 
-//  useEffect(() => {
-//     console.log(values[1])
-//   }, [values]);
-  
   return (
     <div>
       <LayoutStaff>
@@ -284,7 +271,9 @@ export default function index({slug}:{slug: string}) {
                                 handleInputChange(index, "t_third_ca1", e.target.value, "CA1");
                               } }
                               value={values[index]?.values.t_third_ca1}
-                              size='large' className={''} type={''} />
+                              size='large' className={''} type={''} blur={function (event: React.FocusEvent<HTMLInputElement, Element>): void {
+                                throw new Error('Function not implemented.');
+                              } } />
                             </div>
                           </div>
                          
@@ -300,7 +289,9 @@ export default function index({slug}:{slug: string}) {
                                 handleInputChange(index, "t_third_ca2", e.target.value, "CA2");
                               } }
                               value={values[index]?.values.t_third_ca2}
-                              size='large' className={''} type={''} />
+                              size='large' className={''} type={''} blur={function (event: React.FocusEvent<HTMLInputElement, Element>): void {
+                                throw new Error('Function not implemented.');
+                              } } />
                             </div>
                           </div>                                                                                                                                                   
                           <div className=' flex flex-col gap-2'>
@@ -313,7 +304,9 @@ export default function index({slug}:{slug: string}) {
                               disabled={false}
                               change={(e) => handleInputChange(index, "t_third_exam", e.target.value, "exam")}
                               value={values[index]?.values.t_third_exam}
-                              size='large' className={''} type={''} />
+                              size='large' className={''} type={''} blur={function (event: React.FocusEvent<HTMLInputElement, Element>): void {
+                                throw new Error('Function not implemented.');
+                              } } />
                             </div>
                           </div>
                         </div>
@@ -333,7 +326,9 @@ export default function index({slug}:{slug: string}) {
                                     disabled={false}
                                     change={() => { handleChange; } }
                                     value={getTotal(index, values[index].values.t_third_ca1, values[index].values.t_third_ca2, values[index].values.t_third_exam)}
-                                    size='large' className={''} type={''} />
+                                    size='large' className={''} type={''} blur={function (event: React.FocusEvent<HTMLInputElement, Element>): void {
+                                      throw new Error('Function not implemented.');
+                                    } } />
                                 </div>
                               </div>
                               <div className=' flex flex-col gap-2'>
@@ -346,7 +341,9 @@ export default function index({slug}:{slug: string}) {
                                     disabled={false}
                                     change={() => { handleChange; } }
                                     value={getGrade(Number(values[index].values.total), index)}
-                                    size='large' className={''} type={''} />
+                                    size='large' className={''} type={''} blur={function (event: React.FocusEvent<HTMLInputElement, Element>): void {
+                                      throw new Error('Function not implemented.');
+                                    } } />
                                 </div>
                               </div>
                             </div>
