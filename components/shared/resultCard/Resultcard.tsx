@@ -25,9 +25,6 @@ export default function Resultcard({ className, students, id }: Props) {
                 Total Number of students: {students}
               </div>
             </div>
-            <div className=" text-gray-200 text-2xl cursor-pointer">
-              <HiDotsVertical />
-            </div>
           </div>
         </div>
       </Link>
