@@ -44,9 +44,9 @@ export default function pins() {
 
 
   return (
-    <div className=' p-4'>
+    <div className=' max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className=" flex flex-col">
-            <div className=" grid grid-cols-3 gap-6 py-3">
+            <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-6">
               { students &&
                 students.map((option, index) => (
                     <div key={index}>

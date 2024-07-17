@@ -1,5 +1,5 @@
 import { getRequest } from "@/api/apiCall";
-import { HOMEROOMS, STUDENTS } from "@/api/apiUrl";
+import { HOMEROOMS } from "@/api/apiUrl";
 import { queryKeys } from "@/api/queryKey";
 import Button from "@/components/shared/button/Button";
 import Layout from "@/components/shared/dashboardLayout/Layout";
@@ -15,48 +15,36 @@ export default function class_results() {
     queryFn: async () => await getRequest({ url: HOMEROOMS(uid) }),
   });
 
-  console.log(classData);
-
-  const [classes, setclasses] = useState([]);
+  const [classes, setClasses] = useState([]);
   useEffect(() => {
-    setclasses(classData?.data);
+    if (classData?.data) {
+      setClasses(classData.data);
+    }
   }, [classData]);
-
-  console.log(classes);
 
   return (
     <Layout>
-      <div className=" flex flex-col">
-        <div className=" flex justify-between items-center pb-3">
-          <p className=" font-semibold text-2xl">Class Pins</p>
+      <div className="flex flex-col">
+        <div className="flex justify-between items-center pb-3">
+          <p className="font-semibold text-2xl">Class Pins</p>
           <div className="flex gap-4">
-            <div>
-              {/* <Link href={``}> */}
-              <Button
-                intent="primary"
-                size="base"
-                text="Generate New Pin"
-                disabled={false}
-                onClick={undefined}
-                className={" "}
-              />
-              {/* </Link> */}
-            </div>
+            <Button
+              intent="primary"
+              size="base"
+              text="Generate New Pin"
+              disabled={false}
+              onClick={undefined} className={""}            />
           </div>
         </div>
-        <div className=" grid grid-cols-3 gap-6 py-3 ">
-          {classes &&
-            classes.map((cla, index) => (
-              <div key={index}>
-                <Resultcard
-                  className={cla.name}
-                  students={cla.female_count + cla.male_count}
-                  id={cla.id}
-                />
-                {/* <Classcard className={cla.name} students={cla.female_count + cla.male_count} id={cla.id}/> */}
-                {/* <Pincard studentName={cla.name} studentPin={cla.id}/> */}
-              </div>
-            ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 py-3">
+          {classes.map((cla) => (
+            <Resultcard
+              key={cla.id}
+              className={cla.name}
+              students={cla.female_count + cla.male_count}
+              id={cla.id}
+            />
+          ))}
         </div>
       </div>
     </Layout>
